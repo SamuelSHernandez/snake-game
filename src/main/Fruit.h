@@ -1,18 +1,19 @@
 #ifndef SRC_MAIN_FRUIT_H_
 #define SRC_MAIN_FRUIT_H_
+#include "Type.h"
+
+class Game;
 
 class Fruit {
-  private:
-    struct Point {
-        int fruitX = 0;
-        int fruitY = 0;
-    };
-
   public:
-    void getPosition(struct Point);
-    void setPosition(int fruitX, int fruitY, int mapHeigth, int mapWidth);
-    void spawnFruit(int fruitX, int fruitY);
+    Fruit();
+    Point getPosition() const;
+    void setPosition(const Game &myGame);
+    void spawnFruit();
     void removeFruit();
+
+  private:
+    Point fruitPoint;
 };
 
 #endif  // SRC_MAIN_FRUIT_H_
