@@ -13,12 +13,29 @@
 #include "Game.h"
 #include "Player.h"
 #include "Snake.h"
+#include "Type.h"
 using namespace std;
 
+void test_main();
+
 int main() {
-    // testing gameLoop function
-    Game mygame(10, 10);
-    mygame.gameLoop();
+    test_main();
 
     return 0;
+}
+
+void test_main() {
+    // // testing gameLoop function
+    // Game mygame;
+    // mygame.gameLoop();
+
+    // testing type.h
+    Point point;
+    point.x = 3;
+    point.y = 4;
+    cout << point.x << endl << point.y << endl;
+
+    Compass compass;
+    compass = NORTH;
+    cout << compass << endl;
 }

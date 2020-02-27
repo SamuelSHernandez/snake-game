@@ -3,18 +3,29 @@
 #include "Fruit.h"   // Game will have a Fruit instance
 #include "Player.h"  // will have a Player instance
 #include "Snake.h"   // will have a Snake instance
+#include "Type.h"
 
-enum Level { L_EASY, L_MEDIUM, L_HARD };
+class Fruit;
+class Snake;
+class Player;
 
 class Game {
   public:
-    Game(int x, int y);  // initializes board array of size y by x
-    void render();       // renders the game board
-    void gameLoop();     // holds game logic and runs the game
+    Game();           // initializes board array of size y by x
+    void gameLoop();  // holds game logic and runs the game
+    int getMapWidth() const {
+        return mapWidth;
+    }
+    int getMapHeight() const {
+        return mapHeight;
+    }
+    void render();                       // renders the game board
+    void setGameDifficulty(int choice);  // accepts int 1, 2, or 3 to set difficulty
+                                         // may throw exception if choice is not between 1 and 3
 
   private:
-    int mapWidth = 0;   // variable to hold board width
-    int mapHeight = 0;  // variable to hold board height
+    int mapWidth;   // variable to hold board width
+    int mapHeight;  // variable to hold board height
     Level gameDifficulty;
     Fruit gameFruit;
     Snake gameSnake;

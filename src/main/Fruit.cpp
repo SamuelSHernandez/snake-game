@@ -5,16 +5,23 @@
 #include "Game.h"
 using namespace std;
 
-void setPosition(int fruitX, int fruitY, int mapHeigth, int mapWidth) {
+Fruit::Fruit() {
+}
+void Fruit::setPosition(const Game &myGame) {
     do {
-        fruitX = rand() % (mapWidth - 2) - 1;   // Generates food at a random X position
-        fruitY = rand() % (mapHeigth - 2) - 1;  // Generates food at a random Y position
+        int fruitX = rand() % (myGame.getMapWidth() - 2) - 1;   // Generates food at a random X position
+        int fruitY = rand() % (myGame.getMapHeight() - 2) - 1;  // Generates food at a random Y position
 
+        fruitPoint.x = fruitX;
+        fruitPoint.y = fruitY;
     } while (true);  // this will be to check if location is free or not later on
 }
 
-void getPosition(struct Point);
-void spawnFruit() {
+Point Fruit::getPosition() const {
+    Point point;
+    return point;
 }
-void removeFruit() {
+void Fruit::spawnFruit() {
+}
+void Fruit::removeFruit() {
 }
