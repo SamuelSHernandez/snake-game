@@ -8,7 +8,7 @@ class Snake {
     char move();
     void changeDirection(Compass direction);
     void lengthen();
-    void return_head(Point headPosition);
+    Point return_head();
 
   private:
     int length;
