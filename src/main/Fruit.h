@@ -9,11 +9,11 @@ class Fruit {
     Fruit();
     Point getPosition() const;
     void setPosition(const Game &myGame);
-    void spawnFruit();
-    void removeFruit();
+    void spawnFruit(const Game &myGame);
+    void removeFruit(const Game &myGame);
 
   private:
-    Point fruitPoint;
+    Point position;
 };
 
 #endif  // SRC_MAIN_FRUIT_H_
