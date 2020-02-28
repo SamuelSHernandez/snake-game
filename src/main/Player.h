@@ -8,11 +8,11 @@ class Player {
   public:
     Player() {
     }
-    string getName();
+    string getName() const;
     void setName(string name);
-    char getAsciiChar();
+    char getAsciiChar() const;
     void setAsciiChar(char asciiChar);
-    int getHighScore();
+    int getHighScore() const;
     void setHighScore(int score);
 
   private:
