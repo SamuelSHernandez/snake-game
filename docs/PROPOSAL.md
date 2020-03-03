@@ -1,3 +1,9 @@
+---
+layout: page
+title: /proposal
+permalink: /
+---
+
 # CPTR 142 Project III: ASCII Snek
 
 Our proposed project is a personal take on the traditional arcade game, Snake.
