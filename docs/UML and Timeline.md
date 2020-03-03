@@ -1,3 +1,9 @@
+---
+layout: page
+title: /specifications
+permalink: /Specifications/
+---
+
 # CPTR 142: Project #3
 ## UML Diagrams
 |Class Game   	|
