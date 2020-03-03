@@ -1,7 +1,7 @@
 ---
 layout: page
 title: /proposal
-permalink: /
+permalink: /proposal/
 ---
 
 # CPTR 142 Project III: ASCII Snek

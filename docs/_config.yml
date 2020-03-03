@@ -4,6 +4,8 @@ baseurl: /student142_project3
 
 header_pages:
   - PROPOSAL.md
+  - UML and Timeline.md
+  - index.md
 
 style: dark
 listen_for_clients_preferred_style: true

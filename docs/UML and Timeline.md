@@ -1,7 +1,7 @@
 ---
 layout: page
 title: /specifications
-permalink: /Specifications/
+permalink: /specifications/
 ---
 
 # CPTR 142: Project #3
