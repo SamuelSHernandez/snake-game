@@ -39,39 +39,39 @@ run_cppcheck:
     - find -name '*.h' -exec cppcheck --enable=all --suppress=missingIncludeSystem --language=c++ {} +
     - find -name '*.cpp' -exec cppcheck --enable=all --suppress=missingIncludeSystem --language=c++ {} +
 
-# build_programs:
-#   stage: build
-#   script:
-#     - mkdir build
-#     - cd build
-#     - cmake ..
-#     - make
-#   artifacts:
-#     paths:
-#       - build/tests
-#       - build/program
-#     expire_in: 1 hour
+build_programs:
+  stage: build
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+  artifacts:
+    paths:
+      - build/tests
+      - build/program
+    expire_in: 1 hour
 
-# code_coverage:
-#   stage: coverage
-#   script:
-#     - mkdir -p build && cd build
-#     - cmake .. -DGENERATE_CODE_COVERAGE=true
-#     - make
-#     - ./tests
-#     - cd CMakeFiles/tests.dir
-#     - mkdir -p cov
-#     - find -name '*.o' -exec cp -t cov {} +
-#     - find -name '*.gcno' -exec cp -t cov {} +
-#     - find -name '*.gcda' -exec cp -t cov {} +
-#     - cd cov || exit 1
-#     - find -name '*.o' -exec gcov -bf {} \; > /dev/null
-#     - lcov --quiet --capture --directory . --output-file coverage.info
-#     - lcov --quiet --remove coverage.info "*include*" -o coverage.info
-#     - lcov --list coverage.info
-#     - echo "Generating HTML Report"
-#     - genhtml coverage.info --output-directory out
-#     - echo "You can download the report from the pipleine artifacts in gitlab for the next week"
+code_coverage:
+  stage: coverage
+  script:
+    - mkdir -p build && cd build
+    - cmake .. -DGENERATE_CODE_COVERAGE=true
+    - make
+    - ./tests
+    - cd CMakeFiles/tests.dir
+    - mkdir -p cov
+    - find -name '*.o' -exec cp -t cov {} +
+    - find -name '*.gcno' -exec cp -t cov {} +
+    - find -name '*.gcda' -exec cp -t cov {} +
+    - cd cov || exit 1
+    - find -name '*.o' -exec gcov -bf {} \; > /dev/null
+    - lcov --quiet --capture --directory . --output-file coverage.info
+    - lcov --quiet --remove coverage.info "*include*" -o coverage.info
+    - lcov --list coverage.info
+    - echo "Generating HTML Report"
+    - genhtml coverage.info --output-directory out
+    - echo "You can download the report from the pipleine artifacts in gitlab for the next week"
   artifacts:
     paths:
       - build/CMakeFiles/tests.dir/cov/out/
