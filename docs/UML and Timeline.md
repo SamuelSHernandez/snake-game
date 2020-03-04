@@ -1,7 +1,7 @@
 ---
 layout: page
-title: /specifications
-permalink: /specifications/
+title: /UML and Timeline
+permalink: /UML/
 ---
 
 # CPTR 142: Project #3
