@@ -1,10 +1,6 @@
 theme: jekyll-theme-console
 
-<<<<<<< HEAD
-baseurl: /student142_project3
-=======
 baseurl: /team-6---cptr142-project-3
->>>>>>> cptr245_CI
 
 header_pages:
   - PROPOSAL.md
