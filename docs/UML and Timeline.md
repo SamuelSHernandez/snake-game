@@ -1,3 +1,9 @@
+---
+layout: page
+title: /UML and Timeline
+permalink: /UML/
+---
+
 # CPTR 142: Project #3
 ## UML Diagrams
 |Class Game   	|

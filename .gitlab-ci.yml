@@ -10,6 +10,7 @@ stages:
   - build
   - test
   - coverage
+  - deploy
 
 check_formatting:
   stage: analysis
@@ -76,3 +77,33 @@ code_coverage:
       - build/CMakeFiles/tests.dir/cov/out/
     expire_in: 7 days
 
+variables:
+  JEKYLL_ENV: production
+  LC_ALL: C.UTF-8
+
+test:
+  image: ruby:2.3
+  stage: test
+  script:
+    - bundle install
+    - cd docs
+    - bundle exec jekyll build -d ../test
+  artifacts:
+    paths:
+      - test
+  except:
+    - master
+
+pages:
+  image: ruby:2.3
+  stage: deploy
+  script:
+    - bundle install
+    - cd docs
+    - bundle exec jekyll build -d ../public
+    - echo ${CI_PAGES_URL}
+  artifacts:
+    paths:
+      - public
+  only:
+    - cptr245_CI
