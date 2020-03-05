@@ -18,7 +18,6 @@ class Player {
     string name;
     int score;
     char asciiChar;
-    Snake snake;
 };
 
 #endif  // SRC_MAIN_PLAYER_H_
