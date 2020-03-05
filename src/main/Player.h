@@ -6,8 +6,7 @@ using namespace std;
 
 class Player {
   public:
-    Player() {
-    }
+    Player();
     string getName() const;
     void setName(string name);
     char getAsciiChar() const;
