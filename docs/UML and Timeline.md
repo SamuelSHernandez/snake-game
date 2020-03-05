@@ -5,6 +5,9 @@ permalink: /UML/
 ---
 
 # CPTR 142: Project #3
+
+To see classes, flow diagram, challenges, and team management, click <a href="https://gitlab.cs.wallawalla.edu/irvilu/team-6---cptr142-project-3/raw/master/docs/project_planning.pdf">here</a>
+
 ## UML Diagrams
 |Class Game   	|
 |----------	|
@@ -70,6 +73,7 @@ permalink: /UML/
 |-length: int |
 |-direction: enum Compass |
 |-headPosition: struct Point |
+|-ascii: char |
 
 -
 -
