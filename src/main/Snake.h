@@ -11,7 +11,8 @@ class Snake {
         this->direction = direction;
     }
     void lengthen();
-    Point return_head() {
+    int getLength() { return length; }
+    Point getPosition() {
         return headPosition;
     }
 

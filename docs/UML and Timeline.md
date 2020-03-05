@@ -64,7 +64,7 @@ To see classes, flow diagram, challenges, and team management, click <a href="ht
 |Class Snake |
 |----------- |
 |+Snake() |
-|+Snake(ascii: char, direction: enum Compass, position: structPoint) |
+|+Snake(ascii: char, direction: enum Compass, position: struct Point) |
 |+move() |
 |+changeDirection(direction: enum Compass) |
 |+lengthen() |

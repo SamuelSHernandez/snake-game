@@ -54,21 +54,21 @@ void Game::gameLoop() {
         gameSnake.move();
 
         // check if it hit walls
-        if (gameSnake.return_head().y < 1 || gameSnake.return_head().y > mapHeight ||
-            gameSnake.return_head().x < 1 || gameSnake.return_head().x > mapWidth) {
+        if (gameSnake.getPosition().y < 1 || gameSnake.getPosition().y > mapHeight ||
+            gameSnake.getPosition().x < 1 || gameSnake.getPosition().x > mapWidth) {
                 gameOver = true;
                 break;
         }
 
         // lengthen snake if it hits fruit and generate more fruit
-        if (gameSnake.return_head() == gameFruit.getPosition()) {
+        if (gameSnake.getPosition() == gameFruit.getPosition()) {
             gameSnake.lengthen();
-            gameFruit.spawnFruit(mapWidth, mapHeight, board);
+            // gameFruit.spawnFruit(mapWidth, mapHeight, board);
         }
 
         // set cell visited by head position to equal snake length
-        if (board[gameSnake.return_head().y][gameSnake.return_head().x] > 0) {
-            board[gameSnake.return_head().y][gameSnake.return_head().x] = gameSnake.getLength();
+        if (board[gameSnake.getPosition().y][gameSnake.getPosition().x] > 0) {
+            board[gameSnake.getPosition().y][gameSnake.getPosition().x] = gameSnake.getLength();
         }
         else {
             // snake has hit itself so game is over
