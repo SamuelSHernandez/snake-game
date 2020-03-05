@@ -6,8 +6,7 @@ using namespace std;
 
 class Player {
   public:
-    Player() {
-    }
+    Player();
     string getName() const;
     void setName(string name);
     char getAsciiChar() const;
@@ -19,7 +18,6 @@ class Player {
     string name;
     int score;
     char asciiChar;
-    Snake snake;
 };
 
 #endif  // SRC_MAIN_PLAYER_H_
