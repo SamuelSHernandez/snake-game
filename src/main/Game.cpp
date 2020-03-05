@@ -49,15 +49,15 @@ void Game::gameLoop() {
         // ADD if right key
 
         // ADD if down key
-        
+
         // move snake based on direction
         gameSnake.move();
 
         // check if it hit walls
-        if (gameSnake.getPosition().y < 1 || gameSnake.getPosition().y > mapHeight ||
-            gameSnake.getPosition().x < 1 || gameSnake.getPosition().x > mapWidth) {
-                gameOver = true;
-                break;
+        if (gameSnake.getPosition().y < 1 || gameSnake.getPosition().y > mapHeight || gameSnake.getPosition().x < 1 ||
+            gameSnake.getPosition().x > mapWidth) {
+            gameOver = true;
+            break;
         }
 
         // lengthen snake if it hits fruit and generate more fruit
@@ -69,8 +69,7 @@ void Game::gameLoop() {
         // set cell visited by head position to equal snake length
         if (board[gameSnake.getPosition().y][gameSnake.getPosition().x] > 0) {
             board[gameSnake.getPosition().y][gameSnake.getPosition().x] = gameSnake.getLength();
-        }
-        else {
+        } else {
             // snake has hit itself so game is over
             gameOver = true;
             break;
@@ -78,8 +77,8 @@ void Game::gameLoop() {
 
         // decrement all of board[][]
         decrementArray();
-        
-        cout << index << endl;         // to delete - debugging only
+
+        cout << index << endl;          // to delete - debugging only
         sleep_for(milliseconds(1000));  // speed of event loop. Higher number is slower
 
         // should be deleted once proper checking for end of game is added
