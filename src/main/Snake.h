@@ -4,6 +4,7 @@
 
 class Snake {
   public:
+    Snake();
     Snake(char ascii, Compass compass, Point position);
     void move();
     void changeDirection(Compass direction) {
