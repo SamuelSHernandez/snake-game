@@ -28,7 +28,8 @@ Game::Game() {
     // initialize board array with space characters
     for (int i = 0; i < mapHeight; ++i) {
         for (int j = 0; j < mapWidth; ++j) {
-            board[i][j] = ' ';
+            countBoard[i][j] = 0;
+            board[i][j] = 0;
         }
     }
 }
@@ -53,6 +54,7 @@ void Game::gameLoop() {
         cout << index << endl;         // to delete - debugging only
         sleep_for(milliseconds(300));  // speed of event loop. Higher number is slower
         // should be deleted once proper checking for end of game is added
+
         if (index == 100) {
             gameOver = true;
         }

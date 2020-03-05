@@ -22,6 +22,7 @@ class Game {
     void render();                       // renders the game board
     void setGameDifficulty(int choice);  // accepts int 1, 2, or 3 to set difficulty
                                          // may throw exception if choice is not between 1 and 3
+    void decrementArray();               // decreases every value in array by 1
 
   private:
     int mapWidth;   // variable to hold board width
@@ -30,8 +31,9 @@ class Game {
     Fruit gameFruit;
     Snake gameSnake;
     Player gamePlayer;
-    char board[20][20];  // Array size can be changed as necessary. Each difficulty level
+    int board[20][20];  // Array size can be changed as necessary. Each difficulty level
                          // only uses as much of the array as needed.
+    int countBoard[20][20]; //
 };
 
 #endif  // SRC_MAIN_GAME_H_
