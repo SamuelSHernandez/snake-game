@@ -6,13 +6,18 @@ class Snake {
   public:
     Snake();
     Snake(char ascii, Compass compass, Point position);
-    char move();
-    void changeDirection(Compass direction);
+    void move();
+    void changeDirection(Compass direction) {
+        this->direction = direction;
+    }
     void lengthen();
-    Point return_head(Point headPosition);
+    Point return_head() {
+        return headPosition;
+    }
 
   private:
     int length;
+    char ascii;
     Compass direction;
     Point headPosition;
 };
