@@ -68,6 +68,7 @@ permalink: /UML/
 |-length: int |
 |-direction: enum Compass |
 |-headPosition: struct Point |
+|-ascii: char |
 
 -
 -
