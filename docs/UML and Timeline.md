@@ -6,7 +6,7 @@ permalink: /UML/
 
 # CPTR 142: Project #3
 
-'Attempting to add pdf file, click <a href="https://gitlab.cs.wallawalla.edu/irvilu/team-6---cptr142-project-3/raw/master/docs/project_planning.pdf">here</a>'
+To see classes, flow diagram, challenges, and team management, click <a href="https://gitlab.cs.wallawalla.edu/irvilu/team-6---cptr142-project-3/raw/master/docs/project_planning.pdf">here</a>
 
 ## UML Diagrams
 |Class Game   	|
