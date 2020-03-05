@@ -7,7 +7,9 @@ using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until
 using namespace chrono;       // nanoseconds, system_clock, seconds, milliseconds
 
-Game::Game() {
+Game::Game(int choice) {
+    // set difficulty
+    setGameDifficulty(choice);
     // set map size based on gameDifficulty member variable
     switch (gameDifficulty) {
         case L_EASY:
@@ -25,10 +27,9 @@ Game::Game() {
             mapHeight = 20;
             break;
     }
-    // initialize board array with space characters
+    // initialize board array with zeros
     for (int i = 0; i < mapHeight; ++i) {
         for (int j = 0; j < mapWidth; ++j) {
-            countBoard[i][j] = 0;
             board[i][j] = 0;
         }
     }
@@ -48,17 +49,54 @@ void Game::gameLoop() {
         // ADD if right key
 
         // ADD if down key
+        
+        // move snake based on direction
+        gameSnake.move();
 
-        // ADD if snake hits itself or wall
+        // check if it hit walls
+        if (gameSnake.return_head().y < 1 || gameSnake.return_head().y > mapHeight ||
+            gameSnake.return_head().x < 1 || gameSnake.return_head().x > mapWidth) {
+                gameOver = true;
+                break;
+        }
 
+        // lengthen snake if it hits fruit and generate more fruit
+        if (gameSnake.return_head() == gameFruit.getPosition()) {
+            gameSnake.lengthen();
+            gameFruit.spawnFruit(mapWidth, mapHeight, board);
+        }
+
+        // set cell visited by head position to equal snake length
+        if (board[gameSnake.return_head().y][gameSnake.return_head().x] > 0) {
+            board[gameSnake.return_head().y][gameSnake.return_head().x] = gameSnake.getLength();
+        }
+        else {
+            // snake has hit itself so game is over
+            gameOver = true;
+            break;
+        }
+
+        // decrement all of board[][]
+        decrementArray();
+        
         cout << index << endl;         // to delete - debugging only
-        sleep_for(milliseconds(300));  // speed of event loop. Higher number is slower
-        // should be deleted once proper checking for end of game is added
+        sleep_for(milliseconds(1000));  // speed of event loop. Higher number is slower
 
+        // should be deleted once proper checking for end of game is added
         if (index == 100) {
             gameOver = true;
         }
     } while (!gameOver);
+}
+
+void Game::decrementArray() {
+    for (int i = 1; i <= mapHeight; ++i) {
+        for (int j = 1; j <= mapWidth; ++j) {
+            if (board[i][j] > 0) {
+                board[i][j] -= 1;
+            }
+        }
+    }
 }
 
 void Game::render() {

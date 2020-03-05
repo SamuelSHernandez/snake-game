@@ -11,7 +11,7 @@ class Player;
 
 class Game {
   public:
-    Game();           // initializes board array of size y by x
+    Game(int choice);           // initializes board array of size y by x and sets difficulty. Could throw runtime_error if not in bounds
     void gameLoop();  // holds game logic and runs the game
     int getMapWidth() const {
         return mapWidth;
@@ -31,9 +31,9 @@ class Game {
     Fruit gameFruit;
     Snake gameSnake;
     Player gamePlayer;
-    int board[20][20];  // Array size can be changed as necessary. Each difficulty level
-                         // only uses as much of the array as needed.
-    int countBoard[20][20]; //
+    int board[22][22];  // Array size can be changed as necessary. Each difficulty level
+                        // 22x22 so frame can exist in index 0 and 21 and snake can operate from 1 to 20 (on 20x20 game baord)
+                        // only uses as much of the array as needed.
 };
 
 #endif  // SRC_MAIN_GAME_H_

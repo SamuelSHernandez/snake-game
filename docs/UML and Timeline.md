@@ -14,6 +14,7 @@ permalink: /UML/
 |+getMapHeight() const: int |
 |+setGameDifficulty(choice: int) |
 |+render() 	|
+|+decrementArray(): void |
 |-mapWidth |
 |-mapHeight |
 |-gameFruit: Fruit |
@@ -65,6 +66,7 @@ permalink: /UML/
 |+changeDirection(direction: enum Compass) |
 |+lengthen() |
 |+returnHead(): struct Point |
+|+getLength(): int <br> - returns the snake's length member variable |
 |-length: int |
 |-direction: enum Compass |
 |-headPosition: struct Point |
