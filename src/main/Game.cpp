@@ -33,6 +33,12 @@ Game::Game(int choice) {
             board[i][j] = 0;
         }
     }
+
+    // Position snake
+    gameSnake.setLength(2);
+    gameSnake.setPosition(mapWidth - 1, mapHeight / 2);
+    gameSnake.setAscii('=');
+    board[mapHeight / 2][mapWidth] = 1;     // need to set tail in board first time
 }
 
 void Game::gameLoop() {
