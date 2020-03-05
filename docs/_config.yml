@@ -1,0 +1,13 @@
+theme: jekyll-theme-console
+
+baseurl: /team-6---cptr142-project-3
+
+header_pages:
+  - PROPOSAL.md
+  - UML and Timeline.md
+  - index.md
+
+style: dark
+listen_for_clients_preferred_style: true
+
+footer: 'CPTR 142 from <a href="https://wallawalla.edu">Walla Walla University</a>'
