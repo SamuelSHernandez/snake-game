@@ -17,6 +17,7 @@ class Snake {
 
   private:
     int length;
+    char ascii;
     Compass direction;
     Point headPosition;
 };
