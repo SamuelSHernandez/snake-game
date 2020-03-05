@@ -1,6 +1,7 @@
 #include "Snake.h"
 
 Snake::Snake(char ascii, Compass compass, Point position) {
+    length = 2;
     this->ascii = ascii;
     compass = direction;
     position = headPosition;
