@@ -106,4 +106,4 @@ pages:
     paths:
       - public
   # only:
-  #   - cptr245_CI
+  #   - master
