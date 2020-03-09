@@ -4,6 +4,8 @@
 #include "Snake.h"  // Player will have a Snake instance
 using namespace std;
 
+class Snake;
+
 class Player {
   public:
     Player();

@@ -1,6 +1,7 @@
 #ifndef SRC_MAIN_FRUIT_H_
 #define SRC_MAIN_FRUIT_H_
 #include "Type.h"
+#include "Game.h"
 
 class Game;
 
