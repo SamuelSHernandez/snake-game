@@ -8,9 +8,7 @@ struct Point {
     int y;
 };
 
-bool operator==(Point lhs, Point rhs) {
-    return (lhs.x == rhs.x) && (lhs.y == rhs.y);
-}
+bool operator==(Point lhs, Point rhs);
 
 enum Level { L_EASY, L_MEDIUM, L_HARD };
 
