@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <thread>
+#include <fstream>
 using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until
 using namespace chrono;       // nanoseconds, system_clock, seconds, milliseconds
@@ -13,25 +14,43 @@ Game::Game() {
         case L_EASY:
             mapWidth = 10;
             mapHeight = 10;
+
             break;
 
         case L_MEDIUM:
             mapWidth = 15;
             mapHeight = 15;
+
             break;
 
         case L_HARD:
             mapWidth = 20;
             mapHeight = 20;
+
             break;
     }
-    // initialize board array with space characters
-    for (int i = 0; i < mapHeight; ++i) {
-        for (int j = 0; j < mapWidth; ++j) {
+    // sets the array with blank spaces with game difficulty size
+    for (int i = 0; i < mapHeight + 2; ++i) {
+        for (int j = 0; j < mapWidth + 2; ++j) {
             board[i][j] = ' ';
         }
     }
+
+     for (int i = 0; i < mapHeight + 2; i++) {
+       
+        for (int j = 0; j < mapWidth + 2; j++) {
+  
+            if (i == 0 || i == mapHeight + 1) {
+                board[i][j] = '*';
+            }
+             else if (j == 0 || j == mapWidth + 1) {
+                board[i][j] = '|';
+
+            } 
+        }
+    }
 }
+
 
 void Game::gameLoop() {
     bool gameOver = false;
@@ -60,11 +79,20 @@ void Game::gameLoop() {
 }
 
 void Game::render() {
-    for (int i = 0; i < mapWidth; i++) {
-        for (int j = 0; j < mapHeight; j++) {
-            cout << " * ";
-        }
-    }
+   ofstream fout;
+   fout.open("GameBoard.txt");
+   if(!fout){
+       cerr << "cannot open";
+   }
+
+   for(int i = 0; i < mapHeight + 2 ; i++){
+       for(int j = 0 ; j < mapWidth + 2; j++){
+            fout << board[i][j] << " ";
+       }
+       fout << endl;
+   }
+
+   fout.close();
 }
 
 void Game::setGameDifficulty(int choice) {
@@ -83,3 +111,42 @@ void Game::setGameDifficulty(int choice) {
             break;
     }
 }
+
+/*
+ for (int i = 0; i < mapHeight; ++i) {
+        for (int j = 0; j < mapWidth; ++j) {
+            board[i][j] = ' ';
+
+            if ((mapHeight == 0 && mapWidth == 0) && (mapHeight == maxHeight && mapHeight == maxWitdth)) {
+                cout << "+";
+            }
+
+            if ((mapHeight == 0) && (mapHeight < maxHeight)) {
+                cout << "---";
+            }
+
+            if ((mapWidth == 0) && (mapWidth == maxWitdth)) {
+                cout << " | ";
+            }
+        }
+
+
+
+
+
+
+
+
+            for (int i = 0; i < mapWidth; i++) {
+        for (int j = 0; j < mapHeight; j++) {
+            if (i == 0 || i == mapWidth) {  // prints top and bottom walls
+                board[i][j] = '=';
+            }
+
+            if (j == 0 || j == mapHeight) {
+                board[i][j] = '=';
+                cout << board[i][j];
+            }
+        }
+    }
+    } */
