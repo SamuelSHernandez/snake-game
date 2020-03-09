@@ -6,9 +6,9 @@ class Fruit {
   public:
     Fruit();
     Point getPosition() const;
-    void setPosition(const Game &myGame);
-    void spawnFruit(const Game &myGame);
-    void removeFruit(const Game &myGame);
+    void setPosition(int mapHeight, int mapWidth);
+    void spawnFruit(int mapHeight, int mapWidth);
+    void removeFruit(int mapHeight, int mapWidth);
 
   private:
     Point position;
