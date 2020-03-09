@@ -2,7 +2,6 @@
 #include <ctime>
 #include <iostream>
 #include <string>
-#include "Game.h"
 using namespace std;
 
 Fruit::Fruit() {
