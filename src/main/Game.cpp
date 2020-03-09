@@ -32,16 +32,16 @@ Game::Game() {
     // sets the array with blank spaces with game difficulty size
     for (int i = 0; i < mapHeight + 2; ++i) {
         for (int j = 0; j < mapWidth + 2; ++j) {
-            board[i][j] = ' ';
+            board[i][j] = 0;
         }
     }
 
     for (int i = 0; i < mapHeight + 2; i++) {
         for (int j = 0; j < mapWidth + 2; j++) {
             if (i == 0 || i == mapHeight + 1) {
-                board[i][j] = '=';
+                board[i][j] = -1;
             } else if (j == 0 || j == mapWidth + 1) {
-                board[i][j] = '|';
+                board[i][j] = -2;
             }
         }
     }
@@ -82,7 +82,21 @@ void Game::render() {
 
     for (int i = 0; i < mapHeight + 2; i++) {
         for (int j = 0; j < mapWidth + 2; j++) {
-            fout << board[i][j] << " ";
+            Point headPosition;
+            headPosition.x = j;
+            headPosition.y = i;
+            if (board[i][j] == -1) {
+                fout << "=  ";
+            } else if (board[i][j] == -2) {
+                fout << "|  ";
+            } else if (board[i][j] > 0 && headPosition != gameSnake.return_head()) {
+                fout << "*";
+            } 
+            else if (headPosition == gameSnake.return_head()) {
+                fout << "O";
+            } else {
+                fout << board[i][j] << " ";
+            }
         }
         fout << endl;
     }
