@@ -23,11 +23,11 @@ Point Fruit::getPosition() const {
     Point point;
     return point;
 }
-void Fruit::spawnFruit(const Game &myGame) {
+void Fruit::spawnFruit(int mapHeight, int mapWidth)) {
     // if not in snake
     // if not outside bounds
 }
-void Fruit::removeFruit(const Game &myGame) {
+void Fruit::removeFruit(int mapHeight, int mapWidth) {
     if (true) {
     }  // if snake head position == fruit position, remove fruit
 }
