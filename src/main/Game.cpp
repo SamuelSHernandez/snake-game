@@ -26,11 +26,11 @@ Game::Game() {
             break;
     }
     // initialize board array with space characters
-    for (int i = 0; i < mapHeight; ++i) {
-        for (int j = 0; j < mapWidth; ++j) {
-            board[i][j] = ' ';
-        }
-    }
+    // for (int i = 0; i < mapHeight; ++i) {
+    //     for (int j = 0; j < mapWidth; ++j) {
+    //         board[i][j] = ' ';
+    //     }
+    // }
 }
 
 void Game::gameLoop() {
