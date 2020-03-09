@@ -45,6 +45,7 @@ void Game::gameLoop() {
     bool gameOver = false;
     int index = 0;  // used to keep track of loop iterations
     // Event Loop - runs until game is over
+    gameFruit.setPosition(mapHeight, mapWidth, gameSnake.getPosition);
     do {
         index++;
 
@@ -69,7 +70,7 @@ void Game::gameLoop() {
         // lengthen snake if it hits fruit and generate more fruit
         if (gameSnake.getPosition() == gameFruit.getPosition()) {
             gameSnake.lengthen();
-            // gameFruit.spawnFruit(mapWidth, mapHeight, board);
+            gameFruit.setPosition(mapWidth, mapHeight, gameSnake.getPosition());
         }
 
         // set cell visited by head position to equal snake length
@@ -80,6 +81,8 @@ void Game::gameLoop() {
             gameOver = true;
             break;
         }
+
+        render();
 
         // decrement all of board[][]
         decrementArray();
@@ -92,6 +95,7 @@ void Game::gameLoop() {
             gameOver = true;
         }
     } while (!gameOver);
+    // handle end of game
 }
 
 void Game::decrementArray() {
