@@ -31,7 +31,7 @@ class Game {
     Snake gameSnake;
     Player gamePlayer;
     int board[25][25];  // Array size can be changed as necessary. Each difficulty level
-                         // only uses as much of the array as needed.
+                        // only uses as much of the array as needed.
 };
 
 #endif  // SRC_MAIN_GAME_H_
