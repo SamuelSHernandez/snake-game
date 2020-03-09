@@ -10,22 +10,22 @@ class Player {
     Player(string, char);
     string getName() const {
         return name;
-    };
+    }
     void setName(string name) {
         this->name = name;
-    };
+    }
     char getAsciiChar() const {
         return asciiChar;
-    };
+    }
     void setAsciiChar(char asciiChar) {
         this->asciiChar = asciiChar;
-    };
+    }
     int getHighScore() const {
         return score;
-    };
+    }
     void setHighScore(int score) {
         this->score = score;
-    };
+    }
 
   private:
     string name;
