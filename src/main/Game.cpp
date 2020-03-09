@@ -3,10 +3,13 @@
 #include <iostream>
 #include <stdexcept>
 #include <thread>
+#include <pthread.h>
 using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until
 using namespace chrono;       // nanoseconds, system_clock, seconds, milliseconds
-
+char input='s';
+bool gameOver=false;
+Compass ChangeDirection;
 Game::Game() {
     // set map size based on gameDifficulty member variable
     switch (gameDifficulty) {
@@ -32,22 +35,67 @@ Game::Game() {
         }
     }
 }
-
+//Function to get User Input
+void getUserInput(){
+    while(gameOver==false){
+system("stty raw");
+input =getchar();
+switch(input){
+        // ADD if up key
+        case 'w':
+        if(ChangeDirection!=SOUTH){
+            ChangeDirection=NORTH;
+            //for error checking take out later
+            cout<<ChangeDirection<<endl;
+        }
+        break;
+        // ADD if left key
+        case 'a':
+        if(ChangeDirection!=EAST){
+            ChangeDirection=WEST;
+            //for error checking
+            cout<<ChangeDirection<<endl;
+        }
+        break;
+        // ADD if right key
+        case 'd':
+        if(ChangeDirection!=WEST){
+            ChangeDirection=EAST;
+            //for error checking 
+            cout<<ChangeDirection<<endl;
+        }
+        break;
+        // ADD if down key
+        case 's':
+        if(ChangeDirection!=NORTH){
+            ChangeDirection=SOUTH;
+            //for error checking 
+            cout<<ChangeDirection<<endl;
+        }
+        break;
+        default:
+        //not really sure what to put in here.
+        cout<<ChangeDirection<<endl;
+        break;
+        }
+system("cooked");
+    }
+}
+//Is calld by Game Loop to create the user input thread.
+void getDirection(){
+   
+    thread th1(getUserInput);
+    th1.detach();
+}
 void Game::gameLoop() {
-    bool gameOver = false;
+    enum Compass { NORTH, SOUTH, EAST, WEST };
+    Compass ChangeDirection;
     int index = 0;  // used to keep track of loop iterations
     // Event Loop - runs until game is over
     do {
         index++;
-
-        // ADD if up key
-
-        // ADD if left key
-
-        // ADD if right key
-
-        // ADD if down key
-
+        getDirection();
+        
         // ADD if snake hits itself or wall
 
         cout << index << endl;         // to delete - debugging only

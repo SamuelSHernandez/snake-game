@@ -4,6 +4,7 @@
 #include "Player.h"  // will have a Player instance
 #include "Snake.h"   // will have a Snake instance
 #include "Type.h"
+#include <pthread.h>
 
 class Fruit;
 class Snake;
