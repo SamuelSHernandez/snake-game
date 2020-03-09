@@ -59,10 +59,10 @@ void Game::gameLoop() {
     bool gameOver = false;
     int index = 0;  // used to keep track of loop iterations
     // Event Loop - runs until game is over
-    gameFruit.setPosition(mapHeight, mapWidth, gameSnake.getPosition);
+    gameFruit.setPosition(mapHeight, mapWidth, gameSnake.getPosition());
     do {
         index++;
-
+        
         // ADD if up key
 
         // ADD if left key

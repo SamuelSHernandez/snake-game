@@ -26,17 +26,8 @@ int main() {
 
 void test_main() {
     // // testing gameLoop function
-
+    Game mygame(3);
+    mygame.gameLoop();
     // mygame.gameLoop();
 
-    // testing type.h
-    Point point;
-    point.x = 3;
-    point.y = 4;
-    cout << point.x << endl << point.y << endl;
-    // testing the board
-
-    Compass compass;
-    compass = NORTH;
-    cout << compass << endl;
 }
