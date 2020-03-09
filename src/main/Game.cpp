@@ -91,8 +91,7 @@ void Game::render() {
                 fout << "|  ";
             } else if (board[i][j] > 0 && headPosition != gameSnake.return_head()) {
                 fout << "*";
-            } 
-            else if (headPosition == gameSnake.return_head()) {
+            } else if (headPosition == gameSnake.return_head()) {
                 fout << "O";
             } else {
                 fout << board[i][j] << " ";

@@ -30,7 +30,7 @@ class Game {
     Fruit gameFruit;
     Snake gameSnake;
     Player gamePlayer;
-    char board[25][25];  // Array size can be changed as necessary. Each difficulty level
+    int board[25][25];  // Array size can be changed as necessary. Each difficulty level
                          // only uses as much of the array as needed.
 };
 

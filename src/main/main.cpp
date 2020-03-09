@@ -34,7 +34,7 @@ void test_main() {
     point.x = 3;
     point.y = 4;
     cout << point.x << endl << point.y << endl;
-//testing the board
+    // testing the board
     mygame.render();
 
     Compass compass;
