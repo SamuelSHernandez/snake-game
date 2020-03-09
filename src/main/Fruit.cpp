@@ -2,6 +2,8 @@
 #include <ctime>
 #include <iostream>
 #include <string>
+#include "Game.h"
+#include "Snake.h"
 using namespace std;
 
 Fruit::Fruit() {
@@ -22,6 +24,10 @@ Point Fruit::getPosition() const {
     return point;
 }
 void Fruit::spawnFruit(int mapHeight, int mapWidth) {
+    // if not in snake
+    // if not outside bounds
 }
-void Fruit::removeFruit(int mapHeight, int mapWidthe) {
+void Fruit::removeFruit(int mapHeight, int mapWidth) {
+    if (true) {
+    }  // if snake head position == fruit position, remove fruit
 }
