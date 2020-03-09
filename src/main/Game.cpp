@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Snake.h"
 #include <chrono>
 #include <iostream>
 #include <stdexcept>
@@ -9,28 +10,28 @@ using namespace chrono;       // nanoseconds, system_clock, seconds, millisecond
 
 Game::Game() {
     // set map size based on gameDifficulty member variable
-    // switch (gameDifficulty) {
-    //     case L_EASY:
-    //         mapWidth = 10;
-    //         mapHeight = 10;
-    //         break;
+    switch (gameDifficulty) {
+        case L_EASY:
+            mapWidth = 10;
+            mapHeight = 10;
+            break;
 
-    //     case L_MEDIUM:
-    //         mapWidth = 15;
-    //         mapHeight = 15;
-    //         break;
+        case L_MEDIUM:
+            mapWidth = 15;
+            mapHeight = 15;
+            break;
 
-    //     case L_HARD:
-    //         mapWidth = 20;
-    //         mapHeight = 20;
-    //         break;
-    // }
-    // initialize board array with space characters
-    // for (int i = 0; i < mapHeight; ++i) {
-    //     for (int j = 0; j < mapWidth; ++j) {
-    //         board[i][j] = ' ';
-    //     }
-    // }
+        case L_HARD:
+            mapWidth = 20;
+            mapHeight = 20;
+            break;
+    }
+    initialize board array with space characters
+    for (int i = 0; i < mapHeight; ++i) {
+        for (int j = 0; j < mapWidth; ++j) {
+            board[i][j] = ' ';
+        }
+    }
 }
 
 void Game::gameLoop() {
