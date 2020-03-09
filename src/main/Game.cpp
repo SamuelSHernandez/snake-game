@@ -134,7 +134,7 @@ void Game::render() {
                 fout << "=  ";
             } else if (board[i][j] == -2) {
                 fout << "|  ";
-            } else if (board[i][j] > 0 && headPosition != gameSnake.getPosition()) {
+            } else if (board[i][j] > 0 && !(headPosition == gameSnake.getPosition())) {
                 fout << "*";
             } else if (headPosition == gameSnake.getPosition()) {
                 fout << "O";
