@@ -8,10 +8,10 @@ using namespace std;
 
 Fruit::Fruit() {
 }
-void Fruit::setPosition(const Game &myGame) {
+void Fruit::setPosition(int mapHeight, int mapWidth) {
     do {
-        int fruitX = rand() % (myGame.getMapWidth() - 2) - 1;   // Generates food at a random X position
-        int fruitY = rand() % (myGame.getMapHeight() - 2) - 1;  // Generates food at a random Y position
+        int fruitX = rand() % (mapWidth - 2) - 1;   // Generates food at a random X position
+        int fruitY = rand() % (mapHeight - 2) - 1;  // Generates food at a random Y position
 
         Point fruitPoint;
         fruitPoint.x = fruitX;
