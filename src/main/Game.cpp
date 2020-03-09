@@ -1,9 +1,9 @@
 #include "Game.h"
-#include "Snake.h"
 #include <chrono>
 #include <iostream>
 #include <stdexcept>
 #include <thread>
+#include "Snake.h"
 using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until
 using namespace chrono;       // nanoseconds, system_clock, seconds, milliseconds
@@ -26,7 +26,7 @@ Game::Game() {
             mapHeight = 20;
             break;
     }
-    initialize board array with space characters
+    // initialize board array with space characters
     for (int i = 0; i < mapHeight; ++i) {
         for (int j = 0; j < mapWidth; ++j) {
             board[i][j] = ' ';
