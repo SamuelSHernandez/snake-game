@@ -34,8 +34,8 @@ void test_main() {
     point.x = 3;
     point.y = 4;
     cout << point.x << endl << point.y << endl;
-    
-     mygame.render();
+
+    mygame.render();
 
     Compass compass;
     compass = NORTH;

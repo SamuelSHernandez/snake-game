@@ -1,9 +1,9 @@
 #include "Game.h"
 #include <chrono>
+#include <fstream>
 #include <iostream>
 #include <stdexcept>
 #include <thread>
-#include <fstream>
 using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until
 using namespace chrono;       // nanoseconds, system_clock, seconds, milliseconds
@@ -36,21 +36,16 @@ Game::Game() {
         }
     }
 
-     for (int i = 0; i < mapHeight + 2; i++) {
-       
+    for (int i = 0; i < mapHeight + 2; i++) {
         for (int j = 0; j < mapWidth + 2; j++) {
-  
             if (i == 0 || i == mapHeight + 1) {
-                board[i][j] = '*';
-            }
-             else if (j == 0 || j == mapWidth + 1) {
+                board[i][j] = '=';
+            } else if (j == 0 || j == mapWidth + 1) {
                 board[i][j] = '|';
-
-            } 
+            }
         }
     }
 }
-
 
 void Game::gameLoop() {
     bool gameOver = false;
@@ -79,20 +74,20 @@ void Game::gameLoop() {
 }
 
 void Game::render() {
-   ofstream fout;
-   fout.open("GameBoard.txt");
-   if(!fout){
-       cerr << "cannot open";
-   }
+    ofstream fout;
+    fout.open("GameBoard.txt");
+    if (!fout) {
+        cerr << "cannot open";
+    }
 
-   for(int i = 0; i < mapHeight + 2 ; i++){
-       for(int j = 0 ; j < mapWidth + 2; j++){
+    for (int i = 0; i < mapHeight + 2; i++) {
+        for (int j = 0; j < mapWidth + 2; j++) {
             fout << board[i][j] << " ";
-       }
-       fout << endl;
-   }
+        }
+        fout << endl;
+    }
 
-   fout.close();
+    fout.close();
 }
 
 void Game::setGameDifficulty(int choice) {

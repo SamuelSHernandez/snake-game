@@ -1,9 +1,9 @@
 #include "Fruit.h"
-#include "Snake.h"
 #include <ctime>
 #include <iostream>
 #include <string>
 #include "Game.h"
+#include "Snake.h"
 using namespace std;
 
 Fruit::Fruit() {
@@ -24,13 +24,10 @@ Point Fruit::getPosition() const {
     return point;
 }
 void Fruit::spawnFruit(const Game &myGame) {
-//if not in snake
-//if not outside bounds
-
+    // if not in snake
+    // if not outside bounds
 }
 void Fruit::removeFruit(const Game &myGame) {
-
-if(true){} //if snake head position == fruit position, remove fruit
-
-   
+    if (true) {
+    }  // if snake head position == fruit position, remove fruit
 }
