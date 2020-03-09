@@ -4,7 +4,8 @@
 
 class Fruit {
   public:
-    Fruit() {}
+    Fruit() {
+    }
     Point getPosition() const;
     void setPosition(int mapHeight, int mapWidth, Point snakeHead);
 
