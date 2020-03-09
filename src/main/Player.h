@@ -4,22 +4,35 @@
 #include "Snake.h"  // Player will have a Snake instance
 using namespace std;
 
+class Snake;
+
 class Player {
   public:
-    Player() {
+    Player();
+    Player(string, char);
+    string getName() const {
+        return name;
     }
-    string getName() const;
-    void setName(string name);
-    char getAsciiChar() const;
-    void setAsciiChar(char asciiChar);
-    int getHighScore() const;
-    void setHighScore(int score);
+    void setName(string name) {
+        this->name = name;
+    }
+    char getAsciiChar() const {
+        return asciiChar;
+    }
+    void setAsciiChar(char asciiChar) {
+        this->asciiChar = asciiChar;
+    }
+    int getHighScore() const {
+        return score;
+    }
+    void setHighScore(int score) {
+        this->score = score;
+    }
 
   private:
     string name;
     int score;
     char asciiChar;
-    Snake snake;
 };
 
 #endif  // SRC_MAIN_PLAYER_H_

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-git pull --no-edit
-git fetch upstream
 git checkout master
-git merge upstream/master -m "automerging"
+git fetch 
+git pull
+git checkout stefan
+git merge master

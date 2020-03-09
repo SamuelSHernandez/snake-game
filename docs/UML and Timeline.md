@@ -5,6 +5,9 @@ permalink: /UML/
 ---
 
 # CPTR 142: Project #3
+
+To see classes, flow diagram, challenges, and team management, click <a href="https://gitlab.cs.wallawalla.edu/irvilu/team-6---cptr142-project-3/raw/master/docs/project_planning.pdf">here</a>
+
 ## UML Diagrams
 |Class Game   	|
 |----------	|
@@ -14,6 +17,7 @@ permalink: /UML/
 |+getMapHeight() const: int |
 |+setGameDifficulty(choice: int) |
 |+render() 	|
+|+decrementArray(): void |
 |-mapWidth |
 |-mapHeight |
 |-gameFruit: Fruit |
@@ -60,14 +64,16 @@ permalink: /UML/
 |Class Snake |
 |----------- |
 |+Snake() |
-|+Snake(ascii: char, direction: enum Compass, position: structPoint) |
+|+Snake(ascii: char, direction: enum Compass, position: struct Point) |
 |+move() |
 |+changeDirection(direction: enum Compass) |
 |+lengthen() |
 |+returnHead(): struct Point |
+|+getLength(): int <br> - returns the snake's length member variable |
 |-length: int |
 |-direction: enum Compass |
 |-headPosition: struct Point |
+|-ascii: char |
 
 -
 -
