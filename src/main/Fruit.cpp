@@ -23,7 +23,7 @@ Point Fruit::getPosition() const {
     Point point;
     return point;
 }
-void Fruit::spawnFruit(int mapHeight, int mapWidth)) {
+void Fruit::spawnFruit(int mapHeight, int mapWidth) {
     // if not in snake
     // if not outside bounds
 }
