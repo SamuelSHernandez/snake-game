@@ -1,9 +1,6 @@
 #ifndef SRC_MAIN_FRUIT_H_
 #define SRC_MAIN_FRUIT_H_
-#include "Game.h"
 #include "Type.h"
-
-class Game;
 
 class Fruit {
   public:
