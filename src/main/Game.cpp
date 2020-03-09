@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <chrono>
+#include <fstream>
 #include <iostream>
 #include <stdexcept>
 #include <thread>
@@ -15,22 +16,35 @@ Game::Game(int choice) {
         case L_EASY:
             mapWidth = 10;
             mapHeight = 10;
+
             break;
 
         case L_MEDIUM:
             mapWidth = 15;
             mapHeight = 15;
+
             break;
 
         case L_HARD:
             mapWidth = 20;
             mapHeight = 20;
+
             break;
     }
-    // initialize board array with zeros
-    for (int i = 0; i < mapHeight; ++i) {
-        for (int j = 0; j < mapWidth; ++j) {
+    // sets the array with blank spaces with game difficulty size
+    for (int i = 0; i < mapHeight + 2; ++i) {
+        for (int j = 0; j < mapWidth + 2; ++j) {
             board[i][j] = 0;
+        }
+    }
+
+    for (int i = 0; i < mapHeight + 2; i++) {
+        for (int j = 0; j < mapWidth + 2; j++) {
+            if (i == 0 || i == mapHeight + 1) {
+                board[i][j] = -1;
+            } else if (j == 0 || j == mapWidth + 1) {
+                board[i][j] = -2;
+            }
         }
     }
 
@@ -105,11 +119,33 @@ void Game::decrementArray() {
 }
 
 void Game::render() {
-    for (int i = 0; i < mapWidth; i++) {
-        for (int j = 0; j < mapHeight; j++) {
-            cout << " * ";
-        }
+    ofstream fout;
+    fout.open("GameBoard.txt");
+    if (!fout) {
+        cerr << "cannot open";
     }
+
+    for (int i = 0; i < mapHeight + 2; i++) {
+        for (int j = 0; j < mapWidth + 2; j++) {
+            Point headPosition;
+            headPosition.x = j;
+            headPosition.y = i;
+            if (board[i][j] == -1) {
+                fout << "=  ";
+            } else if (board[i][j] == -2) {
+                fout << "|  ";
+            } else if (board[i][j] > 0 && !(headPosition == gameSnake.getPosition())) {
+                fout << "*";
+            } else if (headPosition == gameSnake.getPosition()) {
+                fout << "O";
+            } else {
+                fout << board[i][j] << " ";
+            }
+        }
+        fout << endl;
+    }
+
+    fout.close();
 }
 
 void Game::setGameDifficulty(int choice) {
