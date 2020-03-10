@@ -14,8 +14,8 @@ void Fruit::setPosition(int mapHeight, int mapWidth, Point snakeHead, int board[
         fruitPosition.x = fruitX;
         fruitPosition.y = fruitY;
 
-        board[fruitPosition.y][fruitPosition.x] = -3;
     } while (fruitPosition == snakeHead);  // this will be to check if location is free or not later on
+    board[fruitPosition.y][fruitPosition.x] = -3;
 }
 
 Point Fruit::getPosition() const {
