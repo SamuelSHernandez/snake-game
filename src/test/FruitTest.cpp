@@ -1,11 +1,7 @@
 #include <catch2/catch.hpp>
 #include "../main/Fruit.h"
+#include "../main/Type.h"
 using namespace std;
-
-struct Point {
-    int x;
-    int y;
-};
 
 TEST_CASE("Snake::getPosition() returns the fruit's position as a struct Point", "[fruit]") {
     // setup
