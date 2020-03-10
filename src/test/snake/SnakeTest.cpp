@@ -11,6 +11,6 @@ TEST_CASE("points are equal", "[snake]") {
     snake.move();
     snake.changeDirection(NORTH);
     snake.move();
-    
-    REQUIRE((snake.getPosition().x == 2) && snake.getPosition().y == 1);
+
+    REQUIRE(snake.getPosition().x == 2 && snake.getPosition().y == 1);
 }

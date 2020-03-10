@@ -24,6 +24,5 @@ TEST_CASE("points are not equal", "[type]") {
     b.x = 5;
     b.y = 4;
 
-
     REQUIRE(!(a == b));
 }
