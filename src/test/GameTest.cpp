@@ -7,7 +7,8 @@ TEST_CASE("Snake constructor sets length to 2 and lengthen() function incremente
     Game testGame(2);
 
     SECTION("Testing Game::getGameDifficulty, Game::setGameDifficulty") {
-        REQUIRE(testGame.getGameDifficulty() == L_MEDIUM && testGame.getMapWidth() == 40 && testGame.getMapHeight() == 40);
+        REQUIRE(testGame.getGameDifficulty() == L_MEDIUM && testGame.getMapWidth() == 40 &&
+                testGame.getMapHeight() == 40);
     }
     // Teardown
 }
