@@ -12,26 +12,6 @@ using namespace chrono;       // nanoseconds, system_clock, seconds, millisecond
 Game::Game(int choice) : gameSnake('*') {
     // set difficulty
     setGameDifficulty(choice);
-    // set map size based on gameDifficulty member variable
-    switch (gameDifficulty) {
-        case L_EASY:
-            mapWidth = 20;
-            mapHeight = 20;
-
-            break;
-
-        case L_MEDIUM:
-            mapWidth = 40;
-            mapHeight = 40;
-
-            break;
-
-        case L_HARD:
-            mapWidth = 60;
-            mapHeight = 60;
-
-            break;
-    }
 
     // setup initial snake
     gameSnake.setPosition(mapWidth, mapHeight / 2);
@@ -222,12 +202,18 @@ void Game::setGameDifficulty(int choice) {
     switch (choice) {
         case 1:
             gameDifficulty = L_EASY;
+            mapWidth = 20;
+            mapHeight = 20;
             break;
         case 2:
             gameDifficulty = L_MEDIUM;
+            mapWidth = 40;
+            mapHeight = 40;
             break;
         case 3:
             gameDifficulty = L_HARD;
+            mapWidth = 60;
+            mapHeight = 60;
             break;
     }
 }

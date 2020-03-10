@@ -57,6 +57,16 @@ snake_tests:
   script:
     - build/tests [snake]
 
+game_tests:
+  stage: test
+  script:
+    - build/tests [game]
+
+fruit_tests:
+  stage: test
+  script:
+    - build/tests [fruit]
+
 code_coverage:
   stage: coverage
   script:
