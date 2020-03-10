@@ -26,8 +26,8 @@ int main() {
 
 void test_main() {
     // // testing gameLoop function
-    Game mygame(3);
+    Game mygame(1);
+    cout << "about to run game loop" << endl;
     mygame.gameLoop();
-    // mygame.gameLoop();
 
 }

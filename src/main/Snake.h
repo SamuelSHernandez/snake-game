@@ -23,6 +23,9 @@ class Snake {
         headPosition.x = x;
         headPosition.y = y;
     }
+    char getAscii() const {
+        return ascii;
+    }
 
   private:
     int length;
