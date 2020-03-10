@@ -22,25 +22,21 @@ void GetDirection() {
             case 'w':
                 if (ChangeDirection != SOUTH) {
                     ChangeDirection = NORTH;
-
                 }
                 break;
             case 'a':
                 if (ChangeDirection != EAST) {
                     ChangeDirection = WEST;
-
                 }
                 break;
             case 's':
                 if (ChangeDirection != NORTH) {
                     ChangeDirection = SOUTH;
-
                 }
                 break;
             case 'd':
                 if (ChangeDirection != WEST) {
                     ChangeDirection = EAST;
-
                 }
         }
         system("stty cooked");
