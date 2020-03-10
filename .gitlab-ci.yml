@@ -62,11 +62,6 @@ game_tests:
   script:
     - build/tests [game]
 
-fruit_tests:
-  stage: test
-  script:
-    - build/tests [fruit]
-
 code_coverage:
   stage: coverage
   script:

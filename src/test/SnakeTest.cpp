@@ -36,12 +36,12 @@ TEST_CASE("Snake::move() increments snake based on snake's direction", "[snake]"
         REQUIRE(northSnake.getPosition().y == -1);
     }
     SECTION("Testing Snake::move() with direction west") {
-        REQUIRE(northSnake.getPosition().x == -1);
+        REQUIRE(westSnake.getPosition().x == -1);
     }
     SECTION("Testing Snake::move() with direction east") {
-        REQUIRE(northSnake.getPosition().x == 1);
+        REQUIRE(eastSnake.getPosition().x == 1);
     }
     SECTION("Testing Snake::move() with direction south") {
-        REQUIRE(northSnake.getPosition().y == 1);
+        REQUIRE(southSnake.getPosition().y == 1);
     }
 }
