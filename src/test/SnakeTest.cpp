@@ -12,3 +12,36 @@ TEST_CASE("Snake constructor sets length to 2 and lengthen() function incremente
     }
     // Teardown
 }
+
+TEST_CASE("Snake::move() increments snake based on snake's direction", "[snake]") {
+    // setup
+    Snake northSnake('^');
+    northSnake.setPosition(0, 0);
+    northSnake.changeDirection(NORTH);
+    northSnake.move();
+    Snake westSnake('<');
+    westSnake.setPosition(0, 0);
+    westSnake.changeDirection(WEST);
+    westSnake.move();
+    Snake eastSnake('>');
+    eastSnake.setPosition(0, 0);
+    eastSnake.changeDirection(EAST);
+    eastSnake.move();
+    Snake southSnake('v');
+    southSnake.setPosition(0, 0);
+    southSnake.changeDirection(SOUTH);
+    southSnake.move();
+
+    SECTION("Testing Snake::move() with direction north") {
+        REQUIRE(northSnake.getPosition.y == -1);
+    }
+    SECTION("Testing Snake::move() with direction west") {
+        REQUIRE(northSnake.getPosition.x == -1);
+    }
+    SECTION("Testing Snake::move() with direction east") {
+        REQUIRE(northSnake.getPosition.x == 1);
+    }
+    SECTION("Testing Snake::move() with direction south") {
+        REQUIRE(northSnake.getPosition.y == 1);
+    }
+}
