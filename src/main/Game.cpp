@@ -183,14 +183,14 @@ void Game::render() {
         fout << endl;
     }
 
-    // debugging
-    fout << endl << endl << endl;
-    for (int i = 0; i < mapHeight + 2; i++) {
-        for (int j = 0; j < mapWidth + 2; j++) {
-            fout << board[i][j];
-        }
-        fout << endl;
-    }
+    // // debugging
+    // fout << endl << endl << endl;
+    // for (int i = 0; i < mapHeight + 2; i++) {
+    //     for (int j = 0; j < mapWidth + 2; j++) {
+    //         fout << board[i][j];
+    //     }
+    //     fout << endl;
+    // }
 
     fout.close();
 }
