@@ -135,10 +135,6 @@ void Game::gameLoop() {
         cout << "gameLoop iteration: " << index << endl;  // to delete - debugging only
         sleep_for(milliseconds(150));                     // speed of event loop. Higher number is slower
 
-        // should be deleted once proper checking for end of game is added
-        if (index == 100) {
-            gameOver = true;
-        }
     } while (!gameOver);
     // handle end of game
 }
@@ -183,14 +179,14 @@ void Game::render() {
         fout << endl;
     }
 
-    // // debugging
-    // fout << endl << endl << endl;
-    // for (int i = 0; i < mapHeight + 2; i++) {
-    //     for (int j = 0; j < mapWidth + 2; j++) {
-    //         fout << board[i][j];
-    //     }
-    //     fout << endl;
-    // }
+    // debugging
+    fout << endl << endl << endl;
+    for (int i = 0; i < mapHeight + 2; i++) {
+        for (int j = 0; j < mapWidth + 2; j++) {
+            fout << board[i][j];
+        }
+        fout << endl;
+    }
 
     fout.close();
 }
