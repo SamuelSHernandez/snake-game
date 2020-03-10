@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
+#include <string>
 #include <thread>
 using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until

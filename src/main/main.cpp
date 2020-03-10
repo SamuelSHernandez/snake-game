@@ -29,5 +29,4 @@ void test_main() {
     Game mygame(1);
     cout << "about to run game loop" << endl;
     mygame.gameLoop();
-
 }
