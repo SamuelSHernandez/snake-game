@@ -2,7 +2,7 @@
 #include "../main/Game.h"
 using namespace std;
 
-TEST_CASE("Snake constructor sets length to 2 and lengthen() function incrementes it once", "[game]") {
+TEST_CASE("setGameDifficulty sets member difficulty, mapHeight, and mapWidth variables", "[game]") {
     // setup
     Game testGame(2);
 
