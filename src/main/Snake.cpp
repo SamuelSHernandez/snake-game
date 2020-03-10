@@ -1,5 +1,10 @@
 #include "Snake.h"
 
+Snake::Snake(char ascii) {
+    length = 2;
+    this->ascii = ascii;
+}
+
 void Snake::lengthen() {
     length += 1;
 }

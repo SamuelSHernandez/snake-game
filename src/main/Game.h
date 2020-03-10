@@ -30,7 +30,7 @@ class Game {
     int mapHeight;  // variable to hold board height
     Level gameDifficulty;
     Fruit gameFruit;
-    Snake gameSnake;
+    Snake gameSnake('=');
     Player gamePlayer;
     int board[25][25];  // Array size can be changed as necessary. Each difficulty level
                         // only uses as much of the array as needed.

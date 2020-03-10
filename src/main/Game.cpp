@@ -31,38 +31,51 @@ Game::Game(int choice) {
 
             break;
     }
-    // sets the array with blank spaces with game difficulty size
-    for (int i = 0; i < mapHeight + 2; ++i) {
-        for (int j = 0; j < mapWidth + 2; ++j) {
-            board[i][j] = 0;
-        }
-    }
 
+    // setup initial snake
+    gameSnake.setPosition(mapWidth - 1, mapHeight / 2);
+
+    // sets the array with blank spaces with game difficulty size and negative numbers for borders
     for (int i = 0; i < mapHeight + 2; i++) {
         for (int j = 0; j < mapWidth + 2; j++) {
             if (i == 0 || i == mapHeight + 1) {
                 board[i][j] = -1;
             } else if (j == 0 || j == mapWidth + 1) {
                 board[i][j] = -2;
+            } else if (gameSnake.getPosition().x == j && gameSnake.getPosition().y == i) {
+                // set array position where snake head is at to 2
+                board[i][j] = 2;
+            } else if (i == mapHeight / 2 && j == mapWidth) {
+                // set snake tail position to 1
+                board[i][j] = 1;
+            } else {
+                // set all spaces with nothing happening to 0
+                board[i][j] = 0;
             }
         }
     }
 
-    // Position snake
-    gameSnake.setLength(2);
-    gameSnake.setPosition(mapWidth - 1, mapHeight / 2);
-    gameSnake.setAscii('=');
-    board[mapHeight / 2][mapWidth] = 1;  // need to set tail in board first time
+    // // Position snake
+    // gameSnake.setLength(2);
+    // gameSnake.setPosition(mapWidth - 1, mapHeight / 2);
+    // gameSnake.setAscii('=');
+    // board[mapHeight / 2][mapWidth] = 1;  // need to set tail in board first time
 }
 
 void Game::gameLoop() {
     bool gameOver = false;
     int index = 0;  // used to keep track of loop iterations
-    // Event Loop - runs until game is over
+
+    // set initial fruit
     gameFruit.setPosition(mapHeight, mapWidth, gameSnake.getPosition());
+
+    // Event Loop - runs until game is over
     do {
         index++;
-        
+
+        // print the board to text file
+        render();
+
         // ADD if up key
 
         // ADD if left key
@@ -95,8 +108,6 @@ void Game::gameLoop() {
             gameOver = true;
             break;
         }
-
-        render();
 
         // decrement all of board[][]
         decrementArray();
