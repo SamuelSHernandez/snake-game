@@ -17,6 +17,7 @@ To see classes, flow diagram, challenges, and team management, click <a href="ht
 |+getMapHeight() const: int |
 |+setGameDifficulty(choice: int) |
 |+render() 	|
+|+decrementArray(): void |
 |-mapWidth |
 |-mapHeight |
 |-gameFruit: Fruit |
@@ -63,11 +64,12 @@ To see classes, flow diagram, challenges, and team management, click <a href="ht
 |Class Snake |
 |----------- |
 |+Snake() |
-|+Snake(ascii: char, direction: enum Compass, position: structPoint) |
+|+Snake(ascii: char, direction: enum Compass, position: struct Point) |
 |+move() |
 |+changeDirection(direction: enum Compass) |
 |+lengthen() |
 |+returnHead(): struct Point |
+|+getLength(): int <br> - returns the snake's length member variable |
 |-length: int |
 |-direction: enum Compass |
 |-headPosition: struct Point |
