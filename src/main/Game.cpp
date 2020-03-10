@@ -1,16 +1,15 @@
 #include "Game.h"
+#include <pthread.h>
 #include <chrono>
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
 #include <thread>
-#include <pthread.h>
 using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until
 using namespace chrono;       // nanoseconds, system_clock, seconds, milliseconds
-char input='s';
-bool gameOver=false;
-Compass ChangeDirection;
+char input = 's';
+bool gameOver1 = false;
 Game::Game() {
     // set map size based on gameDifficulty member variable
     switch (gameDifficulty) {
@@ -55,73 +54,60 @@ Game::Game() {
     gameSnake.setAscii('=');
     board[mapHeight / 2][mapWidth] = 1;  // need to set tail in board first time
 }
-//Function to get User Input
-void getUserInput(){
-    while(gameOver==false){
-system("stty raw");
-input =getchar();
-switch(input){
-        // ADD if up key
-        case 'w':
-        if(ChangeDirection!=SOUTH){
-            ChangeDirection=NORTH;
-            //for error checking take out later
-            cout<<ChangeDirection<<endl;
-        }
-        break;
-        // ADD if left key
-        case 'a':
-        if(ChangeDirection!=EAST){
-            ChangeDirection=WEST;
-            //for error checking
-            cout<<ChangeDirection<<endl;
-        }
-        break;
-        // ADD if right key
-        case 'd':
-        if(ChangeDirection!=WEST){
-            ChangeDirection=EAST;
-            //for error checking 
-            cout<<ChangeDirection<<endl;
-        }
-        break;
-        // ADD if down key
-        case 's':
-        if(ChangeDirection!=NORTH){
-            ChangeDirection=SOUTH;
-            //for error checking 
-            cout<<ChangeDirection<<endl;
-        }
-        break;
-        default:
-        //not really sure what to put in here.
-        cout<<ChangeDirection<<endl;
-        break;
-        }
-system("cooked");
+// Function to get User Input
+void getUserInput() {
+    while (gameOver1 == false) {
+        system("stty raw");
+        input = getchar();
+        system("cooked");
     }
 }
-//Is calld by Game Loop to create the user input thread.
-void getDirection(){
-   
+// Is calld by Game Loop to create the user input thread.
+void getDirection() {
     thread th1(getUserInput);
     th1.detach();
+    sleep_for(milliseconds(100));
 }
 void Game::gameLoop() {
-    enum Compass { NORTH, SOUTH, EAST, WEST };
     Compass ChangeDirection;
     int index = 0;  // used to keep track of loop iterations
     // Event Loop - runs until game is over
     do {
         index++;
-
-        // ADD if up key
-
-        // ADD if left key
-
-        // ADD if right key
-
-        // ADD if down key
+        switch (input) {
+            // ADD if up key
+            case 'w':
+                if (ChangeDirection != SOUTH) {
+                    ChangeDirection = NORTH;
+                    // for error checking take out later
+                    cout << ChangeDirection << endl;
+                }
+                break;
+            // ADD if left key
+            case 'a':
+                if (ChangeDirection != EAST) {
+                    ChangeDirection = WEST;
+                    // for error checking
+                    cout << ChangeDirection << endl;
+                }
+                break;
+            // ADD if right key
+            case 'd':
+                if (ChangeDirection != WEST) {
+                    ChangeDirection = EAST;
+                    // for error checking
+                    cout << ChangeDirection << endl;
+                }
+                break;
+            // ADD if down key
+            case 's':
+                if (ChangeDirection != NORTH) {
+                    ChangeDirection = SOUTH;
+                    // for error checking
+                    cout << ChangeDirection << endl;
+                }
+                break;
+        }
 
         // move snake based on direction
         gameSnake.move();
@@ -130,6 +116,7 @@ void Game::gameLoop() {
         if (gameSnake.getPosition().y < 1 || gameSnake.getPosition().y > mapHeight || gameSnake.getPosition().x < 1 ||
             gameSnake.getPosition().x > mapWidth) {
             gameOver = true;
+            gameOver1 = true;
             break;
         }
 
@@ -145,6 +132,7 @@ void Game::gameLoop() {
         } else {
             // snake has hit itself so game is over
             gameOver = true;
+            gameOver1 = true;
             break;
         }
 
@@ -157,6 +145,7 @@ void Game::gameLoop() {
         // should be deleted once proper checking for end of game is added
         if (index == 100) {
             gameOver = true;
+            gameOver1 = true;
         }
     } while (!gameOver);
 }

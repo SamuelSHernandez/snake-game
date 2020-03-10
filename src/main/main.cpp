@@ -26,8 +26,8 @@ int main() {
 
 void test_main() {
     // // testing gameLoop function
-
-    // mygame.gameLoop();
+    //   Game myGame;
+    //   myGame.Run();
 
     // testing type.h
     Point point;
