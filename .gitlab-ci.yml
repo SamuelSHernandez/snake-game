@@ -52,6 +52,16 @@ build_programs:
       - build/program
     expire_in: 1 hour
 
+snake_tests:
+  stage: test
+  script:
+    - build/tests [snake]
+
+game_tests:
+  stage: test
+  script:
+    - build/tests [game]
+
 code_coverage:
   stage: coverage
   script:
