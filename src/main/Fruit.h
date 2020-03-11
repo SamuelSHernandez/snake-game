@@ -7,7 +7,7 @@ class Fruit {
     Fruit() {
     }
     Point getPosition() const;
-    void setPosition(int mapHeight, int mapWidth, Point snakeHead);
+    void setPosition(int mapHeight, int mapWidth, Point snakeHead, int board[100][100]);
 
   private:
     Point fruitPosition;
