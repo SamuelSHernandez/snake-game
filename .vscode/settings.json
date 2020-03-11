@@ -2,6 +2,8 @@
     "files.associations": {
         "thread": "cpp",
         "stdexcept": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "future": "cpp",
+        "cstdio": "cpp"
     }
 }
