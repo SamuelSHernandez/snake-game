@@ -4,8 +4,7 @@
 
 class Snake {
   public:
-    Snake() {
-    }
+    Snake(char ascii);
     void move();
     void changeDirection(Compass direction) {
         this->direction = direction;
@@ -24,8 +23,8 @@ class Snake {
         headPosition.x = x;
         headPosition.y = y;
     }
-    void setAscii(char ascii) {
-        this->ascii = ascii;
+    char getAscii() const {
+        return ascii;
     }
 
   private:
