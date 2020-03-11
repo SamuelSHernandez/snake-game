@@ -19,10 +19,10 @@ using namespace std;
 // void test_main();
 
 /*********
-*
-* WARNING:  main() DOES NOT work properly yet.  Comment out main() and use test_main() below to run game
-*
-*/
+ *
+ * WARNING:  main() DOES NOT work properly yet.  Comment out main() and use test_main() below to run game
+ *
+ */
 
 int main() {  // finish exception handling
     int menuOption;
@@ -47,7 +47,7 @@ int main() {  // finish exception handling
             continue;
         }
     } while (snakeChar);
-    
+
     Player(playerName, snakeChar);
 
     // Game difficulty and run game
@@ -59,13 +59,11 @@ int main() {  // finish exception handling
         cout << "Enter your choice: ";
         cin >> menuOption;
         try {
-            Game myGame(menuOption); // throwing an exception here if (!cin) terminates the program.  It should simply 
-                                     // clear cin and then run the menu again.
+            Game myGame(menuOption);  // throwing an exception here if (!cin) terminates the program.  It should simply
+                                      // clear cin and then run the menu again.
             myGame.gameLoop();
-        }
-        catch (runtime_error &except) {
+        } catch (runtime_error &except) {
             cout << except.what() << endl;
-
         }
     } while (menuOption);
 
