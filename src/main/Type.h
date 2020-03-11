@@ -8,8 +8,6 @@ struct Point {
     int y;
 };
 
-bool operator==(Point lhs, Point rhs);
-
 enum Level { L_EASY, L_MEDIUM, L_HARD };
 
 #endif  // SRC_MAIN_TYPE_H_

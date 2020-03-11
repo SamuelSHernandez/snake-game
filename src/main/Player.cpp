@@ -5,8 +5,3 @@ Player::Player() {
     score = 0;
     asciiChar = '.';
 }
-
-Player::Player(string myName, char myChar) {
-    myName = name;
-    myChar = asciiChar;
-}

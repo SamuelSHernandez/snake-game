@@ -4,28 +4,15 @@
 
 class Snake {
   public:
-    Snake() {
-    }
+    Snake();
+    Snake(char ascii, Compass compass, Point position);
     void move();
     void changeDirection(Compass direction) {
         this->direction = direction;
     }
     void lengthen();
-    int getLength() const {
-        return length;
-    }
-    void setLength(int l) {
-        length = l;
-    }
-    Point getPosition() {
+    Point return_head() {
         return headPosition;
-    }
-    void setPosition(int x, int y) {
-        headPosition.x = x;
-        headPosition.y = y;
-    }
-    void setAscii(char ascii) {
-        this->ascii = ascii;
     }
 
   private:
