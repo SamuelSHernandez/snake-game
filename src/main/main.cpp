@@ -18,7 +18,13 @@ using namespace std;
 
 // void test_main();
 
-int main() {  // add exception try/catch
+/*********
+*
+* WARNING:  main() DOES NOT work properly yet.  Comment out main() and use test_main() below to run game
+*
+*/
+
+int main() {  // finish exception handling
     int menuOption;
     string playerName;
     char snakeChar;
@@ -54,12 +60,12 @@ int main() {  // add exception try/catch
         cin >> menuOption;
         try {
             Game myGame(menuOption); // throwing an exception here if (!cin) terminates the program.  It should simply 
-                                    // clear cin and then run the menu again.
+                                     // clear cin and then run the menu again.
             myGame.gameLoop();
         }
         catch (runtime_error &except) {
             cout << except.what() << endl;
-            
+
         }
     } while (menuOption);
 
@@ -67,9 +73,10 @@ int main() {  // add exception try/catch
     return 0;
 }
 
-// void test_main() {
+// int test_main() {
 //     // testing gameLoop function
 //     Game mygame(1);
 //     cout << "about to run game loop" << endl;
 //     mygame.gameLoop();
+//     return 0;
 // }
