@@ -2,18 +2,15 @@
 #define SRC_MAIN_FRUIT_H_
 #include "Type.h"
 
-class Game;
-
 class Fruit {
   public:
-    Fruit();
+    Fruit() {
+    }
     Point getPosition() const;
-    void setPosition(const Game &myGame);
-    void spawnFruit(const Game &myGame);
-    void removeFruit(const Game &myGame);
+    void setPosition(int mapHeight, int mapWidth, Point snakeHead);
 
   private:
-    Point position;
+    Point fruitPosition;
 };
 
 #endif  // SRC_MAIN_FRUIT_H_

@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 include_directories(include)
 
 file(GLOB_RECURSE main ./src/main/*.h ./src/main/*.cpp)
-file(GLOB_RECURSE tests ./src/test/*.cpp)
+file(GLOB_RECURSE tests ./src/test/*.cpp ./src/main/*.h ./src/main/Fruit.cpp ./src/main/Game.cpp ./src/main/Player.cpp ./src/main/Snake.cpp ./src/main/Type.cpp)
 
 IF (GENERATE_CODE_COVERAGE)
     message(STATUS "Compiling with code coverage")
