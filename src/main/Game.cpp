@@ -150,7 +150,7 @@ void Game::gameLoop() {
         decrementArray();
 
         // cout << "gameLoop iteration: " << index << endl;  // to delete - debugging only
-        sleep_for(milliseconds(150));                     // speed of event loop. Higher number is slower
+        sleep_for(milliseconds(150));  // speed of event loop. Higher number is slower
 
 
     } while (!gameOver);
