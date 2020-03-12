@@ -3,6 +3,8 @@ project(beetle)
 
 set(CMAKE_CXX_STANDARD 17)
 
+find_package(Threads REQUIRED)
+
 include_directories(include)
 
 file(GLOB_RECURSE main ./src/main/*.h ./src/main/*.cpp)
