@@ -16,7 +16,7 @@ class Game {
   public:
     Game(int choice, char snakeChar, string playerName);  // initializes board array of size y by x and sets difficulty.
                                                           // Could throw runtime_error if not in bounds
-    void gameLoop();  // holds game logic and runs the game
+    void gameLoop();                                      // holds game logic and runs the game
     int getMapWidth() const {
         return mapWidth;
     }
