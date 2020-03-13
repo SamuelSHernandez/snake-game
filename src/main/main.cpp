@@ -16,14 +16,6 @@
 #include "Type.h"
 using namespace std;
 
-// void test_main();
-
-/*********
- *
- * WARNING:  main() DOES NOT work properly yet.  Comment out main() and use test_main() below to run game
- *
- */
-
 int main() {  // finish exception handling
     int menuOption;
     string playerName;
@@ -50,8 +42,6 @@ int main() {  // finish exception handling
         }
     } while (snakeChar);
 
-    Player(playerName, snakeChar);
-
     // Game difficulty and run game
     do {
         cout << endl << "Choose a game difficulty (1), (2), or (3)" << endl;
@@ -74,17 +64,9 @@ int main() {  // finish exception handling
         }
     } while (menuOption);
 
-    Game myGame(menuOption);
+    Player myPlayer(playerName);
+    Game myGame(menuOption, snakeChar);
     myGame.gameLoop();
 
-    // test_main();
     return 0;
 }
-
-// int test_main() {
-//     // testing gameLoop function
-//     Game mygame(1);
-//     cout << "about to run game loop" << endl;
-//     mygame.gameLoop();
-//     return 0;
-// }
