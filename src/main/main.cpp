@@ -74,9 +74,8 @@ int main() {  // finish exception handling
         }
     } while (menuOption);
 
-    Game myGame(menuOption);  
+    Game myGame(menuOption);
     myGame.gameLoop();
-
 
     // test_main();
     return 0;
