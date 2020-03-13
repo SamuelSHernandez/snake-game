@@ -9,9 +9,6 @@ Player::Player() {
     score = 0;
 }
 
-Player::Player(string myName, char asciiChar) {
+Player::Player(string myName, char skin) {
     myName = name;
 }
-
-
-
