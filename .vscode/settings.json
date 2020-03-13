@@ -3,6 +3,13 @@
         "thread": "cpp",
         "stdexcept": "cpp",
 <<<<<<< HEAD
+<<<<<<< HEAD
+        "ostream": "cpp"
+=======
+        "ostream": "cpp",
+        "future": "cpp",
+        "cstdio": "cpp"
+=======
         "ostream": "cpp",
         "future": "cpp",
         "cstdio": "cpp"
@@ -13,6 +20,7 @@
         "ostream": "cpp",
         "future": "cpp",
         "cstdio": "cpp"
+>>>>>>> master
 >>>>>>> master
 >>>>>>> master
     }
