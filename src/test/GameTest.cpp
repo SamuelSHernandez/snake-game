@@ -4,16 +4,13 @@ using namespace std;
 
 TEST_CASE("setGameDifficulty sets member difficulty, mapHeight, and mapWidth variables", "[game]") {
     // setup
-    Game testGame(2);
+    Game testGame(2, '*', "Luke");
 
-    SECTION("Testing setGameDifficulty sets gameDifficulty") {
-        REQUIRE(testGame.getGameDifficulty() == L_MEDIUM);
-    }
     SECTION("Testing setGameDifficulty sets mapWidth") {
-        REQUIRE(testGame.getMapWidth() == 40);
+        REQUIRE(testGame.getMapWidth() == 20);
     }
     SECTION("Testing setGameDifficulty sets mapHeight") {
-        REQUIRE(testGame.getMapHeight() == 40);
+        REQUIRE(testGame.getMapHeight() == 20);
     }
     // Teardown
 }

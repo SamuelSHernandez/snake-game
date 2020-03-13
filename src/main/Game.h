@@ -14,9 +14,15 @@ class Player;
 
 class Game {
   public:
+<<<<<<< HEAD
     Game(int choice, char snakeChar);  // initializes board array of size y by x and sets difficulty. Could throw
                                        // runtime_error if not in bounds
     void gameLoop();                   // holds game logic and runs the game
+=======
+    Game(int choice, char snakeChar, string playerName);  // initializes board array of size y by x and sets difficulty.
+                                                          // Could throw runtime_error if not in bounds
+    void gameLoop();                                      // holds game logic and runs the game
+>>>>>>> master
     int getMapWidth() const {
         return mapWidth;
     }
@@ -43,13 +49,17 @@ class Game {
         return hardScoresMap;
     }
 
-    void printLeaderboard(map<int, string>, map<int, string>, map<int, string>);
+    void printLeaderboard();
 
   private:
     bool gameOver = false;
     int mapWidth = 20;   // variable to hold board width
     int mapHeight = 20;  // variable to hold board height
+<<<<<<< HEAD
     int index = 0;       // used to keep track of loop iterations
+=======
+    string currentPlayer;
+>>>>>>> master
     Level gameDifficulty;
     Fruit gameFruit;
     Snake gameSnake;

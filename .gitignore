@@ -3,3 +3,4 @@ build/
 .vagrant/
 *.log
 a.out
+Board.txt
