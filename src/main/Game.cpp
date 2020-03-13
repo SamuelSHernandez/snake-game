@@ -53,10 +53,10 @@ void getUserInput() {
 // Is calld by Game Loop to create the user input thread.
 void getDirection() {
     system("stty raw");
-    system ("stty echo");
+    system("stty echo");
     thread th1(getUserInput);
     th1.detach();
-    system ("stty -echo");
+    system("stty -echo");
     system("stty cooked");
 }
 void Game::gameLoop() {
@@ -151,7 +151,7 @@ void Game::gameLoop() {
         decrementArray();
 
         // cout << "gameLoop iteration: " << index << endl;  // to delete - debugging only
-        sleep_for(milliseconds(150));  // speed of event loop. Higher number is slower
+        sleep_for(milliseconds(gameSpeed));  // speed of event loop. Higher number is slower
 
     } while (!gameOver);
     // handle end of game
@@ -210,24 +210,21 @@ void Game::render() {
 }
 
 void Game::setGameDifficulty(int choice) {
-    if (choice > 3 || choice < 1) {
-        throw runtime_error("Choice must be between 1 and 3");
-    }
     switch (choice) {
         case 1:
             gameDifficulty = L_EASY;
-            mapWidth = 20;
-            mapHeight = 20;
+            gameSpeed = 200;
             break;
         case 2:
             gameDifficulty = L_MEDIUM;
-            mapWidth = 40;
-            mapHeight = 40;
+            gameSpeed = 150;
             break;
         case 3:
             gameDifficulty = L_HARD;
-            mapWidth = 60;
-            mapHeight = 60;
+            gameSpeed = 100;
+            break;
+        default:
+            cerr << "Invalid input";
             break;
     }
 }
