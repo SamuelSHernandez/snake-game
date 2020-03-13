@@ -43,7 +43,7 @@ class Game {
         return hardScoresMap;
     }
 
-    void printLeaderboard(map<int, string>, map<int, string>, map<int, string>);
+    void printLeaderboard();
 
   private:
     bool gameOver = false;
