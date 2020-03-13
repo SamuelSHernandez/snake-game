@@ -8,6 +8,7 @@
  * Date:            ?
  *
  */
+#include <cassert>
 #include <iostream>
 #include "Fruit.h"
 #include "Game.h"
