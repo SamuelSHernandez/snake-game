@@ -53,10 +53,10 @@ void getUserInput() {
 // Is calld by Game Loop to create the user input thread.
 void getDirection() {
     system("stty raw");
-    system ("stty echo");
+    system("stty echo");
     thread th1(getUserInput);
     th1.detach();
-    system ("stty -echo");
+    system("stty -echo");
     system("stty cooked");
 }
 void Game::gameLoop() {

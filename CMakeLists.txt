@@ -3,6 +3,8 @@ project(beetle)
 
 set(CMAKE_CXX_STANDARD 17)
 
+find_package(Threads REQUIRED)
+
 include_directories(include)
 
 file(GLOB_RECURSE main ./src/main/*.h ./src/main/*.cpp)
@@ -18,9 +20,12 @@ ENDIF()
 
 add_executable(tests
         ${tests})
+target_link_libraries(tests ${CMAKE_THREAD_LIBS_INIT})
 
 add_executable(program
         ${main})
+target_link_libraries(program ${CMAKE_THREAD_LIBS_INIT})
+
 
 IF (GENERATE_CODE_COVERAGE)
     target_link_libraries(tests gcov)
