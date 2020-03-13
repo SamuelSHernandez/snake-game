@@ -3,6 +3,3 @@
 Player::Player(string myName) {
     myName = name;
 }
-
-
-

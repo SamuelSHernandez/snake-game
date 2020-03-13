@@ -27,7 +27,6 @@ class Player {
     void printLeaderboard();
 
   private:
-   
     string name;
     int score;
 };
