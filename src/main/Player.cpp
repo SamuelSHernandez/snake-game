@@ -7,7 +7,6 @@
 Player::Player() {
     name = "NULL";
     score = 0;
-    asciiChar = '.';
 }
 
 Player::Player(string myName, char asciiChar) {
