@@ -4,7 +4,6 @@
 #include <string>
 #include "Game.h"
 #include "Snake.h"
-#include "ctime"
 using namespace std;
 
 void Fruit::setPosition(int mapHeight, int mapWidth, Point snakeHead, int board[100][100]) {
