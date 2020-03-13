@@ -18,27 +18,28 @@ Player::Player(string myName) {
 // emplace vector and difficutly
 
 void printLeaderboard() {
-    ofstream outFS;
-    // open file
-    outFS.open("Leaderboard.txt");
+    ofstream fout;
+    fout.open("Leaderboard.txt");
 
-    outFS.open("Leaderboard.txt");
-    if (!outFS.is_open()) {
+    if (!fout.is_open()) {
         cout << "Could not open file Leaderboard.txt." << endl;
     }
 
-    outFS << "***********************************************";
-    outFS << setw(6) << "Player "
-          << " Difficulty "
-          << " High Score " << endl;
+    // open file
 
-    outFS << "\t test runs well";
+    fout << "***********************************************" << endl;
+    fout << setw(28) << "LEADERBOARD" << setw(32) << endl;
+    fout << "      --------------------------------   " << endl;
+    fout << setw(12) << "Player " << setw(16) << " Difficulty " << setw(16) << " High Score " << endl;
+    fout << "      --------------------------------   " << endl;
+
+    fout << "\t " << endl;
     // fout current player
     // fout current highscore
     // compare with current highscores and replace if higher
-    outFS << "***********************************************";
+    fout << "***********************************************" << endl;
 
     // close file
 
-    outFS.close();
+    fout.close();
 }
