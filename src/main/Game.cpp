@@ -209,9 +209,6 @@ void Game::render() {
 }
 
 void Game::setGameDifficulty(int choice) {
-    if (choice > 3 || choice < 1) {
-        throw runtime_error("Choice must be 1, 2, or 3");
-    }
     switch (choice) {
         case 1:
             gameDifficulty = L_EASY;
@@ -224,6 +221,9 @@ void Game::setGameDifficulty(int choice) {
         case 3:
             gameDifficulty = L_HARD;
             gameSpeed = 100;
+            break;
+        default:
+            cerr << "Invalid input";
             break;
     }
 }

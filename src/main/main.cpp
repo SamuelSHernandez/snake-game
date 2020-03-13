@@ -37,14 +37,16 @@ int main() {  // finish exception handling
     do {
         cout << "Enter a single ASCII character that is not a number: ";
         cin >> snakeChar;
-        if (isdigit(snakeChar)) {
+        if (isdigit(snakeChar) || !cin) {
             cin.clear();
             cin.ignore(100, '\n');
-            cerr << "Invalid entry.";
+            cerr << "Invalid entry. ";
             cout << "Please enter a valid character." << endl;
             cout << endl;
             snakeChar = '*';
             continue;
+        } else {
+            break;
         }
     } while (snakeChar);
 
@@ -52,20 +54,29 @@ int main() {  // finish exception handling
 
     // Game difficulty and run game
     do {
-        cout << "Choose a game difficulty (1), (2), or (3)" << endl;
+        cout << endl << "Choose a game difficulty (1), (2), or (3)" << endl;
         cout << "\t 1. Easy " << endl;
         cout << "\t 2. Medium " << endl;
         cout << "\t 3. Hard " << endl;
-        cout << "Enter your choice: ";
+        cout << endl << "Enter your choice: ";
         cin >> menuOption;
-        try {
-            Game myGame(menuOption);  // throwing an exception here if (!cin) terminates the program.  It should simply
-                                      // clear cin and then run the menu again.
-            myGame.gameLoop();
-        } catch (runtime_error &except) {
-            cout << except.what() << endl;
+
+        if (!cin) {
+            cin.clear();
+            cin.ignore(100, '\n');
+            cerr << "Invalid entry.";
+            cout << "Please enter a valid menu option." << endl;
+            cout << endl;
+            menuOption = 1;
+            continue;
+        } else {
+            break;
         }
     } while (menuOption);
+
+    Game myGame(menuOption);  
+    myGame.gameLoop();
+
 
     // test_main();
     return 0;
