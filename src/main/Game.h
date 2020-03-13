@@ -2,6 +2,7 @@
 #define SRC_MAIN_GAME_H_
 #include <pthread.h>
 #include <map>
+#include <string>
 #include "Fruit.h"   // Game will have a Fruit instance
 #include "Player.h"  // will have a Player instance
 #include "Snake.h"   // will have a Snake instance
@@ -41,6 +42,8 @@ class Game {
     map<int, string> getHardScoresMap() const {
         return hardScoresMap;
     }
+
+    void printLeaderboard(map<int, string>, map<int, string>, map<int, string>);
 
   private:
     bool gameOver = false;
