@@ -4,7 +4,7 @@ using namespace std;
 
 TEST_CASE("Snake constructor sets length to 2 and lengthen() function incrementes it once", "[snake]") {
     // setup
-    Snake testSnake('*');
+    Snake testSnake;
     testSnake.lengthen();
 
     SECTION("Testing .lengthen() and .getLength() and Snake::Snake()") {
