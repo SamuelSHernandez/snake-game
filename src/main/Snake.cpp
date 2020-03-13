@@ -1,8 +1,7 @@
 #include "Snake.h"
 
-Snake::Snake(char ascii) {
+Snake::Snake() {
     length = 2;
-    this->ascii = ascii;
 }
 
 void Snake::lengthen() {
@@ -19,4 +18,8 @@ void Snake::move() {  // This assumes board is oriented as a Cartesian coordinat
     } else if (direction == WEST) {
         headPosition.x -= 1;
     }
+}
+
+void Snake::setAscii(char ascii) {
+    this->ascii = ascii;
 }
