@@ -8,19 +8,12 @@ class Snake;
 
 class Player {
   public:
-    Player();
-    Player(string, char);
+    Player(string);
     string getName() const {
         return name;
     }
     void setName(string name) {
         this->name = name;
-    }
-    char getAsciiChar() const {
-        return asciiChar;
-    }
-    void setAsciiChar(char asciiChar) {
-        this->asciiChar = asciiChar;
     }
     int getHighScore() const {
         return score;
@@ -32,7 +25,6 @@ class Player {
   private:
     string name;
     int score;
-    char asciiChar;
 };
 
 #endif  // SRC_MAIN_PLAYER_H_

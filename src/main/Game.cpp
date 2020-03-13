@@ -12,10 +12,10 @@ using namespace chrono;       // nanoseconds, system_clock, seconds, millisecond
 char input = 'a';
 bool gameOver1 = false;
 
-Game::Game(int choice) : gameSnake('*') {
+Game::Game(int choice, char snakeChar) {
     // set difficulty
     setGameDifficulty(choice);
-
+    gameSnake.setAscii(snakeChar);
     // setup initial snake
     gameSnake.setPosition(mapWidth, mapHeight / 2);
     gameSnake.changeDirection(WEST);
