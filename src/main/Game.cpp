@@ -9,7 +9,7 @@
 using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until
 using namespace chrono;       // nanoseconds, system_clock, seconds, milliseconds
-char input = 's';
+char input = 'a';
 bool gameOver1 = false;
 
 Game::Game(int choice) : gameSnake('*') {
@@ -151,13 +151,7 @@ void Game::gameLoop() {
         decrementArray();
 
         // cout << "gameLoop iteration: " << index << endl;  // to delete - debugging only
-        sleep_for(milliseconds(150));                     // speed of event loop. Higher number is slower
-
-        // should be deleted once proper checking for end of game is added
-        // if (index == 100) {
-        //     gameOver = true;
-        //     gameOver1 = true;
-        // }
+        sleep_for(milliseconds(150));  // speed of event loop. Higher number is slower
 
     } while (!gameOver);
     // handle end of game
