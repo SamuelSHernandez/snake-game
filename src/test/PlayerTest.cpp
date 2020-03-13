@@ -13,7 +13,7 @@ int main() {
         cout << "Could not open file Leaderboard.txt." << endl;
     }
 
-  fout << "***********************************************" << endl;
+    fout << "***********************************************" << endl;
     fout << setw(28) << "LEADERBOARD" << setw(32) << endl;
     fout << "      --------------------------------   " << endl;
     fout << setw(12) << "Player " << setw(16) << " Difficulty " << setw(16) << " High Score " << endl;
