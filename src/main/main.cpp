@@ -21,7 +21,7 @@ using namespace std;
 
 /*********
  *
- * WARNING:  main() DOES NOT work properly yet.  Comment out main() and use test_main() below to run game
+ *
  *
  */
 
