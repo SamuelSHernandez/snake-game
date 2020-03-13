@@ -11,7 +11,7 @@ class Snake;
 class Player {
   public:
     Player();
-    Player(string);
+    Player(string,char);
     vector<Player *> getName() const {
         return player;
     }
