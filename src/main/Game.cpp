@@ -234,3 +234,46 @@ void Game::setGameDifficulty(int choice) {
             break;
     }
 }
+
+void printLeaderboard(map<int, string> easyScoresMap, map<int, string> mediumScoresMap,
+                      map<int, string> hardScoresMap) {
+    // easy
+    ofstream Easyfout;
+    Easyfout.open("EasyLeaderboard.txt");
+
+    if (!Easyfout.is_open()) {
+        cout << "Could not open file EasyLeaderboard.txt." << endl;
+    }
+
+    for (auto each : easyScoresMap) {
+        cout << each.first << "\t" << each.second << endl;
+    }
+
+    Easyfout.close();
+
+    // medium
+    ofstream Mediumfout;
+    Easyfout.open("MediumLeaderboard.txt");
+
+    if (!Mediumfout.is_open()) {
+        cout << "Could not open file MediumLeaderboard.txt." << endl;
+    }
+
+    for (auto each : mediumScoresMap) {
+        cout << each.first << "\t" << each.second << endl;
+    }
+    Mediumfout.close();
+
+    // hard
+    ofstream Hardfout;
+    Hardfout.open("MediumLeaderboard.txt");
+
+    if (!Hardfout.is_open()) {
+        cout << "Could not open file MediumLeaderboard.txt." << endl;
+    }
+    for (auto each : hardScoresMap) {
+        cout << each.first << "\t" << each.second << endl;
+    }
+
+    Hardfout.close();
+}

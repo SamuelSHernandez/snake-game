@@ -43,6 +43,8 @@ class Game {
         return hardScoresMap;
     }
 
+    void printLeaderboard(map<int, string>, map<int, string>, map<int, string>);
+
   private:
     bool gameOver = false;
     int mapWidth = 20;   // variable to hold board width
