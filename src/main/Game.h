@@ -2,6 +2,7 @@
 #define SRC_MAIN_GAME_H_
 #include <pthread.h>
 #include <map>
+#include <string>
 #include "Fruit.h"   // Game will have a Fruit instance
 #include "Player.h"  // will have a Player instance
 #include "Snake.h"   // will have a Snake instance
@@ -15,7 +16,7 @@ class Game {
   public:
     Game(int choice, char snakeChar);  // initializes board array of size y by x and sets difficulty. Could throw
                                        // runtime_error if not in bounds
-    void gameLoop();  // holds game logic and runs the game
+    void gameLoop();                   // holds game logic and runs the game
     int getMapWidth() const {
         return mapWidth;
     }
