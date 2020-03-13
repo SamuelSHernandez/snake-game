@@ -12,13 +12,15 @@ using namespace chrono;       // nanoseconds, system_clock, seconds, millisecond
 char input = 'a';
 bool gameOver1 = false;
 
-Game::Game(int choice, char snakeChar) {
+Game::Game(int choice, char snakeChar, string playerName) {
     // set difficulty
     setGameDifficulty(choice);
     gameSnake.setAscii(snakeChar);
     // setup initial snake
     gameSnake.setPosition(mapWidth, mapHeight / 2);
     gameSnake.changeDirection(WEST);
+    // set player name
+    currentPlayer = playerName;
 
     // sets the array with blank spaces with game difficulty size and negative numbers for borders
     for (int i = 0; i < mapHeight + 2; i++) {

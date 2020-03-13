@@ -64,8 +64,7 @@ int main() {  // finish exception handling
         }
     } while (menuOption);
 
-    Player myPlayer(playerName);
-    Game myGame(menuOption, snakeChar);
+    Game myGame(menuOption, snakeChar, playerName);
     myGame.gameLoop();
 
     return 0;
