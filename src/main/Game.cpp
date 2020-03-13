@@ -171,7 +171,7 @@ void Game::decrementArray() {
 
 void Game::render() {
     ofstream fout;
-    fout.open("GameBoard.txt");
+    fout.open("Board.txt");
     if (!fout) {
         cerr << "cannot open";
     }
