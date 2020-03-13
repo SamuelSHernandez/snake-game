@@ -10,7 +10,7 @@ Player::Player() {
     asciiChar = '.';
 }
 
-Player::Player(string myName) {
+Player::Player(string myName, char asciiChar) {
     myName = name;
 }
 
