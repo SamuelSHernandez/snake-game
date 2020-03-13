@@ -121,7 +121,7 @@ void Game::gameLoop() {
             gameSnake.getPosition().x > mapWidth) {
             gameOver = true;
             gameOver1 = true;
-            cout << "game over: Hit wall" << endl;
+            cout << endl << "game over: Hit wall" << endl;
             cout << "Snake Length: " << gameSnake.getLength() << endl;
             break;
         }
@@ -140,7 +140,7 @@ void Game::gameLoop() {
             // snake has hit itself so game is over
             gameOver = true;
             gameOver1 = true;
-            cout << "game over: hit itself" << endl;
+            cout << endl << "game over: hit itself" << endl;
             cout << "Snake length: " << gameSnake.getLength() << endl;
             break;
         }
@@ -197,7 +197,7 @@ void Game::render() {
             } else if (arrayPosition == gameSnake.getPosition()) {
                 fout << "O" + space + gridBar;
             } else if (board[i][j] == -3) {
-                fout << to_string(gameSnake.getLength()) + fruitSpace + gridBar;
+                fout << to_string(gameSnake.getLength() + 1) + fruitSpace + gridBar;
             } else {
                 fout << " " + space + gridBar;
             }
