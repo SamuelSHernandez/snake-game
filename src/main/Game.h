@@ -49,7 +49,6 @@ class Game {
     Level gameDifficulty;
     Fruit gameFruit;
     Snake gameSnake;
-    Player gamePlayer;
     int board[100][100];  // Array size can be changed as necessary. Each difficulty level
                           // only uses as much of the array as needed.
     int gameSpeed;        // number of milliseconds snake will sleep between iterations
