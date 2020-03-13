@@ -65,8 +65,6 @@ void Game::gameLoop() {
     Compass ChangeDirection;
     cout << "entered game loop function" << endl;
     bool gameOver = false;
-    int index = 0;  // used to keep track of loop iterations
-
     // set initial fruit
     gameFruit.setPosition(mapHeight, mapWidth, gameSnake.getPosition(), board);
 
@@ -176,6 +174,14 @@ void Game::render() {
         cerr << "cannot open";
     }
     string space = "  ";
+    string fruitSpace;
+    if (gameSnake.getLength() < 10) {
+        fruitSpace = "  ";
+    } else if (gameSnake.getLength() <= 99 && index > 9) {
+        fruitSpace = " ";
+    } else {
+        fruitSpace = "";
+    }
     string gridBar = "";
     for (int i = 0; i < mapHeight + 2; i++) {
         for (int j = 0; j < mapWidth + 2; j++) {
@@ -191,7 +197,7 @@ void Game::render() {
             } else if (arrayPosition == gameSnake.getPosition()) {
                 fout << "O" + space + gridBar;
             } else if (board[i][j] == -3) {
-                fout << "8" + space + gridBar;
+                fout << to_string(gameSnake.getLength()) + fruitSpace + gridBar;
             } else {
                 fout << " " + space + gridBar;
             }
