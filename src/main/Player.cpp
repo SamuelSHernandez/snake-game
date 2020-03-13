@@ -1,12 +1,5 @@
 #include "Player.h"
 
-Player::Player() {
-    name = "NULL";
-    score = 0;
-    asciiChar = '.';
-}
-
-Player::Player(string myName, char myChar) {
+Player::Player(string myName) {
     myName = name;
-    myChar = asciiChar;
 }
