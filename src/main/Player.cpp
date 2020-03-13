@@ -18,28 +18,43 @@ Player::Player(string myName, char asciiChar) {
 // emplace vector and difficutly
 
 void printLeaderboard() {
-    ofstream fout;
-    fout.open("Leaderboard.txt");
+    // easy
+    ofstream Easyfout;
+    Easyfout.open("EasyLeaderboard.txt");
 
-    if (!fout.is_open()) {
-        cout << "Could not open file Leaderboard.txt." << endl;
+    if (!Easyfout.is_open()) {
+        cout << "Could not open file EasyLeaderboard.txt." << endl;
     }
 
-    // open file
+    for (const auto& [k, v] : easyScoresMap) {
+        cout << k << "\t" << v;
+    }
 
-    fout << "***********************************************" << endl;
-    fout << setw(28) << "LEADERBOARD" << setw(32) << endl;
-    fout << "      --------------------------------   " << endl;
-    fout << setw(12) << "Player " << setw(16) << " Difficulty " << setw(16) << " High Score " << endl;
-    fout << "      --------------------------------   " << endl;
+    Easyfout.close();
 
-    fout << "\t " << endl;
-    // fout current player
-    // fout current highscore
-    // compare with current highscores and replace if higher
-    fout << "***********************************************" << endl;
+    // medium
+    ofstream Mediumfout;
+    Easyfout.open("MediumLeaderboard.txt");
 
-    // close file
+    if (!Mediumfout.is_open()) {
+        cout << "Could not open file MediumLeaderboard.txt." << endl;
+    }
 
-    fout.close();
+    for (const auto& [k, v] : mediumScoresMap) {
+        cout << k << "\t" << v;
+    }
+    Mediumfout.close();
+
+    // hard
+    ofstream Hardfout;
+    Hardfout.open("MediumLeaderboard.txt");
+
+    if (!Hardfout.is_open()) {
+        cout << "Could not open file MediumLeaderboard.txt." << endl;
+    }
+    for (const auto& [k, v] : hardScoresMap) {
+        cout << k << "\t" << v;
+    }
+
+    Hardfout.close();
 }

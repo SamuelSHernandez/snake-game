@@ -12,9 +12,7 @@ class Player {
   public:
     Player();
     Player(string, char);
-    vector<Player *> getName() const {
-        return player;
-    }
+ 
     void setName(string name) {
         this->name = name;
     }
@@ -34,9 +32,7 @@ class Player {
     void printLeaderboard();
 
   private:
-    vector<Player *> player;                     // holds pointers to
-    map<vector<Player *> *, int> highscore;      // holds name as a key to a highscore
-    map<vector<Player *> *, string> difficulty;  // holds name as a key to a difficulty
+   
     string name;
     int score;
     char asciiChar;
