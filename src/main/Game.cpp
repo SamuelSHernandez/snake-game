@@ -47,16 +47,17 @@ Game::Game(int choice) : gameSnake('*') {
 // Function to get User Input
 void getUserInput() {
     while (gameOver1 == false) {
-        system("stty raw");
         input = getchar();
-        system("cooked");
     }
 }
 // Is calld by Game Loop to create the user input thread.
 void getDirection() {
+    system("stty raw");
+    system ("stty echo");
     thread th1(getUserInput);
     th1.detach();
-    sleep_for(milliseconds(100));
+    system ("stty -echo");
+    system("stty cooked");
 }
 void Game::gameLoop() {
     Compass ChangeDirection;
@@ -149,14 +150,14 @@ void Game::gameLoop() {
         // decrement all of board[][]
         decrementArray();
 
-        cout << "gameLoop iteration: " << index << endl;  // to delete - debugging only
+        // cout << "gameLoop iteration: " << index << endl;  // to delete - debugging only
         sleep_for(milliseconds(150));                     // speed of event loop. Higher number is slower
 
         // should be deleted once proper checking for end of game is added
-        if (index == 100) {
-            gameOver = true;
-            gameOver1 = true;
-        }
+        // if (index == 100) {
+        //     gameOver = true;
+        //     gameOver1 = true;
+        // }
 
     } while (!gameOver);
     // handle end of game
