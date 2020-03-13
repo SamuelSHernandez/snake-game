@@ -4,7 +4,8 @@
 
 class Snake {
   public:
-    Snake () {}
+    Snake() {
+    }
     Snake(char ascii);
     void move();
     void changeDirection(Compass direction) {
