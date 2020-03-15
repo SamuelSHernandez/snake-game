@@ -87,6 +87,39 @@ code_coverage:
       - build/CMakeFiles/tests.dir/cov/out/
     expire_in: 7 days
 
+deploy_prod:
+  stage: deploy
+  before_script:
+    - apt-get update -qq
+    - apt-get install -qq curl
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d -w 0)
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ELF_NAME="${CI_PROJECT_NAMESPACE}-snake"
+    - SSH_COMMAND_STRING="if pgrep ${ELF_NAME}; then pkill ${ELF_NAME}; fi && "
+    # Double quotes around everything needed as it has a colon in it
+    - "SSH_COMMAND_STRING+=\"curl --location --header 'PRIVATE-TOKEN: ${API_TOKEN}' '${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/jobs/artifacts/${CI_BUILD_REF_NAME}/raw/build/program?job=build_programs' --output ${ELF_NAME} &&\" "
+    # Make sure the file is executable
+    - SSH_COMMAND_STRING+="chmod +x ${ELF_NAME} && "
+    # Start it in the background in such a way that SSH will not hang when we exit
+    - SSH_COMMAND_STRING+="(nohup ./${ELF_NAME} ${RUN_PORT} > /dev/null 2>&1 &) && "
+    # Make sure the program is running, if it is, we exit gracefully
+    - SSH_COMMAND_STRING+="if pgrep ${ELF_NAME}; then exit; fi && "
+    # If the program is not running, exit with an error code to say something went wrong
+    - SSH_COMMAND_STRING+="exit 1"
+    # Print it out so we can see what happened for debugging purposes.
+    - echo "$SSH_COMMAND_STRING"
+    # Execute the deploy
+    - ssh $SSH_USER@$SSH_HOST "${SSH_COMMAND_STRING}"
+    # Make sure it is running
+    - "curl --location http://${SSH_HOST}:${RUN_PORT} | grep \"Go to /quote/# or /random to get a quote.\""
+  when: manual
+  only:
+    - master
+
 variables:
   JEKYLL_ENV: production
   LC_ALL: C.UTF-8
