@@ -118,7 +118,7 @@ deploy_prod:
     - "curl --location http://${SSH_HOST}:${RUN_PORT} | grep \"Go to /quote/# or /random to get a quote.\""
   when: manual
   only:
-    - master
+    - CPTR245_Part3
 
 variables:
   JEKYLL_ENV: production
