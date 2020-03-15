@@ -101,7 +101,7 @@ deploy_prod:
     - ELF_NAME="${CI_PROJECT_NAMESPACE}-snake"
     - SSH_COMMAND_STRING="if pgrep ${ELF_NAME}; then pkill ${ELF_NAME}; fi && "
     # Double quotes around everything needed as it has a colon in it
-    - "SSH_COMMAND_STRING+=\"curl --location --header 'PRIVATE-TOKEN: ${API_TOKEN}' '${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/jobs/artifacts/${CI_BUILD_REF_NAME}/raw/build/program?job=build_programs' --output ${ELF_NAME} &&\" "
+    - "SSH_COMMAND_STRING+=\"curl --location --header 'PRIVATE-TOKEN: ${API_TOKEN}' '${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/jobs/artifacts/${CI_BUILD_REF_NAME}/raw/build/program?job=build_programs' --output ${ELF_NAME} \" "
     # Print it out so we can see what happened for debugging purposes.
     - echo "$SSH_COMMAND_STRING"
     # Execute the deploy
