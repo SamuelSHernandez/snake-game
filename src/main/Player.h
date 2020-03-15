@@ -11,7 +11,7 @@ class Snake;
 class Player {
   public:
     Player();
-    Player(string, bool);       // name of player, flag saying if player exists in storage
+    Player(string, bool);  // name of player, flag saying if player exists in storage
     string getName() const {
         return name;
     }
@@ -24,8 +24,8 @@ class Player {
     void setHighScore(int score) {
         scores.push_back(score);
     }
-    void loadScores();  // can throw exception
-    void storeScores(int); // can throw exception
+    void loadScores();      // can throw exception
+    void storeScores(int);  // can throw exception
 
   private:
     string name;

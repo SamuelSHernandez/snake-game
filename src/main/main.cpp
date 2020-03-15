@@ -68,17 +68,15 @@ int main() {  // finish exception handling
     Game myGame(menuOption, snakeChar, playerName);
     try {
         myGame.loadStorage();
-    }
-    catch(runtime_error &excpt) {
+    } catch (runtime_error &excpt) {
         cout << excpt.what() << endl;
     }
 
     myGame.gameLoop();
-    
-    try{
+
+    try {
         myGame.printStorage();
-    }
-    catch(runtime_error &excpt) {
+    } catch (runtime_error &excpt) {
         cout << excpt.what() << endl;
     }
 

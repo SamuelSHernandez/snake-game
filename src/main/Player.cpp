@@ -3,9 +3,8 @@
 #include <iomanip>
 #include <iostream>
 #include <map>
-#include <vector>
 #include <stdexcept>
-#include <fstream>
+#include <vector>
 Player::Player() {
     name = "NULL";
 }
@@ -19,7 +18,7 @@ Player::Player(string myName, bool old) {
 
 void Player::loadScores() {
     ifstream fin;
-    int fileNum;    // holds each number from file
+    int fileNum;  // holds each number from file
     // open file
     fin.open("../../storage/players/" + name + ".txt");
 
@@ -52,7 +51,6 @@ void Player::storeScores(int newScore) {
         store << each << endl;
     }
     store << newScore << endl;
-    
-    store.close();
 
+    store.close();
 }

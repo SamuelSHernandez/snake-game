@@ -43,8 +43,8 @@ class Game {
         return hardScoresMap;
     }
     Player* getPlayer(string);
-    void loadStorage();     // can throw exception
-    void printStorage();    // can throw exception
+    void loadStorage();   // can throw exception
+    void printStorage();  // can throw exception
 
   private:
     bool gameOver = false;
@@ -55,11 +55,11 @@ class Game {
     Level gameDifficulty;
     Fruit gameFruit;
     Snake gameSnake;
-    int board[100][100];  // Array size can be changed as necessary. Each difficulty level
-                          // only uses as much of the array as needed.
-    int gameSpeed;        // number of milliseconds snake will sleep between iterations
-    map<string, Player*> players;       // <name, player object>
-    map<int, string> easyScoresMap;     // <score, player name>
+    int board[100][100];             // Array size can be changed as necessary. Each difficulty level
+                                     // only uses as much of the array as needed.
+    int gameSpeed;                   // number of milliseconds snake will sleep between iterations
+    map<string, Player*> players;    // <name, player object>
+    map<int, string> easyScoresMap;  // <score, player name>
     map<int, string> mediumScoresMap;
     map<int, string> hardScoresMap;
 };
