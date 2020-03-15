@@ -107,7 +107,7 @@ deploy_prod:
     # Execute the deploy
     - ssh $SSH_USER@$SSH_HOST "${SSH_COMMAND_STRING}"
     # Make sure it is running
-    - "curl --location http://${SSH_HOST}:${RUN_PORT} | grep \"Go to /quote/# or /random to get a quote.\""
+    - ssh $SSH_USER@$SSH_HOST "ls -l | grep '${ELF_NAME}'"
   when: manual
   only:
     - CPTR245_Part3
