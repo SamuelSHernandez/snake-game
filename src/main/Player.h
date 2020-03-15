@@ -21,11 +21,9 @@ class Player {
     vector<int> getScores() const {
         return scores;
     }
-    void setHighScore(int score) {
-        scores.push_back(score);
-    }
+    void addScore(int score);
     void loadScores();      // can throw exception
-    void storeScores(int);  // can throw exception
+    void storeScores();  // can throw exception
 
   private:
     string name;

@@ -43,6 +43,7 @@ class Game {
         return hardScoresMap;
     }
     Player* getPlayer(string);
+    void addScores();
     void loadStorage();   // can throw exception
     void printStorage();  // can throw exception
 

@@ -73,28 +73,28 @@ void Game::gameLoop() {
         index++;
         getDirection();
         switch (input) {
-            // ADD if up key
+            // if up key
             case 'w':
                 if (ChangeDirection != SOUTH) {
                     ChangeDirection = NORTH;
                     gameSnake.changeDirection(NORTH);
                 }
                 break;
-            // ADD if left key
+            // if left key
             case 'a':
                 if (ChangeDirection != EAST) {
                     ChangeDirection = WEST;
                     gameSnake.changeDirection(WEST);
                 }
                 break;
-            // ADD if right key
+            // if right key
             case 'd':
                 if (ChangeDirection != WEST) {
                     ChangeDirection = EAST;
                     gameSnake.changeDirection(EAST);
                 }
                 break;
-            // ADD if down key
+            // if down key
             case 's':
                 if (ChangeDirection != NORTH) {
                     ChangeDirection = SOUTH;
@@ -103,14 +103,6 @@ void Game::gameLoop() {
                 }
                 break;
         }
-
-        // ADD if up key
-
-        // ADD if left key
-
-        // ADD if right key
-
-        // ADD if down key
 
         // move snake based on direction
         gameSnake.move();
@@ -123,6 +115,7 @@ void Game::gameLoop() {
             gameOver1 = true;
             cout << endl << "game over: Hit wall" << endl;
             cout << "Snake Length: " << gameSnake.getLength() << endl;
+            addScores();
             break;
         }
 
@@ -142,6 +135,7 @@ void Game::gameLoop() {
             gameOver1 = true;
             cout << endl << "game over: hit itself" << endl;
             cout << "Snake length: " << gameSnake.getLength() << endl;
+            addScores();
             break;
         }
 
@@ -164,6 +158,22 @@ void Game::decrementArray() {
                 board[i][j] -= 1;
             }
         }
+    }
+}
+
+void Game::addScores() {
+    currentPlayer->addScore(gameSnake.getLength());
+    pair<int, string> tempPair = make_pair(gameSnake.getLength(), currentPlayer->getName());
+    switch(gameDifficulty) {
+        case L_EASY:
+            easyScoresMap.insert(tempPair);
+            break;
+        case L_MEDIUM:
+            mediumScoresMap.insert(tempPair);
+            break;
+        case L_HARD:
+            hardScoresMap.insert(tempPair);
+            break;
     }
 }
 
@@ -364,5 +374,5 @@ void Game::printStorage() {
     save.close();
 
     // store player's scores
-    currentPlayer->storeScores(gameSnake.getLength());
+    currentPlayer->storeScores();
 }
