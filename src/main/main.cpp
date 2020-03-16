@@ -32,9 +32,10 @@ int main() {  // finish exception handling
     // Player's name
     cout << "Welcome! Please enter your name below. Make sure you spell and capitalize it" << endl;
     cout << "the same way each time for score tracking. " << endl;
-    cout << "Your name: ";
     bool goodString = true;
     do {
+        goodString = true;
+        cout << "Your name: ";
         cin >> playerName;
         try {
             for (int i = 0; i < playerName.length(); ++i) {
@@ -54,7 +55,6 @@ int main() {  // finish exception handling
         }
         catch (runtime_error &excpt) {
             cout << excpt.what() << endl;
-            cout << "Please run program again." << endl;
             goodString = false;
         }
     } while(!goodString);
