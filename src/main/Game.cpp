@@ -187,7 +187,7 @@ void Game::render() {
     }
     string space = "  ";
     string fruitSpace;
-    if (gameSnake.getLength() < 10) {
+    if (gameSnake.getLength() <= 8) {
         fruitSpace = "  ";
     } else if (gameSnake.getLength() <= 99 && index > 9) {
         fruitSpace = " ";
@@ -209,7 +209,7 @@ void Game::render() {
             } else if (arrayPosition == gameSnake.getPosition()) {
                 fout << "O" + space + gridBar;
             } else if (board[i][j] == -3) {
-                fout << to_string(gameSnake.getLength()) + fruitSpace + gridBar;
+                fout << to_string(gameSnake.getLength() + 1) + fruitSpace + gridBar;
             } else {
                 fout << " " + space + gridBar;
             }
