@@ -7,6 +7,7 @@
 #include <string>
 #include <thread>
 #include <utility>
+#include <functional>
 using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until
 using namespace chrono;       // nanoseconds, system_clock, seconds, milliseconds
