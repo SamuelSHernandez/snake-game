@@ -82,7 +82,7 @@ int main() {  // finish exception handling
         cout << excpt.what() << endl;
     }
     string trash;
-    cout << endl;
+    cout << endl << endl;
     cout << "Game Created. Use the w, a, s, and d keys to move your snake." << endl;
     cout << "Open the file \"Board.txt\" to play the game." << endl;
     cout << "Press any key and then enter to continue: ";
