@@ -46,6 +46,7 @@ class Game {
     void addScores();
     void loadStorage();   // can throw exception
     void printStorage();  // can throw exception
+    void printLeaderboard();
 
   private:
     bool gameOver = false;

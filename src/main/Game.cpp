@@ -41,6 +41,8 @@ Game::Game(int choice, char snakeChar, string playerName) {
         }
     }
 
+    render();
+
     // // Position snake
     // gameSnake.setLength(2);
     // gameSnake.setPosition(mapWidth - 1, mapHeight / 2);
@@ -64,7 +66,6 @@ void getDirection() {
 }
 void Game::gameLoop() {
     Compass ChangeDirection;
-    cout << "entered game loop function" << endl;
     bool gameOver = false;
     // set initial fruit
     gameFruit.setPosition(mapHeight, mapWidth, gameSnake.getPosition(), board);
@@ -114,7 +115,7 @@ void Game::gameLoop() {
             gameSnake.getPosition().x > mapWidth) {
             gameOver = true;
             gameOver1 = true;
-            cout << endl << "game over: Hit wall" << endl;
+            cout << endl << endl << "Game Over: Hit wall" << endl;
             cout << "Snake Length: " << gameSnake.getLength() << endl;
             addScores();
             break;
@@ -134,7 +135,7 @@ void Game::gameLoop() {
             // snake has hit itself so game is over
             gameOver = true;
             gameOver1 = true;
-            cout << endl << "game over: hit itself" << endl;
+            cout << endl << endl << "Game Over: hit itself" << endl;
             cout << "Snake length: " << gameSnake.getLength() << endl;
             addScores();
             break;
@@ -216,14 +217,14 @@ void Game::render() {
         fout << endl;
     }
 
-    // debugging
-    fout << endl << endl << endl;
-    for (int i = 0; i < mapHeight + 2; i++) {
-        for (int j = 0; j < mapWidth + 2; j++) {
-            fout << board[i][j];
-        }
-        fout << endl;
-    }
+    // // debugging
+    // fout << endl << endl << endl;
+    // for (int i = 0; i < mapHeight + 2; i++) {
+    //     for (int j = 0; j < mapWidth + 2; j++) {
+    //         fout << board[i][j];
+    //     }
+    //     fout << endl;
+    // }
 
     fout.close();
 }
@@ -333,13 +334,6 @@ void Game::loadStorage() {
         throw runtime_error("Input failure before reaching end of file.");
     }
     load.close();
-
-    // debug
-    cout << currentPlayer->getName() + " vector after whole loading function: " << endl;
-    for (auto each : currentPlayer->getScores()) {
-        cout << each << ", ";
-    }
-    cout << endl;
 }
 
 void Game::printStorage() {
@@ -386,4 +380,7 @@ void Game::printStorage() {
 
     // store player's scores
     currentPlayer->storeScores();
+}
+
+void Game::printLeaderboard() {
 }
