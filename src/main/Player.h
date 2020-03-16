@@ -11,25 +11,23 @@ class Snake;
 class Player {
   public:
     Player();
-    Player(string, char);
+    Player(string, bool);  // name of player, flag saying if player exists in storage
     string getName() const {
         return name;
     }
     void setName(string name) {
         this->name = name;
     }
-    int getHighScore() const {
-        return score;
+    vector<int> getScores() const {
+        return scores;
     }
-    void setHighScore(int score) {
-        this->score = score;
-    }
-
-    void printLeaderboard();
+    void addScore(int score);
+    void loadScores();      // can throw exception
+    void storeScores();  // can throw exception
 
   private:
     string name;
-    int score;
+    vector<int> scores;
 };
 
 #endif  // SRC_MAIN_PLAYER_H_
