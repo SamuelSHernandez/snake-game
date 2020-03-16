@@ -209,7 +209,7 @@ void Game::render() {
             } else if (arrayPosition == gameSnake.getPosition()) {
                 fout << "O" + space + gridBar;
             } else if (board[i][j] == -3) {
-                fout << to_string(gameSnake.getLength() + 1) + fruitSpace + gridBar;
+                fout << to_string(gameSnake.getLength()) + fruitSpace + gridBar;
             } else {
                 fout << " " + space + gridBar;
             }
