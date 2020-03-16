@@ -1,11 +1,11 @@
 #ifndef SRC_MAIN_GAME_H_
 #define SRC_MAIN_GAME_H_
 #include <pthread.h>
+#include <list>
 #include <map>
 #include <string>
 #include <utility>
 #include <vector>
-#include <list>
 #include "Fruit.h"   // Game will have a Fruit instance
 #include "Player.h"  // will have a Player instance
 #include "Snake.h"   // will have a Snake instance
@@ -65,10 +65,10 @@ class Game {
     Level gameDifficulty;
     Fruit gameFruit;
     Snake gameSnake;
-    int board[100][100];                       // Array size can be changed as necessary. Each difficulty level
-                                               // only uses as much of the array as needed.
-    int gameSpeed;                             // number of milliseconds snake will sleep between iterations
-    map<string, Player*> players;              // <name, player object>
+    int board[100][100];                     // Array size can be changed as necessary. Each difficulty level
+                                             // only uses as much of the array as needed.
+    int gameSpeed;                           // number of milliseconds snake will sleep between iterations
+    map<string, Player*> players;            // <name, player object>
     list<pair<int, string> > easyScoresMap;  // <score, player name>
     list<pair<int, string> > mediumScoresMap;
     list<pair<int, string> > hardScoresMap;
