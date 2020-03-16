@@ -56,10 +56,10 @@ class Game {
     string formatName(string);
 
   private:
-    bool gameOver = false;
-    int mapWidth = 20;   // variable to hold board width
-    int mapHeight = 20;  // variable to hold board height
-    int index = 0;       // used to keep track of loop iterations
+    bool gameOver;
+    int mapWidth;   // variable to hold board width
+    int mapHeight;  // variable to hold board height
+    int index;      // used to keep track of loop iterations
     string playerName;
     Player* currentPlayer;
     Level gameDifficulty;

@@ -1,2 +1,10 @@
 6	luke
 44	luke
+10	luke
+11	luke
+16	luke
+50	luke
+19	luke
+10	luke
+23	luke
+5	luke

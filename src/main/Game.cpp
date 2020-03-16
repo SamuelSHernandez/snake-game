@@ -14,7 +14,7 @@ using namespace chrono;       // nanoseconds, system_clock, seconds, millisecond
 char input = 'a';
 bool gameOver1 = false;
 
-Game::Game(int choice, char snakeChar, string playerName) {
+Game::Game(int choice, char snakeChar, string playerName) : gameOver(false), mapWidth(20), mapHeight(20), index(0) {
     // set difficulty
     setGameDifficulty(choice);
     gameSnake.setAscii(snakeChar);
@@ -216,14 +216,14 @@ void Game::render() {
         fout << endl;
     }
 
-    // // debugging
-    // fout << endl << endl << endl;
-    // for (int i = 0; i < mapHeight + 2; i++) {
-    //     for (int j = 0; j < mapWidth + 2; j++) {
-    //         fout << board[i][j];
-    //     }
-    //     fout << endl;
-    // }
+    // debugging
+    fout << endl << endl << endl;
+    for (int i = 0; i < mapHeight + 2; i++) {
+        for (int j = 0; j < mapWidth + 2; j++) {
+            fout << board[i][j];
+        }
+        fout << endl;
+    }
 
     fout.close();
 }
@@ -232,11 +232,11 @@ void Game::setGameDifficulty(int choice) {
     switch (choice) {
         case 1:
             gameDifficulty = L_EASY;
-            gameSpeed = 200;
+            gameSpeed = 160;
             break;
         case 2:
             gameDifficulty = L_MEDIUM;
-            gameSpeed = 150;
+            gameSpeed = 130;
             break;
         case 3:
             gameDifficulty = L_HARD;
