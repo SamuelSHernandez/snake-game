@@ -15,6 +15,7 @@
 #include "Player.h"
 #include "Snake.h"
 #include "Type.h"
+#include "main_func.h"
 using namespace std;
 
 int main() {  // finish exception handling
@@ -32,36 +33,12 @@ int main() {  // finish exception handling
     // Player's name
     cout << "Welcome! Please enter your name below. Make sure you spell and capitalize it" << endl;
     cout << "the same way each time for score tracking. " << endl;
-    bool goodString = true;
-    do {
-        goodString = true;
-        cout << "Your name: ";
-        cin >> playerName;
-        try {
-            for (int i = 0; i < playerName.length(); ++i) {
-                if(65 <= playerName.at(i) && playerName.at(i) <= 90) {
-                    playerName.at(i) += 32;
-                }
-                if(playerName.at(i) == 32) {
-                    playerName.at(i) = 95;
-                }
-                if(playerName.at(i) == 47) {
-                    throw runtime_error("Name cannot have '/' character.");
-                }
-                if(playerName.at(i) == 46) {
-                    throw runtime_error("Name cannot have '.' character.");
-                }
-            }
-        }
-        catch (runtime_error &excpt) {
-            cout << excpt.what() << endl;
-            goodString = false;
-        }
-    } while(!goodString);
+    playerName = getNameEntry();
 
     // Snake character
+    cout << endl;
     do {
-        cout << endl << "Enter a single ASCII character that is not a number: ";
+        cout << "Enter a single ASCII character that is not a number: ";
         cin >> snakeSkin;
         snakeChar = snakeSkin.front();
         if (isdigit(snakeChar) || (!cin)) {
