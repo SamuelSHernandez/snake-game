@@ -22,7 +22,7 @@ class Player {
         return scores;
     }
     void addScore(int score);
-    void loadScores();      // can throw exception
+    void loadScores();   // can throw exception
     void storeScores();  // can throw exception
 
   private:
