@@ -33,7 +33,31 @@ int main() {  // finish exception handling
     cout << "Welcome! Please enter your name below. Make sure you spell and capitalize it" << endl;
     cout << "the same way each time for score tracking. " << endl;
     cout << "Your name: ";
-    cin >> playerName;
+    bool goodString = true;
+    do {
+        cin >> playerName;
+        try {
+            for (int i = 0; i < playerName.length(); ++i) {
+                if(65 <= playerName.at(i) && playerName.at(i) <= 90) {
+                    playerName.at(i) += 32;
+                }
+                if(playerName.at(i) == 32) {
+                    playerName.at(i) = 95;
+                }
+                if(playerName.at(i) == 47) {
+                    throw runtime_error("Name cannot have '/' character.");
+                }
+                if(playerName.at(i) == 46) {
+                    throw runtime_error("Name cannot have '.' character.");
+                }
+            }
+        }
+        catch (runtime_error &excpt) {
+            cout << excpt.what() << endl;
+            cout << "Please run program again." << endl;
+            goodString = false;
+        }
+    } while(!goodString);
 
     // Snake character
     do {
