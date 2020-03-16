@@ -28,7 +28,7 @@ int main() {  // finish exception handling
 
     // Snake character
     do {
-        cout << "Enter a single ASCII character that is not a number: ";
+        cout << endl << "Enter a single ASCII character that is not a number: ";
         cin >> snakeChar;
         if (isdigit(snakeChar) || !cin) {
             cin.clear();
@@ -66,7 +66,19 @@ int main() {  // finish exception handling
     } while (menuOption);
 
     Game myGame(menuOption, snakeChar, playerName);
+    try {
+        myGame.loadStorage();
+    } catch (runtime_error &excpt) {
+        cout << excpt.what() << endl;
+    }
+
     myGame.gameLoop();
+
+    try {
+        myGame.printStorage();
+    } catch (runtime_error &excpt) {
+        cout << excpt.what() << endl;
+    }
 
     return 0;
 }

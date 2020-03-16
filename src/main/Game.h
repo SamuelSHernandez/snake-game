@@ -30,7 +30,7 @@ class Game {
         return gameDifficulty;
     }
     void decrementArray();  // decreases every value in array by 1
-    map<string, Player> getPlayers() const {
+    map<string, Player*> getPlayers() const {
         return players;
     }
     map<int, string> getEasyScoresMap() const {
@@ -42,23 +42,26 @@ class Game {
     map<int, string> getHardScoresMap() const {
         return hardScoresMap;
     }
-
-    void printLeaderboard();
+    Player* getPlayer(string);
+    void addScores();
+    void loadStorage();   // can throw exception
+    void printStorage();  // can throw exception
 
   private:
     bool gameOver = false;
     int mapWidth = 20;   // variable to hold board width
     int mapHeight = 20;  // variable to hold board height
     int index = 0;       // used to keep track of loop iterations
-    string currentPlayer;
+    string playerName;
+    Player* currentPlayer;
     Level gameDifficulty;
     Fruit gameFruit;
     Snake gameSnake;
-    int board[100][100];  // Array size can be changed as necessary. Each difficulty level
-                          // only uses as much of the array as needed.
-    int gameSpeed;        // number of milliseconds snake will sleep between iterations
-    map<string, Player> players;
-    map<int, string> easyScoresMap;
+    int board[100][100];             // Array size can be changed as necessary. Each difficulty level
+                                     // only uses as much of the array as needed.
+    int gameSpeed;                   // number of milliseconds snake will sleep between iterations
+    map<string, Player*> players;    // <name, player object>
+    map<int, string> easyScoresMap;  // <score, player name>
     map<int, string> mediumScoresMap;
     map<int, string> hardScoresMap;
 };
