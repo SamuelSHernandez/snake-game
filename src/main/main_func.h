@@ -1,5 +1,9 @@
+#ifndef SRC_MAIN_MAIN_FUNC_H
+#define SRC_MAIN_MAIN_FUNC_H
+
 #include <iostream>
 #include <stdexcept>
+#include <string>
 using namespace std;
 
 /* makes all uppercase chars lowercase,
@@ -7,3 +11,5 @@ using namespace std;
  * and denies '/' and '.'
  */
 string getNameEntry();
+
+#endif  // SRC_MAIN_MAIN_FUNC_H
