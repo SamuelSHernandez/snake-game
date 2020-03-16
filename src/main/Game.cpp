@@ -347,7 +347,7 @@ void Game::printStorage() {
     if (!save.is_open()) {
         throw runtime_error("Could not open file playerList.txt.");
     }
-    for (auto each : players) {
+    for (const auto each : players) {
         save << each.first << endl;
     }
     save.close();
@@ -357,7 +357,7 @@ void Game::printStorage() {
     if (!save.is_open()) {
         throw runtime_error("Could not open file EasyLeaderboard.txt.");
     }
-    for (auto each : easyScoresMap) {
+    for (const auto each : easyScoresMap) {
         save << each.first << "\t" << each.second << endl;
     }
     save.close();
@@ -367,7 +367,7 @@ void Game::printStorage() {
     if (!save.is_open()) {
         throw runtime_error("Could not open file MediumLeaderboard.txt.");
     }
-    for (auto each : mediumScoresMap) {
+    for (const auto each : mediumScoresMap) {
         save << each.first << "\t" << each.second << endl;
     }
     save.close();
@@ -377,7 +377,7 @@ void Game::printStorage() {
     if (!save.is_open()) {
         throw runtime_error("Could not open file HardLeaderboard.txt");
     }
-    for (auto each : hardScoresMap) {
+    for (const auto each : hardScoresMap) {
         save << each.first << "\t" << each.second << endl;
     }
     save.close();
@@ -403,7 +403,7 @@ void Game::printLeaderboard() {
     }
     // calculate highest player score
     int playerHighest = 0;
-    for (auto each : currentPlayer->getScores()) {
+    for (const auto each : currentPlayer->getScores()) {
         if (each.first > playerHighest && each.second == gameDifficulty) {
             playerHighest = each.first;
         }
