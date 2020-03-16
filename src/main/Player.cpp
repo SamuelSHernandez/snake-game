@@ -3,7 +3,6 @@
 #include <iomanip>
 #include <iostream>
 #include <map>
-#include <stdexcept>
 #include <vector>
 Player::Player() {
     name = "NULL";
