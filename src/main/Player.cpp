@@ -50,6 +50,7 @@ void Player::loadScores() {
     }
     fin.close();
 
+    // debug
     cout << name + " scores vector: " << endl;
     for (auto each : scores) {
         cout << each << ", ";

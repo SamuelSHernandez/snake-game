@@ -20,7 +20,7 @@ Game::Game(int choice, char snakeChar, string playerName) {
     gameSnake.setPosition(mapWidth, mapHeight / 2);
     gameSnake.changeDirection(WEST);
     // set player name
-    currentPlayer = getPlayer(playerName);
+    this->playerName = playerName;
 
     // sets the array with blank spaces with game difficulty size and negative numbers for borders
     for (int i = 0; i < mapHeight + 2; i++) {
@@ -276,6 +276,9 @@ void Game::loadStorage() {
     }
     load.close();
 
+    // load current player object into currentPlayer
+    currentPlayer = getPlayer(playerName);
+
     // loading easyScoresMap
     load.open("../../storage/EasyLeaderboard.txt");
     if (!load.is_open()) {
@@ -329,6 +332,13 @@ void Game::loadStorage() {
         throw runtime_error("Input failure before reaching end of file.");
     }
     load.close();
+
+    // debug
+    cout << currentPlayer->getName() + " vector after whole loading function: " << endl;
+    for (auto each : currentPlayer->getScores()) {
+        cout << each << ", ";
+    }
+    cout << endl;
 }
 
 void Game::printStorage() {

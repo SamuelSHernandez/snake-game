@@ -52,6 +52,7 @@ class Game {
     int mapWidth = 20;   // variable to hold board width
     int mapHeight = 20;  // variable to hold board height
     int index = 0;       // used to keep track of loop iterations
+    string playerName;
     Player* currentPlayer;
     Level gameDifficulty;
     Fruit gameFruit;

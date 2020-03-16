@@ -1,5 +1,0 @@
-2	Luke
-3	Luke
-4	Bill
-5	Luke
-6	Luke
