@@ -62,7 +62,7 @@ void Player::storeScores() {
     if (!store.is_open()) {
         throw runtime_error("Could not open file " + name + ".txt");
     }
-    for (auto each : scores) {
+    for (const auto each : scores) {
         store << each.first << '\t' << each.second << endl;
     }
     store.close();
