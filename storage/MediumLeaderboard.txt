@@ -8,3 +8,16 @@
 10	luke
 23	luke
 5	luke
+2	luke
+3	luke
+2	luke
+4	luke
+4	luke
+3	luke
+4	luke
+11	luke
+2	luke
+2	luke
+3	luke
+4	luke
+8	luke

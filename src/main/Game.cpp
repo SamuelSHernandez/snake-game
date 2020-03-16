@@ -66,7 +66,7 @@ void getDirection() {
     system("stty cooked");
 }
 void Game::gameLoop() {
-    Compass ChangeDirection;
+    Compass direction;
     bool gameOver = false;
     // set initial fruit
     gameFruit.setPosition(mapHeight, mapWidth, gameSnake.getPosition(), board);
@@ -74,33 +74,38 @@ void Game::gameLoop() {
     // Event Loop - runs until game is over
     do {
         index++;
+        if (index == 1) {
+            cout << "got here" << endl;
+            direction = WEST;
+            gameSnake.changeDirection(WEST);
+        }
         getDirection();
         switch (input) {
             // if up key
             case 'w':
-                if (ChangeDirection != SOUTH) {
-                    ChangeDirection = NORTH;
+                if (direction != SOUTH) {
+                    direction = NORTH;
                     gameSnake.changeDirection(NORTH);
                 }
                 break;
             // if left key
             case 'a':
-                if (ChangeDirection != EAST) {
-                    ChangeDirection = WEST;
+                if (direction != EAST) {
+                    direction = WEST;
                     gameSnake.changeDirection(WEST);
                 }
                 break;
             // if right key
             case 'd':
-                if (ChangeDirection != WEST) {
-                    ChangeDirection = EAST;
+                if (direction != WEST) {
+                    direction = EAST;
                     gameSnake.changeDirection(EAST);
                 }
                 break;
             // if down key
             case 's':
-                if (ChangeDirection != NORTH) {
-                    ChangeDirection = SOUTH;
+                if (direction != NORTH) {
+                    direction = SOUTH;
                     // for error checking
                     gameSnake.changeDirection(SOUTH);
                 }
