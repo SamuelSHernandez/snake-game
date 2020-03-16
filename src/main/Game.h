@@ -33,13 +33,13 @@ class Game {
     map<string, Player*> getPlayers() const {
         return players;
     }
-    vector< pair<int, string> > getEasyScoresMap() const {
+    vector<pair<int, string> > getEasyScoresMap() const {
         return easyScoresMap;
     }
-    vector< pair<int, string> > getMediumScoresMap() const {
+    vector<pair<int, string> > getMediumScoresMap() const {
         return mediumScoresMap;
     }
-    vector< pair<int, string> > getHardScoresMap() const {
+    vector<pair<int, string> > getHardScoresMap() const {
         return hardScoresMap;
     }
     Player* getPlayer(string);
@@ -58,13 +58,13 @@ class Game {
     Level gameDifficulty;
     Fruit gameFruit;
     Snake gameSnake;
-    int board[100][100];             // Array size can be changed as necessary. Each difficulty level
-                                     // only uses as much of the array as needed.
-    int gameSpeed;                   // number of milliseconds snake will sleep between iterations
-    map<string, Player*> players;    // <name, player object>
-    vector< pair<int, string> > easyScoresMap;  // <score, player name>
-    vector< pair<int, string> > mediumScoresMap;
-    vector< pair<int, string> > hardScoresMap;
+    int board[100][100];                       // Array size can be changed as necessary. Each difficulty level
+                                               // only uses as much of the array as needed.
+    int gameSpeed;                             // number of milliseconds snake will sleep between iterations
+    map<string, Player*> players;              // <name, player object>
+    vector<pair<int, string> > easyScoresMap;  // <score, player name>
+    vector<pair<int, string> > mediumScoresMap;
+    vector<pair<int, string> > hardScoresMap;
 };
 
 #endif  // SRC_MAIN_GAME_H_
