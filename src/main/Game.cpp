@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <string>
 #include <thread>
+#include <utility>
 using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until
 using namespace chrono;       // nanoseconds, system_clock, seconds, milliseconds
@@ -164,7 +165,7 @@ void Game::decrementArray() {
 void Game::addScores() {
     currentPlayer->addScore(gameSnake.getLength());
     pair<int, string> tempPair = make_pair(gameSnake.getLength(), currentPlayer->getName());
-    switch(gameDifficulty) {
+    switch (gameDifficulty) {
         case L_EASY:
             easyScoresMap.insert(tempPair);
             break;
