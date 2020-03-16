@@ -12,13 +12,15 @@ using namespace chrono;       // nanoseconds, system_clock, seconds, millisecond
 char input = 'a';
 bool gameOver1 = false;
 
-Game::Game(int choice, char snakeChar) {
+Game::Game(int choice, char snakeChar, string playerName) {
     // set difficulty
     setGameDifficulty(choice);
     gameSnake.setAscii(snakeChar);
     // setup initial snake
     gameSnake.setPosition(mapWidth, mapHeight / 2);
     gameSnake.changeDirection(WEST);
+    // set player name
+    currentPlayer = playerName;
 
     // sets the array with blank spaces with game difficulty size and negative numbers for borders
     for (int i = 0; i < mapHeight + 2; i++) {
@@ -167,7 +169,7 @@ void Game::decrementArray() {
 
 void Game::render() {
     ofstream fout;
-    fout.open("GameBoard.txt");
+    fout.open("Board.txt");
     if (!fout) {
         cerr << "cannot open";
     }
@@ -235,45 +237,44 @@ void Game::setGameDifficulty(int choice) {
     }
 }
 
-void printLeaderboard(map<int, string> easyScoresMap, map<int, string> mediumScoresMap,
-                      map<int, string> hardScoresMap) {
+void Game::printLeaderboard() {
     // easy
-    ofstream Easyfout;
-    Easyfout.open("EasyLeaderboard.txt");
+    ofstream scoresOut;
+    scoresOut.open("EasyLeaderboard.txt");
 
-    if (!Easyfout.is_open()) {
+    if (!scoresOut.is_open()) {
         cout << "Could not open file EasyLeaderboard.txt." << endl;
     }
 
     for (auto each : easyScoresMap) {
-        cout << each.first << "\t" << each.second << endl;
+        scoresOut << each.first << "\t" << each.second << endl;
     }
 
-    Easyfout.close();
+    scoresOut.close();
 
     // medium
-    ofstream Mediumfout;
-    Easyfout.open("MediumLeaderboard.txt");
+    // ofstream Mediumfout;
+    scoresOut.open("MediumLeaderboard.txt");
 
-    if (!Mediumfout.is_open()) {
+    if (!scoresOut.is_open()) {
         cout << "Could not open file MediumLeaderboard.txt." << endl;
     }
 
     for (auto each : mediumScoresMap) {
-        cout << each.first << "\t" << each.second << endl;
+        scoresOut << each.first << "\t" << each.second << endl;
     }
-    Mediumfout.close();
+    scoresOut.close();
 
     // hard
-    ofstream Hardfout;
-    Hardfout.open("MediumLeaderboard.txt");
+    // ofstream Hardfout;
+    scoresOut.open("MediumLeaderboard.txt");
 
-    if (!Hardfout.is_open()) {
+    if (!scoresOut.is_open()) {
         cout << "Could not open file MediumLeaderboard.txt." << endl;
     }
     for (auto each : hardScoresMap) {
-        cout << each.first << "\t" << each.second << endl;
+        scoresOut << each.first << "\t" << each.second << endl;
     }
 
-    Hardfout.close();
+    scoresOut.close();
 }

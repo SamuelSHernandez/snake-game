@@ -10,7 +10,8 @@ class Snake;
 
 class Player {
   public:
-    Player(string);
+    Player();
+    Player(string, char);
     string getName() const {
         return name;
     }
