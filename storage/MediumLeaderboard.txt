@@ -5,3 +5,7 @@
 11	Luke
 25	Luke
 7	Luke
+5	Luke
+2	Luke
+12	Bob
+20	Fred

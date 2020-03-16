@@ -5,6 +5,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <list>
 #include "Fruit.h"   // Game will have a Fruit instance
 #include "Player.h"  // will have a Player instance
 #include "Snake.h"   // will have a Snake instance
@@ -35,13 +36,13 @@ class Game {
     map<string, Player*> getPlayers() const {
         return players;
     }
-    vector<pair<int, string> > getEasyScoresMap() const {
+    list<pair<int, string> > getEasyScoresMap() const {
         return easyScoresMap;
     }
-    vector<pair<int, string> > getMediumScoresMap() const {
+    list<pair<int, string> > getMediumScoresMap() const {
         return mediumScoresMap;
     }
-    vector<pair<int, string> > getHardScoresMap() const {
+    list<pair<int, string> > getHardScoresMap() const {
         return hardScoresMap;
     }
     Player* getPlayer(string);
@@ -49,6 +50,9 @@ class Game {
     void loadStorage();   // can throw exception
     void printStorage();  // can throw exception
     void printLeaderboard();
+    void printEasyHeader();
+    void printMediumHeader();
+    void printHardHeader();
 
   private:
     bool gameOver = false;
@@ -64,9 +68,9 @@ class Game {
                                                // only uses as much of the array as needed.
     int gameSpeed;                             // number of milliseconds snake will sleep between iterations
     map<string, Player*> players;              // <name, player object>
-    vector<pair<int, string> > easyScoresMap;  // <score, player name>
-    vector<pair<int, string> > mediumScoresMap;
-    vector<pair<int, string> > hardScoresMap;
+    list<pair<int, string> > easyScoresMap;  // <score, player name>
+    list<pair<int, string> > mediumScoresMap;
+    list<pair<int, string> > hardScoresMap;
 };
 
 #endif  // SRC_MAIN_GAME_H_

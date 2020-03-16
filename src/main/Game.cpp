@@ -116,7 +116,6 @@ void Game::gameLoop() {
             gameOver = true;
             gameOver1 = true;
             cout << endl << endl << "Game Over: Hit wall" << endl;
-            cout << "Snake Length: " << gameSnake.getLength() << endl;
             addScores();
             break;
         }
@@ -136,7 +135,6 @@ void Game::gameLoop() {
             gameOver = true;
             gameOver1 = true;
             cout << endl << endl << "Game Over: hit itself" << endl;
-            cout << "Snake length: " << gameSnake.getLength() << endl;
             addScores();
             break;
         }
@@ -383,4 +381,71 @@ void Game::printStorage() {
 }
 
 void Game::printLeaderboard() {
+
+    switch(gameDifficulty) {
+        case L_EASY:
+            easyScoresMap.sort(greater<pair<int, string> >());
+            printEasyHeader();
+            break;
+        case L_MEDIUM:
+            mediumScoresMap.sort(greater<pair<int, string> >());
+            printMediumHeader();
+            break;
+        case L_HARD:
+            hardScoresMap.sort(greater<pair<int, string> >());
+            printHardHeader();
+            break;
+    }
+    // calculate highest player score
+    int playerHighest = 0;
+    for (auto each : currentPlayer->getScores()) {
+        if (each > playerHighest) {
+            playerHighest = each;
+        }
+    }
+    cout << "Your latest score: " << gameSnake.getLength() << endl;
+    cout << "Your highest score: " << playerHighest << endl << endl;
 }
+
+void Game::printEasyHeader() {
+    cout << "============================================================================" << endl;
+    cout << "|                          H I G H   S C O R E S                           |" << endl;
+    cout << "|                              Level: Easy                                 |" << endl;
+    cout << "============================================================================" << endl;
+    list<pair<int, string> > ::iterator i;
+    int count = 1;
+    for(i = easyScoresMap.begin(); i != easyScoresMap.end() && count != 11; ++i) {
+        cout << "                            ";
+        cout << count << ":\t" << i->second << "\t" << i->first << endl;
+        count++;
+    }
+}
+
+void Game::printMediumHeader() {
+    cout << "============================================================================" << endl;
+    cout << "|                          H I G H   S C O R E S                           |" << endl;
+    cout << "|                             Level: Medium                                |" << endl;
+    cout << "============================================================================" << endl;
+    list<pair<int, string> > ::iterator i;
+    int count = 1;
+    for(i = mediumScoresMap.begin(); i != mediumScoresMap.end() && count != 11; ++i) {
+        cout << "                            ";
+        cout << count << ":\t" << i->second << "\t" << i->first << endl;
+        count++;
+    }
+}
+
+void Game::printHardHeader() {
+    cout << "============================================================================" << endl;
+    cout << "|                          H I G H   S C O R E S                           |" << endl;
+    cout << "|                              Level: Hard                                 |" << endl;
+    cout << "============================================================================" << endl;
+    list<pair<int, string> > ::iterator i;
+    int count = 1;
+    for(i = hardScoresMap.begin(); i != hardScoresMap.end() && count != 11; ++i) {
+        cout << "                            ";
+        cout << count << ":\t" << i->second << "\t" << i->first << endl;
+        count++;
+    }
+}
+

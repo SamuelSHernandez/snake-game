@@ -25,7 +25,7 @@ int main() {  // finish exception handling
     // Welcome
     cout << endl;
     cout << "============================================================================" << endl;
-    cout << "                                ASCII  SNAKE                                " << endl;
+    cout << "|                               ASCII  SNAKE                               |" << endl;
     cout << "============================================================================" << endl;
 
     // Player's name
@@ -94,6 +94,8 @@ int main() {  // finish exception handling
     } catch (runtime_error &excpt) {
         cout << excpt.what() << endl;
     }
+
+    myGame.printLeaderboard();
 
     return 0;
 }
