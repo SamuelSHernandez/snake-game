@@ -53,6 +53,7 @@ class Game {
     void printEasyHeader();
     void printMediumHeader();
     void printHardHeader();
+    string formatName(string);
 
   private:
     bool gameOver = false;

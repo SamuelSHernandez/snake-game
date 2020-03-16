@@ -31,8 +31,8 @@ int main() {  // finish exception handling
     cout << "============================================================================" << endl;
 
     // Player's name
-    cout << "Welcome! Please enter your name below. Make sure you spell and capitalize it" << endl;
-    cout << "the same way each time for score tracking. " << endl;
+    cout << "Welcome! Please enter your name below. Make sure you spell it the same way " << endl;
+    cout << "each time for score tracking. " << endl;
     playerName = getNameEntry();
 
     // Snake character
@@ -96,7 +96,7 @@ int main() {  // finish exception handling
     } catch (runtime_error &excpt) {
         cout << excpt.what() << endl;
     }
-
+    // this MUST happen after data is stored
     myGame.printLeaderboard();
 
     return 0;

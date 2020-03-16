@@ -7,7 +7,7 @@ string getNameEntry() {
     do {
         goodString = true;
         cout << "Your name: ";
-        cin >> playerName;
+        getline(cin, playerName, '\n');
         try {
             for (int i = 0; i < playerName.length(); ++i) {
                 if (65 <= playerName.at(i) && playerName.at(i) <= 90) {

@@ -208,7 +208,7 @@ void Game::render() {
             } else if (arrayPosition == gameSnake.getPosition()) {
                 fout << "O" + space + gridBar;
             } else if (board[i][j] == -3) {
-                fout << to_string(gameSnake.getLength()) + fruitSpace + gridBar;
+                fout << to_string(gameSnake.getLength() + 1) + fruitSpace + gridBar;
             } else {
                 fout << " " + space + gridBar;
             }
@@ -416,7 +416,7 @@ void Game::printEasyHeader() {
     int count = 1;
     for (i = easyScoresMap.begin(); i != easyScoresMap.end() && count != 11; ++i) {
         cout << "                            ";
-        cout << count << ":\t" << i->second << "\t" << i->first << endl;
+        cout << count << ":\t" << formatName(i->second) << "\t" << i->first << endl;
         count++;
     }
 }
@@ -430,7 +430,7 @@ void Game::printMediumHeader() {
     int count = 1;
     for (i = mediumScoresMap.begin(); i != mediumScoresMap.end() && count != 11; ++i) {
         cout << "                            ";
-        cout << count << ":\t" << i->second << "\t" << i->first << endl;
+        cout << count << ":\t" << formatName(i->second) << "\t" << i->first << endl;
         count++;
     }
 }
@@ -444,7 +444,20 @@ void Game::printHardHeader() {
     int count = 1;
     for (i = hardScoresMap.begin(); i != hardScoresMap.end() && count != 11; ++i) {
         cout << "                            ";
-        cout << count << ":\t" << i->second << "\t" << i->first << endl;
+        cout << count << ":\t" << formatName(i->second) << "\t" << i->first << endl;
         count++;
     }
+}
+
+string Game::formatName(string name) {
+    for (int i = 0; i < name.length(); ++i) {
+        if (name.at(i) == 95) {
+            name.at(i) = 32;
+        }
+        if (i == 0 || name.at(i - 1) == 32) {
+            // capitalize if first letter or first letter after space
+            name.at(i) -= 32;
+        }
+    }
+    return name;
 }
