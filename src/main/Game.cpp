@@ -2,12 +2,12 @@
 #include <pthread.h>
 #include <chrono>
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <stdexcept>
 #include <string>
 #include <thread>
 #include <utility>
-#include <functional>
 using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until
 using namespace chrono;       // nanoseconds, system_clock, seconds, milliseconds
@@ -382,8 +382,7 @@ void Game::printStorage() {
 }
 
 void Game::printLeaderboard() {
-
-    switch(gameDifficulty) {
+    switch (gameDifficulty) {
         case L_EASY:
             easyScoresMap.sort(greater<pair<int, string> >());
             printEasyHeader();
@@ -413,9 +412,9 @@ void Game::printEasyHeader() {
     cout << "|                          H I G H   S C O R E S                           |" << endl;
     cout << "|                              Level: Easy                                 |" << endl;
     cout << "============================================================================" << endl;
-    list<pair<int, string> > ::iterator i;
+    list<pair<int, string> >::iterator i;
     int count = 1;
-    for(i = easyScoresMap.begin(); i != easyScoresMap.end() && count != 11; ++i) {
+    for (i = easyScoresMap.begin(); i != easyScoresMap.end() && count != 11; ++i) {
         cout << "                            ";
         cout << count << ":\t" << i->second << "\t" << i->first << endl;
         count++;
@@ -427,9 +426,9 @@ void Game::printMediumHeader() {
     cout << "|                          H I G H   S C O R E S                           |" << endl;
     cout << "|                             Level: Medium                                |" << endl;
     cout << "============================================================================" << endl;
-    list<pair<int, string> > ::iterator i;
+    list<pair<int, string> >::iterator i;
     int count = 1;
-    for(i = mediumScoresMap.begin(); i != mediumScoresMap.end() && count != 11; ++i) {
+    for (i = mediumScoresMap.begin(); i != mediumScoresMap.end() && count != 11; ++i) {
         cout << "                            ";
         cout << count << ":\t" << i->second << "\t" << i->first << endl;
         count++;
@@ -441,12 +440,11 @@ void Game::printHardHeader() {
     cout << "|                          H I G H   S C O R E S                           |" << endl;
     cout << "|                              Level: Hard                                 |" << endl;
     cout << "============================================================================" << endl;
-    list<pair<int, string> > ::iterator i;
+    list<pair<int, string> >::iterator i;
     int count = 1;
-    for(i = hardScoresMap.begin(); i != hardScoresMap.end() && count != 11; ++i) {
+    for (i = hardScoresMap.begin(); i != hardScoresMap.end() && count != 11; ++i) {
         cout << "                            ";
         cout << count << ":\t" << i->second << "\t" << i->first << endl;
         count++;
     }
 }
-
