@@ -1,5 +1,5 @@
-#ifndef SRC_MAIN_MAIN_FUNC_H
-#define SRC_MAIN_MAIN_FUNC_H
+#ifndef SRC_MAIN_MAIN_FUNC_H_
+#define SRC_MAIN_MAIN_FUNC_H_
 
 #include <iostream>
 #include <stdexcept>
@@ -12,4 +12,4 @@ using namespace std;
  */
 string getNameEntry();
 
-#endif  // SRC_MAIN_MAIN_FUNC_H
+#endif  // SRC_MAIN_MAIN_FUNC_H_
