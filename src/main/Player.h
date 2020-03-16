@@ -18,16 +18,16 @@ class Player {
     void setName(string name) {
         this->name = name;
     }
-    vector<int> getScores() const {
+    vector<pair<int, Level> > getScores() const {
         return scores;
     }
-    void addScore(int score);
+    void addScore(int score, Level difficulty);
     void loadScores();   // can throw exception
     void storeScores();  // can throw exception
 
   private:
     string name;
-    vector<int> scores;
+    vector<pair<int, Level> > scores;
 };
 
 #endif  // SRC_MAIN_PLAYER_H_

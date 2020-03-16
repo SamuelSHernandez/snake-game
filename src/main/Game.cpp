@@ -163,7 +163,7 @@ void Game::decrementArray() {
 }
 
 void Game::addScores() {
-    currentPlayer->addScore(gameSnake.getLength());
+    currentPlayer->addScore(gameSnake.getLength(), gameDifficulty);
     pair<int, string> tempPair = make_pair(gameSnake.getLength(), currentPlayer->getName());
     switch (gameDifficulty) {
         case L_EASY:
@@ -399,8 +399,8 @@ void Game::printLeaderboard() {
     // calculate highest player score
     int playerHighest = 0;
     for (auto each : currentPlayer->getScores()) {
-        if (each > playerHighest) {
-            playerHighest = each;
+        if (each.first > playerHighest && each.second == gameDifficulty) {
+            playerHighest = each.first;
         }
     }
     cout << "Your latest score: " << gameSnake.getLength() << endl;
