@@ -6,7 +6,7 @@
 #include <string>
 #include <utility>
 #include <vector>
-#include #include "Fruit.h"   // Game will have a Fruit instance
+#include "Fruit.h"   // Game will have a Fruit instance
 #include "Player.h"  // will have a Player instance
 #include "Snake.h"   // will have a Snake instance
 #include "Type.h"
