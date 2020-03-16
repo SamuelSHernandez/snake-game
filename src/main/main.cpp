@@ -21,6 +21,7 @@ int main() {  // finish exception handling
     int menuOption;
     string playerName;
     char snakeChar;
+    string snakeSkin;
 
     // Welcome
     cout << endl;
@@ -37,8 +38,9 @@ int main() {  // finish exception handling
     // Snake character
     do {
         cout << endl << "Enter a single ASCII character that is not a number: ";
-        cin >> snakeChar;
-        if (isdigit(snakeChar) || !cin) {
+        cin >> snakeSkin;
+        snakeChar = snakeSkin.front();
+        if (isdigit(snakeChar) || (!cin)) {
             cin.clear();
             cin.ignore(100, '\n');
             cerr << "Invalid entry. ";
@@ -50,7 +52,6 @@ int main() {  // finish exception handling
             break;
         }
     } while (snakeChar);
-
     // Game difficulty and run game
     do {
         cout << endl << "Choose a game difficulty (1), (2), or (3)" << endl;

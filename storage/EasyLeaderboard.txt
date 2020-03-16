@@ -1,2 +1,6 @@
 7	Luke
 19	Luke
+3	Stefan
+10	Stefan
+3	Stefan
+29	Stefan

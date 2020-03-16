@@ -3,7 +3,6 @@
 #include <iomanip>
 #include <iostream>
 #include <map>
-#include <stdexcept>
 #include <vector>
 Player::Player() {
     name = "NULL";
@@ -37,7 +36,6 @@ void Player::loadScores() {
         throw runtime_error("Input failure before reaching end of file.");
     }
     fin.close();
-
 }
 
 void Player::storeScores() {
