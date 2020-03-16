@@ -23,8 +23,16 @@ int main() {  // finish exception handling
     char snakeChar;
     string snakeCharParse;
 
+    // Welcome
+    cout << endl;
+    cout << "============================================================================" << endl;
+    cout << "                                ASCII  SNAKE                                " << endl;
+    cout << "============================================================================" << endl;
+
     // Player's name
-    cout << "Enter your name: ";
+    cout << "Welcome! Please enter your name below. Make sure you spell and capitalize it" << endl;
+    cout << "the same way each time for score tracking. " << endl;
+    cout << "Your name: ";
     cin >> playerName;
 
     // Snake character
@@ -55,7 +63,7 @@ int main() {  // finish exception handling
         if (!cin) {
             cin.clear();
             cin.ignore(100, '\n');
-            cerr << "Invalid entry.";
+            cerr << "Invalid entry. ";
             cout << "Please enter a valid menu option." << endl;
             cout << endl;
             menuOption = 1;
@@ -71,7 +79,14 @@ int main() {  // finish exception handling
     } catch (runtime_error &excpt) {
         cout << excpt.what() << endl;
     }
-
+    string trash;
+    cout << endl;
+    cout << "Game Created. Use the w, a, s, and d keys to move your snake." << endl;
+    cout << "Open the file \"Board.txt\" to play the game." << endl;
+    cout << "Press any key and then enter to continue: ";
+    cin >> trash;  // used to delay game until enter is pressed.
+    cout << "============================================================================" << endl;
+    cout << "Change direction: ";
     myGame.gameLoop();
 
     try {
