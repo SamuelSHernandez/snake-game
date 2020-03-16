@@ -3,6 +3,8 @@
 #include <pthread.h>
 #include <map>
 #include <string>
+#include <utility>
+#include <vector>
 #include "Fruit.h"   // Game will have a Fruit instance
 #include "Player.h"  // will have a Player instance
 #include "Snake.h"   // will have a Snake instance
