@@ -18,7 +18,7 @@
 #include "main_func.h"
 using namespace std;
 
-int main() {  // finish exception handling
+int main() {  // finish exception handling 
     int menuOption;
     string playerName;
     char snakeChar;
