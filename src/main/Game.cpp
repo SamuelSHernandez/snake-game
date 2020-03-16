@@ -186,7 +186,7 @@ void Game::render() {
     }
     string space = "  ";
     string fruitSpace;
-    if (gameSnake.getLength() < 10) {
+    if (gameSnake.getLength() <= 8) {
         fruitSpace = "  ";
     } else if (gameSnake.getLength() <= 99 && index > 9) {
         fruitSpace = " ";
