@@ -168,13 +168,13 @@ void Game::addScores() {
     pair<int, string> tempPair = make_pair(gameSnake.getLength(), currentPlayer->getName());
     switch (gameDifficulty) {
         case L_EASY:
-            easyScoresMap.insert(tempPair);
+            easyScoresMap.push_back(tempPair);
             break;
         case L_MEDIUM:
-            mediumScoresMap.insert(tempPair);
+            mediumScoresMap.push_back(tempPair);
             break;
         case L_HARD:
-            hardScoresMap.insert(tempPair);
+            hardScoresMap.push_back(tempPair);
             break;
     }
 }
@@ -290,7 +290,7 @@ void Game::loadStorage() {
     getline(load, filePlayerName, '\n');
     while (!load.fail()) {
         pair<int, string> tempPair = make_pair(stoi(fileScore), filePlayerName);
-        easyScoresMap.insert(tempPair);
+        easyScoresMap.push_back(tempPair);
         getline(load, fileScore, '\t');
         getline(load, filePlayerName, '\n');
     }
@@ -308,7 +308,7 @@ void Game::loadStorage() {
     getline(load, filePlayerName, '\n');
     while (!load.fail()) {
         pair<int, string> tempPair = make_pair(stoi(fileScore), filePlayerName);
-        mediumScoresMap.insert(tempPair);
+        mediumScoresMap.push_back(tempPair);
         getline(load, fileScore, '\t');
         getline(load, filePlayerName, '\n');
     }
@@ -326,7 +326,7 @@ void Game::loadStorage() {
     getline(load, filePlayerName, '\n');
     while (!load.fail()) {
         pair<int, string> tempPair = make_pair(stoi(fileScore), filePlayerName);
-        hardScoresMap.insert(tempPair);
+        hardScoresMap.push_back(tempPair);
         getline(load, fileScore, '\t');
         getline(load, filePlayerName, '\n');
     }

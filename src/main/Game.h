@@ -33,13 +33,13 @@ class Game {
     map<string, Player*> getPlayers() const {
         return players;
     }
-    map<int, string> getEasyScoresMap() const {
+    vector< pair<int, string> > getEasyScoresMap() const {
         return easyScoresMap;
     }
-    map<int, string> getMediumScoresMap() const {
+    vector< pair<int, string> > getMediumScoresMap() const {
         return mediumScoresMap;
     }
-    map<int, string> getHardScoresMap() const {
+    vector< pair<int, string> > getHardScoresMap() const {
         return hardScoresMap;
     }
     Player* getPlayer(string);
@@ -62,9 +62,9 @@ class Game {
                                      // only uses as much of the array as needed.
     int gameSpeed;                   // number of milliseconds snake will sleep between iterations
     map<string, Player*> players;    // <name, player object>
-    map<int, string> easyScoresMap;  // <score, player name>
-    map<int, string> mediumScoresMap;
-    map<int, string> hardScoresMap;
+    vector< pair<int, string> > easyScoresMap;  // <score, player name>
+    vector< pair<int, string> > mediumScoresMap;
+    vector< pair<int, string> > hardScoresMap;
 };
 
 #endif  // SRC_MAIN_GAME_H_
