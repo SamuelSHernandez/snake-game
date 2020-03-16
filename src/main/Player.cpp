@@ -36,7 +36,6 @@ void Player::loadScores() {
         throw runtime_error("Input failure before reaching end of file.");
     }
     fin.close();
-
 }
 
 void Player::storeScores() {
