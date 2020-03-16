@@ -1,7 +1,4 @@
-7	Luke
-19	Luke
-3	Stefan
-10	Stefan
-3	Stefan
-29	Stefan
-
+8	luke
+5	luke
+5	luke
+3	luke

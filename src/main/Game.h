@@ -1,6 +1,7 @@
 #ifndef SRC_MAIN_GAME_H_
 #define SRC_MAIN_GAME_H_
 #include <pthread.h>
+#include <list>
 #include <map>
 #include <string>
 #include <utility>
@@ -35,13 +36,13 @@ class Game {
     map<string, Player*> getPlayers() const {
         return players;
     }
-    vector<pair<int, string> > getEasyScoresMap() const {
+    list<pair<int, string> > getEasyScoresMap() const {
         return easyScoresMap;
     }
-    vector<pair<int, string> > getMediumScoresMap() const {
+    list<pair<int, string> > getMediumScoresMap() const {
         return mediumScoresMap;
     }
-    vector<pair<int, string> > getHardScoresMap() const {
+    list<pair<int, string> > getHardScoresMap() const {
         return hardScoresMap;
     }
     Player* getPlayer(string);
@@ -49,24 +50,28 @@ class Game {
     void loadStorage();   // can throw exception
     void printStorage();  // can throw exception
     void printLeaderboard();
+    void printEasyHeader();
+    void printMediumHeader();
+    void printHardHeader();
+    string formatName(string);
 
   private:
-    bool gameOver = false;
-    int mapWidth = 20;   // variable to hold board width
-    int mapHeight = 20;  // variable to hold board height
-    int index = 0;       // used to keep track of loop iterations
+    bool gameOver;
+    int mapWidth;   // variable to hold board width
+    int mapHeight;  // variable to hold board height
+    int index;      // used to keep track of loop iterations
     string playerName;
     Player* currentPlayer;
     Level gameDifficulty;
     Fruit gameFruit;
     Snake gameSnake;
-    int board[100][100];                       // Array size can be changed as necessary. Each difficulty level
-                                               // only uses as much of the array as needed.
-    int gameSpeed;                             // number of milliseconds snake will sleep between iterations
-    map<string, Player*> players;              // <name, player object>
-    vector<pair<int, string> > easyScoresMap;  // <score, player name>
-    vector<pair<int, string> > mediumScoresMap;
-    vector<pair<int, string> > hardScoresMap;
+    int board[100][100];                     // Array size can be changed as necessary. Each difficulty level
+                                             // only uses as much of the array as needed.
+    int gameSpeed;                           // number of milliseconds snake will sleep between iterations
+    map<string, Player*> players;            // <name, player object>
+    list<pair<int, string> > easyScoresMap;  // <score, player name>
+    list<pair<int, string> > mediumScoresMap;
+    list<pair<int, string> > hardScoresMap;
 };
 
 #endif  // SRC_MAIN_GAME_H_

@@ -15,22 +15,39 @@ Player::Player(string name, bool old) {
     }
 }
 
-void Player::addScore(int score) {
-    scores.push_back(score);
+void Player::addScore(int score, Level difficulty) {
+    pair<int, Level> tempPair = make_pair(score, difficulty);
+    scores.push_back(tempPair);
 }
 
 void Player::loadScores() {
     ifstream fin;
-    string fileNum;  // holds each number from file
+    string fileNum;         // holds each number from file
+    string fileDifficulty;  // holds difficulty level from file
+    pair<int, Level> tempPair;
+
     fin.open("../../storage/players/" + name + ".txt");
     if (!fin.is_open()) {
         throw runtime_error("Could not open file " + name + ".txt.");
     }
     // reading numbers
-    getline(fin, fileNum, '\n');
+    getline(fin, fileNum, '\t');
+    getline(fin, fileDifficulty, '\n');
     while (!fin.fail()) {
-        scores.push_back(stoi(fileNum));
-        getline(fin, fileNum, '\n');
+        switch (stoi(fileDifficulty)) {
+            case 0:
+                tempPair = make_pair(stoi(fileNum), L_EASY);
+                break;
+            case 1:
+                tempPair = make_pair(stoi(fileNum), L_MEDIUM);
+                break;
+            case 2:
+                tempPair = make_pair(stoi(fileNum), L_HARD);
+                break;
+        }
+        scores.push_back(tempPair);
+        getline(fin, fileNum, '\t');
+        getline(fin, fileDifficulty, '\n');
     }
     if (!fin.eof()) {
         throw runtime_error("Input failure before reaching end of file.");
@@ -45,8 +62,8 @@ void Player::storeScores() {
     if (!store.is_open()) {
         throw runtime_error("Could not open file " + name + ".txt");
     }
-    for (auto each : scores) {
-        store << each << endl;
+    for (const auto each : scores) {
+        store << each.first << '\t' << each.second << endl;
     }
     store.close();
 }

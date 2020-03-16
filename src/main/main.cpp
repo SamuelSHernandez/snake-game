@@ -15,6 +15,7 @@
 #include "Player.h"
 #include "Snake.h"
 #include "Type.h"
+#include "main_func.h"
 using namespace std;
 
 int main() {  // finish exception handling
@@ -26,18 +27,18 @@ int main() {  // finish exception handling
     // Welcome
     cout << endl;
     cout << "============================================================================" << endl;
-    cout << "                                ASCII  SNAKE                                " << endl;
+    cout << "|                               ASCII  SNAKE                               |" << endl;
     cout << "============================================================================" << endl;
 
     // Player's name
-    cout << "Welcome! Please enter your name below. Make sure you spell and capitalize it" << endl;
-    cout << "the same way each time for score tracking. " << endl;
-    cout << "Your name: ";
-    cin >> playerName;
+    cout << "Welcome! Please enter your name below. Make sure you spell it the same way " << endl;
+    cout << "each time for score tracking. " << endl;
+    playerName = getNameEntry();
 
     // Snake character
+    cout << endl;
     do {
-        cout << endl << "Enter a single ASCII character that is not a number: ";
+        cout << "Enter a single ASCII character that is not a number: ";
         cin >> snakeSkin;
         snakeChar = snakeSkin.front();
         if (isdigit(snakeChar) || (!cin)) {
@@ -81,7 +82,7 @@ int main() {  // finish exception handling
         cout << excpt.what() << endl;
     }
     string trash;
-    cout << endl;
+    cout << endl << endl;
     cout << "Game Created. Use the w, a, s, and d keys to move your snake." << endl;
     cout << "Open the file \"Board.txt\" to play the game." << endl;
     cout << "Press any key and then enter to continue: ";
@@ -95,6 +96,8 @@ int main() {  // finish exception handling
     } catch (runtime_error &excpt) {
         cout << excpt.what() << endl;
     }
+    // this MUST happen after data is stored
+    myGame.printLeaderboard();
 
     return 0;
 }

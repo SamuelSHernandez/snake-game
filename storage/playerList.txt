@@ -1,4 +1,2 @@
-Bill
-Luke
-
-Stefan
+bill
+luke
