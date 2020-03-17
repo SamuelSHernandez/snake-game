@@ -55,6 +55,8 @@ class Game {
     void printHardHeader();
     string formatName(string);
 
+    void printLeaderboard(map<int, string>, map<int, string>, map<int, string>);
+
   private:
     bool gameOver;
     int mapWidth;   // variable to hold board width

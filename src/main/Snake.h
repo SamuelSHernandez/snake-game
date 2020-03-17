@@ -5,11 +5,11 @@
 class Snake {
   public:
     Snake();
-    void move();
+    void move();  // used to move snake
     void changeDirection(Compass direction) {
         this->direction = direction;
     }
-    void lengthen();
+    void lengthen();  // increases the length of snake
     int getLength() const {
         return length;
     }

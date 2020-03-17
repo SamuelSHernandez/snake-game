@@ -8,7 +8,8 @@ void Snake::lengthen() {
     length += 1;
 }
 
-void Snake::move() {  // This assumes board is oriented as a Cartesian coordinate system
+// Updates snake head position based on input direction
+void Snake::move() {
     if (direction == NORTH) {
         headPosition.y -= 1;
     } else if (direction == EAST) {

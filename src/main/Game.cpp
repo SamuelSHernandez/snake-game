@@ -77,6 +77,13 @@ void Game::gameLoop() {
     // Event Loop - runs until game is over
     do {
         index++;
+<<<<<<< HEAD
+=======
+        if (index == 1) {
+            direction = WEST;
+            gameSnake.changeDirection(WEST);
+        }
+>>>>>>> master
         getDirection();
         switch (input) {
             // ADD if up key
@@ -215,7 +222,7 @@ void Game::render() {
     fout.close();
 }
 
-void Game::setGameDifficulty(int choice) {
+void Game::setGameDifficulty(int choice) {  // sets the game's difficulty
     switch (choice) {
         case 1:
             gameDifficulty = L_EASY;
@@ -234,3 +241,220 @@ void Game::setGameDifficulty(int choice) {
             break;
     }
 }
+<<<<<<< HEAD
+=======
+
+Player* Game::getPlayer(string playerName) {  // saves new players
+    if (players.count(playerName) == 0) {
+        pair<string, Player*> tempPair = make_pair(playerName, new Player(playerName, false));
+        players.insert(tempPair);
+    }
+    return players.at(playerName);
+}
+
+void Game::loadStorage() {  // Holds the player's information for leaderboard retrieval
+    ifstream load;
+    string filePlayerName;
+    string fileScore;
+
+    // loading players
+    load.open("../../storage/playerList.txt");
+    if (!load.is_open()) {
+        throw runtime_error("Could not open file playerList.txt.");
+    }
+    getline(load, filePlayerName, '\n');
+    while (!load.fail()) {
+        pair<string, Player*> tempPair = make_pair(filePlayerName, new Player(filePlayerName, true));
+        players.insert(tempPair);
+        getline(load, filePlayerName, '\n');
+    }
+    if (!load.eof()) {
+        throw runtime_error("Input failure before reaching end of file.");
+    }
+    load.close();
+
+    // load current player object into currentPlayer
+    currentPlayer = getPlayer(playerName);
+
+    // loading easyScoresMap
+    load.open("../../storage/EasyLeaderboard.txt");
+    if (!load.is_open()) {
+        throw runtime_error("Could not open file EasyLeaderboard.txt");
+    }
+    getline(load, fileScore, '\t');
+    getline(load, filePlayerName, '\n');
+    while (!load.fail()) {
+        pair<int, string> tempPair = make_pair(stoi(fileScore), filePlayerName);
+        easyScoresMap.push_back(tempPair);
+        getline(load, fileScore, '\t');
+        getline(load, filePlayerName, '\n');
+    }
+    if (!load.eof()) {
+        throw runtime_error("Input failure before reaching end of file.");
+    }
+    load.close();
+
+    // loading mediumScoresMap
+    load.open("../../storage/MediumLeaderboard.txt");
+    if (!load.is_open()) {
+        throw runtime_error("Could not open file MediumLeaderboard.txt");
+    }
+    getline(load, fileScore, '\t');
+    getline(load, filePlayerName, '\n');
+    while (!load.fail()) {
+        pair<int, string> tempPair = make_pair(stoi(fileScore), filePlayerName);
+        mediumScoresMap.push_back(tempPair);
+        getline(load, fileScore, '\t');
+        getline(load, filePlayerName, '\n');
+    }
+    if (!load.eof()) {
+        throw runtime_error("Input failure before reaching end of file.");
+    }
+    load.close();
+
+    // loading hardScoresMap;
+    load.open("../../storage/HardLeaderboard.txt");
+    if (!load.is_open()) {
+        throw runtime_error("Could not open file HardLeaderboard.txt");
+    }
+    getline(load, fileScore, '\t');
+    getline(load, filePlayerName, '\n');
+    while (!load.fail()) {
+        pair<int, string> tempPair = make_pair(stoi(fileScore), filePlayerName);
+        hardScoresMap.push_back(tempPair);
+        getline(load, fileScore, '\t');
+        getline(load, filePlayerName, '\n');
+    }
+    if (!load.eof()) {
+        throw runtime_error("Input failure before reaching end of file.");
+    }
+    load.close();
+}
+
+void Game::printStorage() {
+    ofstream save;
+    // storing players
+    save.open("../../storage/playerList.txt");
+    if (!save.is_open()) {
+        throw runtime_error("Could not open file playerList.txt.");
+    }
+    for (const auto each : players) {
+        save << each.first << endl;
+    }
+    save.close();
+
+    // storing easyScoresMap
+    save.open("../../storage/EasyLeaderboard.txt");
+    if (!save.is_open()) {
+        throw runtime_error("Could not open file EasyLeaderboard.txt.");
+    }
+    for (const auto each : easyScoresMap) {
+        save << each.first << "\t" << each.second << endl;
+    }
+    save.close();
+
+    // storing mediumScoresMap
+    save.open("../../storage/MediumLeaderboard.txt");
+    if (!save.is_open()) {
+        throw runtime_error("Could not open file MediumLeaderboard.txt.");
+    }
+    for (const auto each : mediumScoresMap) {
+        save << each.first << "\t" << each.second << endl;
+    }
+    save.close();
+
+    // storing hardScoresMap
+    save.open("../../storage/HardLeaderboard.txt");
+    if (!save.is_open()) {
+        throw runtime_error("Could not open file HardLeaderboard.txt");
+    }
+    for (const auto each : hardScoresMap) {
+        save << each.first << "\t" << each.second << endl;
+    }
+    save.close();
+
+    // store player's scores
+    currentPlayer->storeScores();
+}
+
+void Game::printLeaderboard() {  // Prints the leaderboard based on difficulty level
+    switch (gameDifficulty) {
+        case L_EASY:
+            easyScoresMap.sort(greater<pair<int, string> >());
+            printEasyHeader();
+            break;
+        case L_MEDIUM:
+            mediumScoresMap.sort(greater<pair<int, string> >());
+            printMediumHeader();
+            break;
+        case L_HARD:
+            hardScoresMap.sort(greater<pair<int, string> >());
+            printHardHeader();
+            break;
+    }
+    // calculate highest player score
+    int playerHighest = 0;
+    for (const auto each : currentPlayer->getScores()) {
+        if (each.first > playerHighest && each.second == gameDifficulty) {
+            playerHighest = each.first;
+        }
+    }
+    cout << "Your latest score: " << gameSnake.getLength() << endl;   // Gives player's latest score
+    cout << "Your highest score: " << playerHighest << endl << endl;  // Gives player's highest score
+}
+
+void Game::printEasyHeader() {  // prints leaderboard for Level: Easy
+    cout << "============================================================================" << endl;
+    cout << "|                          H I G H   S C O R E S                           |" << endl;
+    cout << "|                              Level: Easy                                 |" << endl;
+    cout << "============================================================================" << endl;
+    list<pair<int, string> >::iterator i;
+    int count = 1;
+    for (i = easyScoresMap.begin(); i != easyScoresMap.end() && count != 11; ++i) {
+        cout << "                            ";
+        cout << count << ":\t" << formatName(i->second) << "\t" << i->first << endl;
+        count++;
+    }
+}
+
+void Game::printMediumHeader() {  // prints leaderboard for Level: Medium
+    cout << "============================================================================" << endl;
+    cout << "|                          H I G H   S C O R E S                           |" << endl;
+    cout << "|                             Level: Medium                                |" << endl;
+    cout << "============================================================================" << endl;
+    list<pair<int, string> >::iterator i;
+    int count = 1;
+    for (i = mediumScoresMap.begin(); i != mediumScoresMap.end() && count != 11; ++i) {
+        cout << "                            ";
+        cout << count << ":\t" << formatName(i->second) << "\t" << i->first << endl;
+        count++;
+    }
+}
+
+void Game::printHardHeader() {  // prints leaderboard for Level: Hard
+    cout << "============================================================================" << endl;
+    cout << "|                          H I G H   S C O R E S                           |" << endl;
+    cout << "|                              Level: Hard                                 |" << endl;
+    cout << "============================================================================" << endl;
+    list<pair<int, string> >::iterator i;
+    int count = 1;
+    for (i = hardScoresMap.begin(); i != hardScoresMap.end() && count != 11; ++i) {
+        cout << "                            ";
+        cout << count << ":\t" << formatName(i->second) << "\t" << i->first << endl;
+        count++;
+    }
+}
+
+string Game::formatName(string name) {  // formats player's name
+    for (int i = 0; i < name.length(); ++i) {
+        if (name.at(i) == 95) {
+            name.at(i) = 32;
+        }
+        if (i == 0 || name.at(i - 1) == 32) {
+            // capitalize if first letter or first letter after space
+            name.at(i) -= 32;
+        }
+    }
+    return name;
+}
+>>>>>>> master
