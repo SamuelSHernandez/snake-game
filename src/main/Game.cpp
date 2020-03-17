@@ -67,7 +67,6 @@ void getDirection() {
 }
 void Game::gameLoop() {
     Compass direction;
-    cout << "entered game loop function" << endl;
     bool gameOver = false;
 
     // set initial fruit
