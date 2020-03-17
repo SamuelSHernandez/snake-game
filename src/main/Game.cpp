@@ -237,7 +237,7 @@ void Game::setGameDifficulty(int choice) {
     switch (choice) {
         case 1:
             gameDifficulty = L_EASY;
-            gameSpeed = 160;
+            gameSpeed = 200;
             break;
         case 2:
             gameDifficulty = L_MEDIUM;

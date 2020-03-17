@@ -22,3 +22,5 @@
 4	luke
 8	luke
 2	luke
+18	luke
+15	fred
