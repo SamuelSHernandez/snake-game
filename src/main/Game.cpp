@@ -43,31 +43,33 @@ Game::Game(int choice, char snakeChar, string playerName) : gameOver(false), map
     }
 
     render();
-
-    // // Position snake
-    // gameSnake.setLength(2);
-    // gameSnake.setPosition(mapWidth - 1, mapHeight / 2);
-    // gameSnake.setAscii('=');
-    // board[mapHeight / 2][mapWidth] = 1;  // need to set tail in board first time
 }
 // Function to get User Input
 void getUserInput() {
     while (gameOver1 == false) {
+        // different way of doing cin
         input = getchar();
     }
 }
 // Is called by Game Loop to create the user input thread.
 void getDirection() {
+    // raw makes it so it doesn't have to have the enter
     system("stty raw");
+    // echo makes it so it doesn't print the input in the terminal
     system("stty echo");
+    // calls the thread
     thread th1(getUserInput);
+    // detachs the thread so it doesn't have to wait for the input if there isn't any
     th1.detach();
+    // turning off the stuff
     system("stty -echo");
     system("stty cooked");
 }
 void Game::gameLoop() {
     Compass direction;
+    cout << "entered game loop function" << endl;
     bool gameOver = false;
+
     // set initial fruit
     gameFruit.setPosition(mapHeight, mapWidth, gameSnake.getPosition(), board);
 
