@@ -29,7 +29,6 @@ class Player {
     void printLeaderboard();
 
   private:
-   
     string name;
     vector<pair<int, Level> > scores;
 };

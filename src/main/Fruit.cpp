@@ -25,4 +25,3 @@ Point Fruit::getPosition() const {
     Point point;
     return point;
 }
-

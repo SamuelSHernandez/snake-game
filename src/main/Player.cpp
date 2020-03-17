@@ -67,6 +67,3 @@ void Player::storeScores() {
     }
     store.close();
 }
-
-
-
