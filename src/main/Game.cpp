@@ -56,7 +56,7 @@ void getUserInput() {
         input = getchar();
     }
 }
-// Is calld by Game Loop to create the user input thread.
+// Is called by Game Loop to create the user input thread.
 void getDirection() {
     system("stty raw");
     system("stty echo");
@@ -75,7 +75,6 @@ void Game::gameLoop() {
     do {
         index++;
         if (index == 1) {
-            cout << "got here" << endl;
             direction = WEST;
             gameSnake.changeDirection(WEST);
         }

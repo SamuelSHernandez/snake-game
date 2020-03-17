@@ -39,9 +39,10 @@ int main() {  // finish exception handling
     cout << endl;
     do {
         cout << "Enter a single ASCII character that is not a number: ";
-        cin >> snakeSkin;
-        snakeChar = snakeSkin.front();
-        if (isdigit(snakeChar) || (!cin)) {
+        cin >> snakeSkin;               // String user input to string
+        snakeChar = snakeSkin.front();  // Assign first character of string
+
+        if (isdigit(snakeChar) || (!cin)) {  // Error checking
             cin.clear();
             cin.ignore(100, '\n');
             cerr << "Invalid entry. ";
@@ -52,7 +53,9 @@ int main() {  // finish exception handling
         } else {
             break;
         }
+
     } while (snakeChar);
+
     // Game difficulty and run game
     do {
         cout << endl << "Choose a game difficulty (1), (2), or (3)" << endl;
@@ -62,7 +65,7 @@ int main() {  // finish exception handling
         cout << endl << "Enter your choice: ";
         cin >> menuOption;
 
-        if (!cin) {
+        if (!cin) {  // Error checking
             cin.clear();
             cin.ignore(100, '\n');
             cerr << "Invalid entry. ";
@@ -73,29 +76,37 @@ int main() {  // finish exception handling
         } else {
             break;
         }
+
     } while (menuOption);
 
+    // Create game object and opens storage files
     Game myGame(menuOption, snakeChar, playerName);
     try {
         myGame.loadStorage();
     } catch (runtime_error &excpt) {
         cout << excpt.what() << endl;
     }
+
+    // User must open board.txt, then press
     string trash;
     cout << endl << endl;
     cout << "Game Created. Use the w, a, s, and d keys to move your snake." << endl;
     cout << "Open the file \"Board.txt\" to play the game." << endl;
-    cout << "Press any key and then enter to continue: ";
-    cin >> trash;  // used to delay game until enter is pressed.
+    system("read -p 'Press Enter To Continue...' var");
+    cout << endl;
     cout << "============================================================================" << endl;
     cout << "Change direction: ";
+
+    // Run Game
     myGame.gameLoop();
 
+    // Prints game scores
     try {
         myGame.printStorage();
     } catch (runtime_error &excpt) {
         cout << excpt.what() << endl;
     }
+
     // this MUST happen after data is stored
     myGame.printLeaderboard();
 
