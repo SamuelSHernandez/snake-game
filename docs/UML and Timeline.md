@@ -16,15 +16,37 @@ To see classes, flow diagram, challenges, and team management, click <a href="ht
 |+getMapWidth() const: int |
 |+getMapHeight() const: int |
 |+setGameDifficulty(choice: int) |
+|+getGameDifficulty() const: enum Level |
 |+render() 	|
-|+decrementArray(): void |
-|-mapWidth |
-|-mapHeight |
+|+decrementArray() |
+|+getPlayers() const: map(string, Player*) |
+|+getEasyScoresMap() const: list(pair(int, string)) |
+|+getMediumScoresMap() const: list(pair(int, string)) |
+|+getHardScoresMap() const: list(pair(int, string)) |
+|+getPlayer(string): Player* |
+|+addScores() |
+|+loadStorage() |
+|+printStorage() |
+|+printLeaderboard() |
+|+printEasyHeader() |
+|+printMediumHeader() |
+|+printHardHeader |
+|+formatName(string): string |
+|-gameOver: bool |
+|-mapWidth: int |
+|-mapHeight: int |
+|-index: int |
+|-playerName: string |
+|-currentPlayer: Player* |
+|-gameDifficulty: enum Level |
 |-gameFruit: Fruit |
 |-gameSnake: Snake |
-|-gamePlayer: Player |
-|-gameDifficulty: enum level |
 |-board: char[][] |
+|-gameSpeed: int |
+|-players: map(string, Player*) |
+|-easyScoresMap: list(pair(int, string)) |
+|-mediumScoresMap: list(pair(int, string)) |
+|-hardScoresMap: list(pair(int, string)) |
 
 -
 -
@@ -35,8 +57,6 @@ To see classes, flow diagram, challenges, and team management, click <a href="ht
 |+Fruit() |
 |+getPosition() const: struct Point |
 |+setPosition(&myGame: const Game) |
-|+spawnFruit(&myGame: const Game) |
-|+removeFruit(&myGame: const Game) |
 |-position: struct Point |
 
 -
@@ -46,16 +66,15 @@ To see classes, flow diagram, challenges, and team management, click <a href="ht
 |Class Player |
 |------------ |
 |+Player() |
+|+Player(string, bool) |
 |+getName() const: string |
 |+setName(name: string) |
-|+getAsciiChar(): char |
-|+setAsciiChar(asciiChar: char) |
-|+getHighScore() const: int |
-|+setHighScore(score: int) |
+|+getScores() const: vector(pair(int, enum Level)) |
+|+addScore(int, enum Level) |
+|+loadScores() |
+|+storeScores() |
 |-name: string |
-|-score: int |
-|-asciiChar: char |
-|-snake: Snake |
+|-scores: vector(pair(int, enum Level)) |
 
 -
 -
@@ -64,16 +83,19 @@ To see classes, flow diagram, challenges, and team management, click <a href="ht
 |Class Snake |
 |----------- |
 |+Snake() |
-|+Snake(ascii: char, direction: enum Compass, position: struct Point) |
 |+move() |
-|+changeDirection(direction: enum Compass) |
+|+changeDirection(enum Compass) |
 |+lengthen() |
-|+returnHead(): struct Point |
-|+getLength(): int <br> - returns the snake's length member variable |
+|+getPosition(): struct Point |
+|+setPosition(x: int, y: int) |
+|+getLength(): int |
+|+setLength(int) |
+|+setAscii(char ascii) |
+|+getAscii() const: char |
 |-length: int |
+|-ascii: char |
 |-direction: enum Compass |
 |-headPosition: struct Point |
-|-ascii: char |
 
 -
 -
