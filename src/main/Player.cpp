@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+
 Player::Player() {
     name = "NULL";
 }
@@ -15,11 +16,13 @@ Player::Player(string name, bool old) {
     }
 }
 
+// Adds a player's score and the associated game difficulty
 void Player::addScore(int score, Level difficulty) {
     pair<int, Level> tempPair = make_pair(score, difficulty);
     scores.push_back(tempPair);
 }
 
+// Opens a new file based on player name
 void Player::loadScores() {
     ifstream fin;
     string fileNum;         // holds each number from file
@@ -55,6 +58,7 @@ void Player::loadScores() {
     fin.close();
 }
 
+// Stores score in the appropriate player file
 void Player::storeScores() {
     ofstream store;
     // medium scores
