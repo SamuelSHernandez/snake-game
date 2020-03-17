@@ -22,6 +22,5 @@ void Fruit::setPosition(int mapHeight, int mapWidth, Point snakeHead, int board[
 }
 
 Point Fruit::getPosition() const {
-    Point point;
-    return point;
+    return fruitPosition;
 }
