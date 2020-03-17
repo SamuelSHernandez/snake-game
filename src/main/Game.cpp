@@ -2,6 +2,7 @@
 #include <pthread.h>
 #include <chrono>
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -66,7 +67,7 @@ void getDirection() {
     system("stty cooked");
 }
 void Game::gameLoop() {
-    Compass ChangeDirection;
+    Compass direction;
     cout << "entered game loop function" << endl;
     bool gameOver = false;
     int index = 0;  // used to keep track of loop iterations
@@ -85,29 +86,29 @@ void Game::gameLoop() {
         switch (input) {
             // ADD if up key
             case 'w':
-                if (ChangeDirection != SOUTH) {
-                    ChangeDirection = NORTH;
+                if (direction != SOUTH) {
+                    direction = NORTH;
                     gameSnake.changeDirection(NORTH);
                 }
                 break;
             // ADD if left key
             case 'a':
-                if (ChangeDirection != EAST) {
-                    ChangeDirection = WEST;
+                if (direction != EAST) {
+                    direction = WEST;
                     gameSnake.changeDirection(WEST);
                 }
                 break;
             // ADD if right key
             case 'd':
-                if (ChangeDirection != WEST) {
-                    ChangeDirection = EAST;
+                if (direction != WEST) {
+                    direction = EAST;
                     gameSnake.changeDirection(EAST);
                 }
                 break;
             // ADD if down key
             case 's':
-                if (ChangeDirection != NORTH) {
-                    ChangeDirection = SOUTH;
+                if (direction != NORTH) {
+                    direction = SOUTH;
                     // for error checking
                     gameSnake.changeDirection(SOUTH);
                 }
@@ -238,8 +239,6 @@ void Game::setGameDifficulty(int choice) {  // sets the game's difficulty
             break;
     }
 }
-<<<<<<< HEAD
-=======
 
 Player* Game::getPlayer(string playerName) {  // saves new players
     if (players.count(playerName) == 0) {
@@ -454,4 +453,3 @@ string Game::formatName(string name) {  // formats player's name
     }
     return name;
 }
->>>>>>> master
