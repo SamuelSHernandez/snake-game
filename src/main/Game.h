@@ -1,8 +1,11 @@
 #ifndef SRC_MAIN_GAME_H_
 #define SRC_MAIN_GAME_H_
 #include <pthread.h>
+#include <list>
 #include <map>
 #include <string>
+#include <utility>
+#include <vector>
 #include "Fruit.h"   // Game will have a Fruit instance
 #include "Player.h"  // will have a Player instance
 #include "Snake.h"   // will have a Snake instance
@@ -14,9 +17,9 @@ class Player;
 
 class Game {
   public:
-    Game(int choice, char snakeChar);  // initializes board array of size y by x and sets difficulty. Could throw
-                                       // runtime_error if not in bounds
-    void gameLoop();  // holds game logic and runs the game
+    Game(int choice, char snakeChar, string playerName);  // initializes board array of size y by x and sets difficulty.
+                                                          // Could throw runtime_error if not in bounds
+    void gameLoop();                                      // holds game logic and runs the game
     int getMapWidth() const {
         return mapWidth;
     }
@@ -30,35 +33,47 @@ class Game {
         return gameDifficulty;
     }
     void decrementArray();  // decreases every value in array by 1
-    map<string, Player> getPlayers() const {
+    map<string, Player*> getPlayers() const {
         return players;
     }
-    map<int, string> getEasyScoresMap() const {
+    list<pair<int, string> > getEasyScoresMap() const {
         return easyScoresMap;
     }
-    map<int, string> getMediumScoresMap() const {
+    list<pair<int, string> > getMediumScoresMap() const {
         return mediumScoresMap;
     }
-    map<int, string> getHardScoresMap() const {
+    list<pair<int, string> > getHardScoresMap() const {
         return hardScoresMap;
     }
+    Player* getPlayer(string);
+    void addScores();
+    void loadStorage();   // can throw exception
+    void printStorage();  // can throw exception
+    void printLeaderboard();
+    void printEasyHeader();
+    void printMediumHeader();
+    void printHardHeader();
+    string formatName(string);
 
     void printLeaderboard(map<int, string>, map<int, string>, map<int, string>);
 
   private:
-    bool gameOver = false;
-    int mapWidth = 20;   // variable to hold board width
-    int mapHeight = 20;  // variable to hold board height
+    bool gameOver;
+    int mapWidth;   // variable to hold board width
+    int mapHeight;  // variable to hold board height
+    int index;      // used to keep track of loop iterations
+    string playerName;
+    Player* currentPlayer;
     Level gameDifficulty;
     Fruit gameFruit;
     Snake gameSnake;
-    int board[100][100];  // Array size can be changed as necessary. Each difficulty level
-                          // only uses as much of the array as needed.
-    int gameSpeed;        // number of milliseconds snake will sleep between iterations
-    map<string, Player> players;
-    map<int, string> easyScoresMap;
-    map<int, string> mediumScoresMap;
-    map<int, string> hardScoresMap;
+    int board[100][100];                     // Array size can be changed as necessary. Each difficulty level
+                                             // only uses as much of the array as needed.
+    int gameSpeed;                           // number of milliseconds snake will sleep between iterations
+    map<string, Player*> players;            // <name, player object>
+    list<pair<int, string> > easyScoresMap;  // <score, player name>
+    list<pair<int, string> > mediumScoresMap;
+    list<pair<int, string> > hardScoresMap;
 };
 
 #endif  // SRC_MAIN_GAME_H_

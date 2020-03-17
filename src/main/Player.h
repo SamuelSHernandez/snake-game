@@ -2,6 +2,7 @@
 #define SRC_MAIN_PLAYER_H_
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 #include "Snake.h"  // Player will have a Snake instance
 using namespace std;
@@ -10,26 +11,27 @@ class Snake;
 
 class Player {
   public:
-    Player(string);
+    Player();
+    Player(string, bool);  // name of player, flag saying if player exists in storage
     string getName() const {
         return name;
     }
     void setName(string name) {
         this->name = name;
     }
-    int getHighScore() const {
-        return score;
+    vector<pair<int, Level> > getScores() const {
+        return scores;
     }
-    void setHighScore(int score) {
-        this->score = score;
-    }
+    void addScore(int score, Level difficulty);
+    void loadScores();   // can throw exception
+    void storeScores();  // can throw exception
 
     void printLeaderboard();
 
   private:
    
     string name;
-    int score;
+    vector<pair<int, Level> > scores;
 };
 
 #endif  // SRC_MAIN_PLAYER_H_

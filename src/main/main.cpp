@@ -15,22 +15,33 @@
 #include "Player.h"
 #include "Snake.h"
 #include "Type.h"
+#include "main_func.h"
 using namespace std;
 
 int main() {  // finish exception handling
     int menuOption;
     string playerName;
     char snakeChar;
+    string snakeSkin;
+
+    // Welcome
+    cout << endl;
+    cout << "============================================================================" << endl;
+    cout << "|                               ASCII  SNAKE                               |" << endl;
+    cout << "============================================================================" << endl;
 
     // Player's name
-    cout << "Enter your name: ";
-    cin >> playerName;
+    cout << "Welcome! Please enter your name below. Make sure you spell it the same way " << endl;
+    cout << "each time for score tracking. " << endl;
+    playerName = getNameEntry();
 
     // Snake character
+    cout << endl;
     do {
         cout << "Enter a single ASCII character that is not a number: ";
-        cin >> snakeChar;
-        if (isdigit(snakeChar) || !cin) {
+        cin >> snakeSkin;
+        snakeChar = snakeSkin.front();
+        if (isdigit(snakeChar) || (!cin)) {
             cin.clear();
             cin.ignore(100, '\n');
             cerr << "Invalid entry. ";
@@ -42,7 +53,6 @@ int main() {  // finish exception handling
             break;
         }
     } while (snakeChar);
-
     // Game difficulty and run game
     do {
         cout << endl << "Choose a game difficulty (1), (2), or (3)" << endl;
@@ -55,7 +65,7 @@ int main() {  // finish exception handling
         if (!cin) {
             cin.clear();
             cin.ignore(100, '\n');
-            cerr << "Invalid entry.";
+            cerr << "Invalid entry. ";
             cout << "Please enter a valid menu option." << endl;
             cout << endl;
             menuOption = 1;
@@ -65,9 +75,29 @@ int main() {  // finish exception handling
         }
     } while (menuOption);
 
-    Player myPlayer(playerName);
-    Game myGame(menuOption, snakeChar);
+    Game myGame(menuOption, snakeChar, playerName);
+    try {
+        myGame.loadStorage();
+    } catch (runtime_error &excpt) {
+        cout << excpt.what() << endl;
+    }
+    string trash;
+    cout << endl << endl;
+    cout << "Game Created. Use the w, a, s, and d keys to move your snake." << endl;
+    cout << "Open the file \"Board.txt\" to play the game." << endl;
+    cout << "Press any key and then enter to continue: ";
+    cin >> trash;  // used to delay game until enter is pressed.
+    cout << "============================================================================" << endl;
+    cout << "Change direction: ";
     myGame.gameLoop();
+
+    try {
+        myGame.printStorage();
+    } catch (runtime_error &excpt) {
+        cout << excpt.what() << endl;
+    }
+    // this MUST happen after data is stored
+    myGame.printLeaderboard();
 
     return 0;
 }
