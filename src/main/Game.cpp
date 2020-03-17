@@ -2,12 +2,10 @@
 #include <pthread.h>
 #include <chrono>
 #include <fstream>
-#include <functional>
 #include <iostream>
 #include <stdexcept>
 #include <string>
 #include <thread>
-#include <utility>
 using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until
 using namespace chrono;       // nanoseconds, system_clock, seconds, milliseconds
@@ -17,12 +15,10 @@ bool gameOver1 = false;
 Game::Game(int choice, char snakeChar, string playerName) : gameOver(false), mapWidth(20), mapHeight(20), index(0) {
     // set difficulty
     setGameDifficulty(choice);
-    gameSnake.setAscii(snakeChar);
+
     // setup initial snake
     gameSnake.setPosition(mapWidth, mapHeight / 2);
     gameSnake.changeDirection(WEST);
-    // set player name
-    this->playerName = playerName;
 
     // sets the array with blank spaces with game difficulty size and negative numbers for borders
     for (int i = 0; i < mapHeight + 2; i++) {
@@ -42,8 +38,6 @@ Game::Game(int choice, char snakeChar, string playerName) : gameOver(false), map
         }
     }
 
-    render();
-
     // // Position snake
     // gameSnake.setLength(2);
     // gameSnake.setPosition(mapWidth - 1, mapHeight / 2);
@@ -53,64 +47,76 @@ Game::Game(int choice, char snakeChar, string playerName) : gameOver(false), map
 // Function to get User Input
 void getUserInput() {
     while (gameOver1 == false) {
+        // different way of doing cin
         input = getchar();
     }
 }
-// Is calld by Game Loop to create the user input thread.
+// Is called by Game Loop to create the user input thread.
 void getDirection() {
+    // raw makes it so it doesn't have to have the enter
     system("stty raw");
+    // echo makes it so it doesn't print the input in the terminal
     system("stty echo");
+    // calls the thread
     thread th1(getUserInput);
+    // detachs the thread so it doesn't have to wait for the input if there isn't any
     th1.detach();
+    // turning off the stuff
     system("stty -echo");
     system("stty cooked");
 }
 void Game::gameLoop() {
-    Compass direction;
+    Compass ChangeDirection;
+    cout << "entered game loop function" << endl;
     bool gameOver = false;
+    int index = 0;  // used to keep track of loop iterations
+
     // set initial fruit
     gameFruit.setPosition(mapHeight, mapWidth, gameSnake.getPosition(), board);
 
     // Event Loop - runs until game is over
     do {
         index++;
-        if (index == 1) {
-            cout << "got here" << endl;
-            direction = WEST;
-            gameSnake.changeDirection(WEST);
-        }
         getDirection();
         switch (input) {
-            // if up key
+            // ADD if up key
             case 'w':
-                if (direction != SOUTH) {
-                    direction = NORTH;
+                if (ChangeDirection != SOUTH) {
+                    ChangeDirection = NORTH;
                     gameSnake.changeDirection(NORTH);
                 }
                 break;
-            // if left key
+            // ADD if left key
             case 'a':
-                if (direction != EAST) {
-                    direction = WEST;
+                if (ChangeDirection != EAST) {
+                    ChangeDirection = WEST;
                     gameSnake.changeDirection(WEST);
                 }
                 break;
-            // if right key
+            // ADD if right key
             case 'd':
-                if (direction != WEST) {
-                    direction = EAST;
+                if (ChangeDirection != WEST) {
+                    ChangeDirection = EAST;
                     gameSnake.changeDirection(EAST);
                 }
                 break;
-            // if down key
+            // ADD if down key
             case 's':
-                if (direction != NORTH) {
-                    direction = SOUTH;
+                if (ChangeDirection != NORTH) {
+                    ChangeDirection = SOUTH;
                     // for error checking
                     gameSnake.changeDirection(SOUTH);
                 }
                 break;
         }
+
+        // ADD if up key
+
+        // ADD if left key
+
+        // ADD if right key
+
+        // ADD if down key
 
         // move snake based on direction
         gameSnake.move();
@@ -121,8 +127,8 @@ void Game::gameLoop() {
             gameSnake.getPosition().x > mapWidth) {
             gameOver = true;
             gameOver1 = true;
-            cout << endl << endl << "Game Over: Hit wall" << endl;
-            addScores();
+            cout << "game over: Hit wall" << endl;
+            cout << "Snake Length: " << gameSnake.getLength() << endl;
             break;
         }
 
@@ -140,8 +146,8 @@ void Game::gameLoop() {
             // snake has hit itself so game is over
             gameOver = true;
             gameOver1 = true;
-            cout << endl << endl << "Game Over: hit itself" << endl;
-            addScores();
+            cout << "game over: hit itself" << endl;
+            cout << "Snake length: " << gameSnake.getLength() << endl;
             break;
         }
 
@@ -167,37 +173,13 @@ void Game::decrementArray() {
     }
 }
 
-void Game::addScores() {
-    currentPlayer->addScore(gameSnake.getLength(), gameDifficulty);
-    pair<int, string> tempPair = make_pair(gameSnake.getLength(), currentPlayer->getName());
-    switch (gameDifficulty) {
-        case L_EASY:
-            easyScoresMap.push_back(tempPair);
-            break;
-        case L_MEDIUM:
-            mediumScoresMap.push_back(tempPair);
-            break;
-        case L_HARD:
-            hardScoresMap.push_back(tempPair);
-            break;
-    }
-}
-
 void Game::render() {
     ofstream fout;
-    fout.open("Board.txt");
+    fout.open("GameBoard.txt");
     if (!fout) {
         cerr << "cannot open";
     }
     string space = "  ";
-    string fruitSpace;
-    if (gameSnake.getLength() <= 8) {
-        fruitSpace = "  ";
-    } else if (gameSnake.getLength() <= 99 && index > 9) {
-        fruitSpace = " ";
-    } else {
-        fruitSpace = "";
-    }
     string gridBar = "";
     for (int i = 0; i < mapHeight + 2; i++) {
         for (int j = 0; j < mapWidth + 2; j++) {
@@ -213,7 +195,7 @@ void Game::render() {
             } else if (arrayPosition == gameSnake.getPosition()) {
                 fout << "O" + space + gridBar;
             } else if (board[i][j] == -3) {
-                fout << to_string(gameSnake.getLength() + 1) + fruitSpace + gridBar;
+                fout << "8" + space + gridBar;
             } else {
                 fout << " " + space + gridBar;
             }
@@ -237,11 +219,11 @@ void Game::setGameDifficulty(int choice) {
     switch (choice) {
         case 1:
             gameDifficulty = L_EASY;
-            gameSpeed = 160;
+            gameSpeed = 200;
             break;
         case 2:
             gameDifficulty = L_MEDIUM;
-            gameSpeed = 130;
+            gameSpeed = 150;
             break;
         case 3:
             gameDifficulty = L_HARD;
@@ -251,218 +233,4 @@ void Game::setGameDifficulty(int choice) {
             cerr << "Invalid input";
             break;
     }
-}
-
-Player* Game::getPlayer(string playerName) {
-    if (players.count(playerName) == 0) {
-        pair<string, Player*> tempPair = make_pair(playerName, new Player(playerName, false));
-        players.insert(tempPair);
-    }
-    return players.at(playerName);
-}
-
-void Game::loadStorage() {
-    ifstream load;
-    string filePlayerName;
-    string fileScore;
-
-    // loading players
-    load.open("../../storage/playerList.txt");
-    if (!load.is_open()) {
-        throw runtime_error("Could not open file playerList.txt.");
-    }
-    getline(load, filePlayerName, '\n');
-    while (!load.fail()) {
-        pair<string, Player*> tempPair = make_pair(filePlayerName, new Player(filePlayerName, true));
-        players.insert(tempPair);
-        getline(load, filePlayerName, '\n');
-    }
-    if (!load.eof()) {
-        throw runtime_error("Input failure before reaching end of file.");
-    }
-    load.close();
-
-    // load current player object into currentPlayer
-    currentPlayer = getPlayer(playerName);
-
-    // loading easyScoresMap
-    load.open("../../storage/EasyLeaderboard.txt");
-    if (!load.is_open()) {
-        throw runtime_error("Could not open file EasyLeaderboard.txt");
-    }
-    getline(load, fileScore, '\t');
-    getline(load, filePlayerName, '\n');
-    while (!load.fail()) {
-        pair<int, string> tempPair = make_pair(stoi(fileScore), filePlayerName);
-        easyScoresMap.push_back(tempPair);
-        getline(load, fileScore, '\t');
-        getline(load, filePlayerName, '\n');
-    }
-    if (!load.eof()) {
-        throw runtime_error("Input failure before reaching end of file.");
-    }
-    load.close();
-
-    // loading mediumScoresMap
-    load.open("../../storage/MediumLeaderboard.txt");
-    if (!load.is_open()) {
-        throw runtime_error("Could not open file MediumLeaderboard.txt");
-    }
-    getline(load, fileScore, '\t');
-    getline(load, filePlayerName, '\n');
-    while (!load.fail()) {
-        pair<int, string> tempPair = make_pair(stoi(fileScore), filePlayerName);
-        mediumScoresMap.push_back(tempPair);
-        getline(load, fileScore, '\t');
-        getline(load, filePlayerName, '\n');
-    }
-    if (!load.eof()) {
-        throw runtime_error("Input failure before reaching end of file.");
-    }
-    load.close();
-
-    // loading hardScoresMap;
-    load.open("../../storage/HardLeaderboard.txt");
-    if (!load.is_open()) {
-        throw runtime_error("Could not open file HardLeaderboard.txt");
-    }
-    getline(load, fileScore, '\t');
-    getline(load, filePlayerName, '\n');
-    while (!load.fail()) {
-        pair<int, string> tempPair = make_pair(stoi(fileScore), filePlayerName);
-        hardScoresMap.push_back(tempPair);
-        getline(load, fileScore, '\t');
-        getline(load, filePlayerName, '\n');
-    }
-    if (!load.eof()) {
-        throw runtime_error("Input failure before reaching end of file.");
-    }
-    load.close();
-}
-
-void Game::printStorage() {
-    ofstream save;
-    // storing players
-    save.open("../../storage/playerList.txt");
-    if (!save.is_open()) {
-        throw runtime_error("Could not open file playerList.txt.");
-    }
-    for (const auto each : players) {
-        save << each.first << endl;
-    }
-    save.close();
-
-    // storing easyScoresMap
-    save.open("../../storage/EasyLeaderboard.txt");
-    if (!save.is_open()) {
-        throw runtime_error("Could not open file EasyLeaderboard.txt.");
-    }
-    for (const auto each : easyScoresMap) {
-        save << each.first << "\t" << each.second << endl;
-    }
-    save.close();
-
-    // storing mediumScoresMap
-    save.open("../../storage/MediumLeaderboard.txt");
-    if (!save.is_open()) {
-        throw runtime_error("Could not open file MediumLeaderboard.txt.");
-    }
-    for (const auto each : mediumScoresMap) {
-        save << each.first << "\t" << each.second << endl;
-    }
-    save.close();
-
-    // storing hardScoresMap
-    save.open("../../storage/HardLeaderboard.txt");
-    if (!save.is_open()) {
-        throw runtime_error("Could not open file HardLeaderboard.txt");
-    }
-    for (const auto each : hardScoresMap) {
-        save << each.first << "\t" << each.second << endl;
-    }
-    save.close();
-
-    // store player's scores
-    currentPlayer->storeScores();
-}
-
-void Game::printLeaderboard() {
-    switch (gameDifficulty) {
-        case L_EASY:
-            easyScoresMap.sort(greater<pair<int, string> >());
-            printEasyHeader();
-            break;
-        case L_MEDIUM:
-            mediumScoresMap.sort(greater<pair<int, string> >());
-            printMediumHeader();
-            break;
-        case L_HARD:
-            hardScoresMap.sort(greater<pair<int, string> >());
-            printHardHeader();
-            break;
-    }
-    // calculate highest player score
-    int playerHighest = 0;
-    for (const auto each : currentPlayer->getScores()) {
-        if (each.first > playerHighest && each.second == gameDifficulty) {
-            playerHighest = each.first;
-        }
-    }
-    cout << "Your latest score: " << gameSnake.getLength() << endl;
-    cout << "Your highest score: " << playerHighest << endl << endl;
-}
-
-void Game::printEasyHeader() {
-    cout << "============================================================================" << endl;
-    cout << "|                          H I G H   S C O R E S                           |" << endl;
-    cout << "|                              Level: Easy                                 |" << endl;
-    cout << "============================================================================" << endl;
-    list<pair<int, string> >::iterator i;
-    int count = 1;
-    for (i = easyScoresMap.begin(); i != easyScoresMap.end() && count != 11; ++i) {
-        cout << "                            ";
-        cout << count << ":\t" << formatName(i->second) << "\t" << i->first << endl;
-        count++;
-    }
-}
-
-void Game::printMediumHeader() {
-    cout << "============================================================================" << endl;
-    cout << "|                          H I G H   S C O R E S                           |" << endl;
-    cout << "|                             Level: Medium                                |" << endl;
-    cout << "============================================================================" << endl;
-    list<pair<int, string> >::iterator i;
-    int count = 1;
-    for (i = mediumScoresMap.begin(); i != mediumScoresMap.end() && count != 11; ++i) {
-        cout << "                            ";
-        cout << count << ":\t" << formatName(i->second) << "\t" << i->first << endl;
-        count++;
-    }
-}
-
-void Game::printHardHeader() {
-    cout << "============================================================================" << endl;
-    cout << "|                          H I G H   S C O R E S                           |" << endl;
-    cout << "|                              Level: Hard                                 |" << endl;
-    cout << "============================================================================" << endl;
-    list<pair<int, string> >::iterator i;
-    int count = 1;
-    for (i = hardScoresMap.begin(); i != hardScoresMap.end() && count != 11; ++i) {
-        cout << "                            ";
-        cout << count << ":\t" << formatName(i->second) << "\t" << i->first << endl;
-        count++;
-    }
-}
-
-string Game::formatName(string name) {
-    for (int i = 0; i < name.length(); ++i) {
-        if (name.at(i) == 95) {
-            name.at(i) = 32;
-        }
-        if (i == 0 || name.at(i - 1) == 32) {
-            // capitalize if first letter or first letter after space
-            name.at(i) -= 32;
-        }
-    }
-    return name;
 }

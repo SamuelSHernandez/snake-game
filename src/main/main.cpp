@@ -18,17 +18,7 @@
 #include "main_func.h"
 using namespace std;
 
-<<<<<<< HEAD
-// void test_main();
 
-/*********
- *
- *
- *
- */
-
-=======
->>>>>>> master
 int main() {  // finish exception handling
     int menuOption;
     string playerName;
