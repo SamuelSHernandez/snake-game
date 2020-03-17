@@ -56,7 +56,7 @@ void getUserInput() {
         input = getchar();
     }
 }
-// Is calld by Game Loop to create the user input thread.
+// Is called by Game Loop to create the user input thread.
 void getDirection() {
     system("stty raw");
     system("stty echo");
@@ -75,7 +75,6 @@ void Game::gameLoop() {
     do {
         index++;
         if (index == 1) {
-            cout << "got here" << endl;
             direction = WEST;
             gameSnake.changeDirection(WEST);
         }
@@ -233,7 +232,7 @@ void Game::render() {
     fout.close();
 }
 
-void Game::setGameDifficulty(int choice) {
+void Game::setGameDifficulty(int choice) {  // sets the game's difficulty
     switch (choice) {
         case 1:
             gameDifficulty = L_EASY;
@@ -253,7 +252,7 @@ void Game::setGameDifficulty(int choice) {
     }
 }
 
-Player* Game::getPlayer(string playerName) {
+Player* Game::getPlayer(string playerName) {  // saves new players
     if (players.count(playerName) == 0) {
         pair<string, Player*> tempPair = make_pair(playerName, new Player(playerName, false));
         players.insert(tempPair);
@@ -261,7 +260,7 @@ Player* Game::getPlayer(string playerName) {
     return players.at(playerName);
 }
 
-void Game::loadStorage() {
+void Game::loadStorage() {  // Holds the player's information for leaderboard retrieval
     ifstream load;
     string filePlayerName;
     string fileScore;
@@ -386,7 +385,7 @@ void Game::printStorage() {
     currentPlayer->storeScores();
 }
 
-void Game::printLeaderboard() {
+void Game::printLeaderboard() {  // Prints the leaderboard based on difficulty level
     switch (gameDifficulty) {
         case L_EASY:
             easyScoresMap.sort(greater<pair<int, string> >());
@@ -408,11 +407,11 @@ void Game::printLeaderboard() {
             playerHighest = each.first;
         }
     }
-    cout << "Your latest score: " << gameSnake.getLength() << endl;
-    cout << "Your highest score: " << playerHighest << endl << endl;
+    cout << "Your latest score: " << gameSnake.getLength() << endl;   // Gives player's latest score
+    cout << "Your highest score: " << playerHighest << endl << endl;  // Gives player's highest score
 }
 
-void Game::printEasyHeader() {
+void Game::printEasyHeader() {  // prints leaderboard for Level: Easy
     cout << "============================================================================" << endl;
     cout << "|                          H I G H   S C O R E S                           |" << endl;
     cout << "|                              Level: Easy                                 |" << endl;
@@ -426,7 +425,7 @@ void Game::printEasyHeader() {
     }
 }
 
-void Game::printMediumHeader() {
+void Game::printMediumHeader() {  // prints leaderboard for Level: Medium
     cout << "============================================================================" << endl;
     cout << "|                          H I G H   S C O R E S                           |" << endl;
     cout << "|                             Level: Medium                                |" << endl;
@@ -440,7 +439,7 @@ void Game::printMediumHeader() {
     }
 }
 
-void Game::printHardHeader() {
+void Game::printHardHeader() {  // prints leaderboard for Level: Hard
     cout << "============================================================================" << endl;
     cout << "|                          H I G H   S C O R E S                           |" << endl;
     cout << "|                              Level: Hard                                 |" << endl;
@@ -454,7 +453,7 @@ void Game::printHardHeader() {
     }
 }
 
-string Game::formatName(string name) {
+string Game::formatName(string name) {  // formats player's name
     for (int i = 0; i < name.length(); ++i) {
         if (name.at(i) == 95) {
             name.at(i) = 32;

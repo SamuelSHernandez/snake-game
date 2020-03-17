@@ -24,3 +24,8 @@
 2	luke
 18	luke
 15	fred
+2	stefan
+2	stefan
+2	stefan
+2	stefan
+5	stefan

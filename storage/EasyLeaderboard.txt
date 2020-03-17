@@ -3,3 +3,9 @@
 5	luke
 3	luke
 22	luke
+2	stefan
+10	stefan
+2	stefan
+2	stefan
+28	stefan
+62	stefan
