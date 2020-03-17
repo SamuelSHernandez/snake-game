@@ -6,3 +6,4 @@
 17	luke
 30	luke
 9	john
+6	luke
