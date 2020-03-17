@@ -77,13 +77,10 @@ void Game::gameLoop() {
     // Event Loop - runs until game is over
     do {
         index++;
-<<<<<<< HEAD
-=======
         if (index == 1) {
             direction = WEST;
             gameSnake.changeDirection(WEST);
         }
->>>>>>> master
         getDirection();
         switch (input) {
             // ADD if up key

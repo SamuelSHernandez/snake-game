@@ -12,23 +12,12 @@ void Fruit::setPosition(int mapHeight, int mapWidth, Point snakeHead, int board[
     int fruitY;
     srand(time(NULL));
     do {
-<<<<<<< HEAD
-        srand(time(NULL));
-        int fruitX = rand() % (mapWidth) + 1;   // Generates food at a random X position
-        int fruitY = rand() % (mapHeight) + 1;  // Generates food at a random Y position
-
-        fruitPosition.x = fruitX;
-        fruitPosition.y = fruitY;
-
-    } while (fruitPosition == snakeHead);  // this will be to check if location is free or not later on
-=======
         fruitX = rand() % (mapWidth) + 1;   // Generates food at a random X position
         fruitY = rand() % (mapHeight) + 1;  // Generates food at a random Y position
     } while (board[fruitY][fruitX] > 0 || abs(snakeHead.x - fruitX) < 2 ||
              abs(snakeHead.y - fruitY) < 2);  // this will be to check if location is free or not later on
     fruitPosition.x = fruitX;
     fruitPosition.y = fruitY;
->>>>>>> master
     board[fruitPosition.y][fruitPosition.x] = -3;
 }
 
