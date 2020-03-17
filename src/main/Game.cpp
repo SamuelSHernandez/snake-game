@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <string>
 #include <thread>
+#include <utility>
 using namespace std;
 using namespace this_thread;  // sleep_for, sleep_until
 using namespace chrono;       // nanoseconds, system_clock, seconds, milliseconds
@@ -16,10 +17,12 @@ bool gameOver1 = false;
 Game::Game(int choice, char snakeChar, string playerName) : gameOver(false), mapWidth(20), mapHeight(20), index(0) {
     // set difficulty
     setGameDifficulty(choice);
-
+    gameSnake.setAscii(snakeChar);
     // setup initial snake
     gameSnake.setPosition(mapWidth, mapHeight / 2);
     gameSnake.changeDirection(WEST);
+    // set player name
+    this->playerName = playerName;
 
     // sets the array with blank spaces with game difficulty size and negative numbers for borders
     for (int i = 0; i < mapHeight + 2; i++) {
@@ -39,11 +42,7 @@ Game::Game(int choice, char snakeChar, string playerName) : gameOver(false), map
         }
     }
 
-    // // Position snake
-    // gameSnake.setLength(2);
-    // gameSnake.setPosition(mapWidth - 1, mapHeight / 2);
-    // gameSnake.setAscii('=');
-    // board[mapHeight / 2][mapWidth] = 1;  // need to set tail in board first time
+    render();
 }
 // Function to get User Input
 void getUserInput() {
@@ -70,7 +69,6 @@ void Game::gameLoop() {
     Compass direction;
     cout << "entered game loop function" << endl;
     bool gameOver = false;
-    int index = 0;  // used to keep track of loop iterations
 
     // set initial fruit
     gameFruit.setPosition(mapHeight, mapWidth, gameSnake.getPosition(), board);
@@ -84,28 +82,28 @@ void Game::gameLoop() {
         }
         getDirection();
         switch (input) {
-            // ADD if up key
+            // if up key
             case 'w':
                 if (direction != SOUTH) {
                     direction = NORTH;
                     gameSnake.changeDirection(NORTH);
                 }
                 break;
-            // ADD if left key
+            // if left key
             case 'a':
                 if (direction != EAST) {
                     direction = WEST;
                     gameSnake.changeDirection(WEST);
                 }
                 break;
-            // ADD if right key
+            // if right key
             case 'd':
                 if (direction != WEST) {
                     direction = EAST;
                     gameSnake.changeDirection(EAST);
                 }
                 break;
-            // ADD if down key
+            // if down key
             case 's':
                 if (direction != NORTH) {
                     direction = SOUTH;
@@ -114,14 +112,6 @@ void Game::gameLoop() {
                 }
                 break;
         }
-
-        // ADD if up key
-
-        // ADD if left key
-
-        // ADD if right key
-
-        // ADD if down key
 
         // move snake based on direction
         gameSnake.move();
@@ -132,8 +122,8 @@ void Game::gameLoop() {
             gameSnake.getPosition().x > mapWidth) {
             gameOver = true;
             gameOver1 = true;
-            cout << "game over: Hit wall" << endl;
-            cout << "Snake Length: " << gameSnake.getLength() << endl;
+            cout << endl << endl << "Game Over: Hit wall" << endl;
+            addScores();
             break;
         }
 
@@ -151,8 +141,8 @@ void Game::gameLoop() {
             // snake has hit itself so game is over
             gameOver = true;
             gameOver1 = true;
-            cout << "game over: hit itself" << endl;
-            cout << "Snake length: " << gameSnake.getLength() << endl;
+            cout << endl << endl << "Game Over: hit itself" << endl;
+            addScores();
             break;
         }
 
@@ -178,13 +168,37 @@ void Game::decrementArray() {
     }
 }
 
+void Game::addScores() {
+    currentPlayer->addScore(gameSnake.getLength(), gameDifficulty);
+    pair<int, string> tempPair = make_pair(gameSnake.getLength(), currentPlayer->getName());
+    switch (gameDifficulty) {
+        case L_EASY:
+            easyScoresMap.push_back(tempPair);
+            break;
+        case L_MEDIUM:
+            mediumScoresMap.push_back(tempPair);
+            break;
+        case L_HARD:
+            hardScoresMap.push_back(tempPair);
+            break;
+    }
+}
+
 void Game::render() {
     ofstream fout;
-    fout.open("GameBoard.txt");
+    fout.open("Board.txt");
     if (!fout) {
         cerr << "cannot open";
     }
     string space = "  ";
+    string fruitSpace;
+    if (gameSnake.getLength() <= 8) {
+        fruitSpace = "  ";
+    } else if (gameSnake.getLength() <= 99 && index > 9) {
+        fruitSpace = " ";
+    } else {
+        fruitSpace = "";
+    }
     string gridBar = "";
     for (int i = 0; i < mapHeight + 2; i++) {
         for (int j = 0; j < mapWidth + 2; j++) {
@@ -200,7 +214,7 @@ void Game::render() {
             } else if (arrayPosition == gameSnake.getPosition()) {
                 fout << "O" + space + gridBar;
             } else if (board[i][j] == -3) {
-                fout << "8" + space + gridBar;
+                fout << to_string(gameSnake.getLength() + 1) + fruitSpace + gridBar;
             } else {
                 fout << " " + space + gridBar;
             }
@@ -224,11 +238,11 @@ void Game::setGameDifficulty(int choice) {  // sets the game's difficulty
     switch (choice) {
         case 1:
             gameDifficulty = L_EASY;
-            gameSpeed = 200;
+            gameSpeed = 160;
             break;
         case 2:
             gameDifficulty = L_MEDIUM;
-            gameSpeed = 150;
+            gameSpeed = 130;
             break;
         case 3:
             gameDifficulty = L_HARD;
