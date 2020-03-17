@@ -26,6 +26,8 @@ class Player {
     void loadScores();   // can throw exception
     void storeScores();  // can throw exception
 
+    void printLeaderboard();
+
   private:
     string name;
     vector<pair<int, Level> > scores;
