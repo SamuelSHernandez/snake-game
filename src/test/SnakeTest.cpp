@@ -4,7 +4,7 @@ using namespace std;
 
 TEST_CASE("Snake constructor sets length to 2 and lengthen() function incrementes it once", "[snake]") {
     // setup
-    Snake testSnake('*');
+    Snake testSnake;
     testSnake.lengthen();
 
     SECTION("Testing .lengthen() and .getLength() and Snake::Snake()") {
@@ -15,19 +15,19 @@ TEST_CASE("Snake constructor sets length to 2 and lengthen() function incremente
 
 TEST_CASE("Snake::move() increments snake based on snake's direction", "[snake]") {
     // setup
-    Snake northSnake('^');
+    Snake northSnake;
     northSnake.setPosition(0, 0);
     northSnake.changeDirection(NORTH);
     northSnake.move();
-    Snake westSnake('<');
+    Snake westSnake;
     westSnake.setPosition(0, 0);
     westSnake.changeDirection(WEST);
     westSnake.move();
-    Snake eastSnake('>');
+    Snake eastSnake;
     eastSnake.setPosition(0, 0);
     eastSnake.changeDirection(EAST);
     eastSnake.move();
-    Snake southSnake('v');
+    Snake southSnake;
     southSnake.setPosition(0, 0);
     southSnake.changeDirection(SOUTH);
     southSnake.move();
