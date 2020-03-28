@@ -30,3 +30,4 @@
 2	stefan
 5	stefan
 35	luke
+12	luke
